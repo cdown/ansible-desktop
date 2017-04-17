@@ -25,3 +25,5 @@
       service: name=sshd state=restarted
     - name: restart atop
       service: name=atop state=restarted
+    - name: restart l4d2
+      service: name=l4d2 state=restarted

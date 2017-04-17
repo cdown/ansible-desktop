@@ -1,0 +1,14 @@
+[Unit]
+Description=Left 4 Dead 2 server
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User=steam
+Restart=always
+RestartSec=5
+Nice=-5
+ExecStart=/usr/local/bin/run_l4d2
+
+[Install]
+WantedBy=multi-user.target

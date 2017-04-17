@@ -30,3 +30,15 @@
 
 - name: Configure L4D2 server.cfg
   copy: src=files/l4d2_config dest=~steam/l4d2/left4dead2/cfg/server.cfg mode=644 owner=steam
+  notify: restart l4d2
+
+- name: Install run_l4d2
+  copy: src=files/run_l4d2 dest=/usr/local/bin/run_l4d2 mode=755
+  notify: restart l4d2
+
+- name: Install L4D2 systemd service
+  copy: src=files/l4d2.service dest=/etc/systemd/system/l4d2.service
+  notify: restart l4d2
+
+- name: Start and enable L4D2
+  service: name=l4d2 state=started enabled=yes

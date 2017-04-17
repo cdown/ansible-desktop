@@ -5,4 +5,7 @@
     - rpcbind
     - avahi-daemon
     - exim4
+    - exim4-base
+    - exim4-config
+    - exim4-daemon-light
     - acpid

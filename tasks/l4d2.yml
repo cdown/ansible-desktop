@@ -88,5 +88,19 @@
   copy: src=files/sm_admins dest=~steam/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini owner=steam
   notify: restart l4d2
 
+# https://forums.alliedmods.net/showthread.php?p=2409064
+- name: l4d_survivor_bot_select.smx
+  copy: src=files/l4d2/l4d_survivor_bot_select.smx dest=~steam/l4d2/left4dead2/addons/sourcemod/plugins/l4d_survivor_bot_select.smx owner=steam
+  notify: restart l4d2
+
+- name: l4d_survivor_bot_select.txt
+  copy: src=files/l4d2/l4d_survivor_bot_select.txt dest=~steam/l4d2/left4dead2/addons/sourcemod/gamedata/l4d_survivor_bot_select.txt owner=steam
+  notify: restart l4d2
+
+# https://forums.alliedmods.net/showthread.php?p=893326
+- name: l4d_survivorai_pouncedfix.smx
+  copy: src=files/l4d2/l4d_survivorai_pouncedfix.smx dest=~steam/l4d2/left4dead2/addons/sourcemod/plugins/l4d_survivorai_pouncedfix.smx owner=steam
+  notify: restart l4d2
+
 - name: Start and enable L4D2
   service: name=l4d2 state=started enabled=yes

@@ -1,0 +1,29 @@
+---
+- name: Add steam user
+  user: name=steam shell=/bin/zsh
+
+- name: Install steamcmd deps
+  apt: name=lib32gcc1
+
+- stat: path=~steam/steamcmd.sh
+  register: steamcmd_stat
+
+- stat: path=~steam/l4d2
+  register: l4d2_stat
+
+- name: Download steamcmd
+  get_url:
+    url: https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+    dest: /tmp/steamcmd.tar.gz
+  when: not steamcmd_stat.stat.exists
+  register: downloaded_steamcmd
+
+- name: Extract steamcmd
+  unarchive: src=/tmp/steamcmd.tar.gz dest=~steam/
+  become: yes
+  become_user: steam
+  when: downloaded_steamcmd.changed
+
+- name: Install L4D2
+  command: ~steam/steamcmd.sh +login anonymous +force_install_dir ~steam/l4d2 +app_update 222860 validate +quit
+  when: not l4d2_stat.stat.exists

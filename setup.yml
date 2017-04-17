@@ -8,9 +8,10 @@
 
   tasks:
     - include: tasks/users.yml
+    - include: tasks/sudo.yml
+    - include: tasks/ssh.yml
     - include: tasks/apt.yml
     - include: tasks/ntp.yml
-    - include: tasks/ssh.yml
     - include: tasks/tools.yml
     - include: tasks/atop.yml
     - include: tasks/perf.yml

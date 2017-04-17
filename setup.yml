@@ -3,6 +3,7 @@
   connection: local
 
   tasks:
+    - include: tasks/apt.yml
     - include: tasks/ntp.yml
 
   handlers:

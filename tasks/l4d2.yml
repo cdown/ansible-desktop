@@ -40,5 +40,15 @@
   copy: src=files/l4d2.service dest=/etc/systemd/system/l4d2.service
   notify: restart l4d2
 
+- name: Make .steam dir
+  file: path=~steam/.steam state=directory mode=0755 owner=steam group=steam
+
+- name: Make sdk32 dir
+  file: path=~steam/.steam/sdk32 state=directory mode=0755 owner=steam group=steam
+
+- name: Link steamclient.so
+  file: src=~steam/linux32/steamclient.so dest=~steam/.steam/sdk32/steamclient.so state=link
+  notify: restart l4d2
+
 - name: Start and enable L4D2
   service: name=l4d2 state=started enabled=yes

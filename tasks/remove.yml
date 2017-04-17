@@ -1,0 +1,8 @@
+---
+- name: Remove unwanted packages
+  apt: name={{ item }} state=absent
+  with_items:
+    - rpcbind
+    - avahi-daemon
+    - exim4
+    - acpid

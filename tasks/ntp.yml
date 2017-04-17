@@ -4,7 +4,7 @@
 
 - name: Install NTP config
   copy: src=files/ntp.conf dest=/etc/ntp.conf mode=644
-  notify: restart ntpd
+  notify: restart ntp
 
 - name: Enable NTP daemon
   service: name=ntp state=started enabled=yes

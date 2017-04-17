@@ -16,8 +16,8 @@
     - include: tasks/perf.yml
 
   handlers:
-    - name: restart ntpd
-      service: name=ntpd state=restarted
+    - name: restart ntp
+      service: name=ntd state=restarted
     - name: restart sshd
       service: name=sshd state=restarted
     - name: restart atop

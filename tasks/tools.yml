@@ -8,3 +8,4 @@
     - htop
     - lsof
     - zsh
+    - ca-certificates

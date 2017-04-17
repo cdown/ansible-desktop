@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+# http://bit.ly/2omT14e
+
 apt-get -y install ansible git
 
 playbook_dir=$(mktemp -ud)

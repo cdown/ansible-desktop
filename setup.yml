@@ -5,7 +5,10 @@
   tasks:
     - include: tasks/apt.yml
     - include: tasks/ntp.yml
+    - include: tasks/ssh.yml
 
   handlers:
     - name: restart ntpd
       service: name=ntpd state=restarted
+    - name: restart sshd
+      service: name=sshd state=restarted

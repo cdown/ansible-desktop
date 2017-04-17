@@ -1,0 +1,4 @@
+AllowGroups ssh
+ChallengeResponseAuthentication no
+PasswordAuthentication no
+UseDNS no

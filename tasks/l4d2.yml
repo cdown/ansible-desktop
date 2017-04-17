@@ -50,5 +50,43 @@
   file: src=~steam/linux32/steamclient.so dest=~steam/.steam/sdk32/steamclient.so state=link
   notify: restart l4d2
 
+- stat: path=~steam/l4d2/left4dead2/addons/metamod/
+  register: mm_stat
+
+- name: Download MetaMod
+  get_url:
+    url: http://www.gsptalk.com/mirror/sourcemod/mmsource-1.10.6-linux.tar.gz
+    dest: /tmp/mm.tar.gz
+  when: not mm_stat.stat.exists
+  register: downloaded_mm
+
+- name: Extract MetaMod
+  unarchive: src=/tmp/mm.tar.gz dest=~steam/l4d2/left4dead2/
+  sudo: yes
+  sudo_user: steam
+  when: downloaded_mm.changed
+  notify: restart l4d2
+
+- stat: path=~steam/l4d2/left4dead2/addons/sourcemod/
+  register: sm_stat
+
+- name: Download SourceMod
+  get_url:
+    url: https://sm.alliedmods.net/smdrop/1.8/sourcemod-1.8.0-git5982-linux.tar.gz
+    dest: /tmp/sm.tar.gz
+  when: not sm_stat.stat.exists
+  register: downloaded_sm
+
+- name: Extract SourceMod
+  unarchive: src=/tmp/sm.tar.gz dest=~steam/l4d2/left4dead2/
+  sudo: yes
+  sudo_user: steam
+  when: downloaded_sm.changed
+  notify: restart l4d2
+
+- name: Set up SM admins
+  copy: src=files/sm_admins dest=~steam/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini owner=steam
+  notify: restart l4d2
+
 - name: Start and enable L4D2
   service: name=l4d2 state=started enabled=yes

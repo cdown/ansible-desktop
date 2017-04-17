@@ -20,8 +20,8 @@
 
 - name: Extract steamcmd
   unarchive: src=/tmp/steamcmd.tar.gz dest=~steam/
-  become: yes
-  become_user: steam
+  sudo: yes
+  sudo_user: steam
   when: downloaded_steamcmd.changed
 
 - name: Install L4D2

@@ -7,9 +7,12 @@
     - include: tasks/ntp.yml
     - include: tasks/ssh.yml
     - include: tasks/tools.yml
+    - include: tasks/atop.yml
 
   handlers:
     - name: restart ntpd
       service: name=ntpd state=restarted
     - name: restart sshd
       service: name=sshd state=restarted
+    - name: restart atop
+      service: name=atop state=restarted

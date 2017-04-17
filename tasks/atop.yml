@@ -1,0 +1,10 @@
+---
+- name: Install atop
+  apt: name=atop
+
+- name: Install atop config
+  copy: src=files/atop.conf dest=/etc/default/atop mode=644
+  notify: restart atop
+
+- name: Enable atop daemon
+  service: name=atop state=started enabled=yes

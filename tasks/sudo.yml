@@ -4,3 +4,10 @@
 
 - name: Install sudoers config
   copy: src=files/sudoers dest=/etc/sudoers mode=440
+
+- name: Create sudo group
+  group: name=sudo state=present
+
+- name: Add local user to sudo group
+  user: name={{ item }} groups=sudo append=yes
+  with_items: '{{ users }}'

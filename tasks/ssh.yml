@@ -8,3 +8,10 @@
 
 - name: Enable SSH daemon
   service: name=ssh state=started enabled=yes
+
+- name: Create ssh group
+  group: name=ssh state=present
+
+- name: Add local user to ssh group
+  user: name={{ item }} groups=ssh append=yes
+  with_items: '{{ users }}'

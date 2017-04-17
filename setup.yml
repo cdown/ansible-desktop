@@ -2,7 +2,12 @@
 - hosts: localhost
   connection: local
 
+  vars:
+    users:
+      - cdown
+
   tasks:
+    - include: tasks/users.yml
     - include: tasks/apt.yml
     - include: tasks/ntp.yml
     - include: tasks/ssh.yml

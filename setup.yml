@@ -8,6 +8,7 @@
     - include: tasks/ssh.yml
     - include: tasks/tools.yml
     - include: tasks/atop.yml
+    - include: tasks/perf.yml
 
   handlers:
     - name: restart ntpd

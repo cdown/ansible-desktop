@@ -1,0 +1,3 @@
+---
+- name: Turn swappiness to 0
+  sysctl: name=vm.swappiness value=0

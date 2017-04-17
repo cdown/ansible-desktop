@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - include: tasks/ntp.yml
+
+  handlers:
+    - name: restart ntpd
+      service: name=ntpd state=restarted

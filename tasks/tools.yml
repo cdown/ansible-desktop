@@ -1,0 +1,10 @@
+---
+- name: Install basic tools that don't require Ansible configuration
+  apt: name={{ item }}
+  with_items:
+    - rsync
+    - mosh
+    - tmux
+    - htop
+    - sudo
+    - lsof

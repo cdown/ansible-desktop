@@ -6,6 +6,7 @@
     - include: tasks/apt.yml
     - include: tasks/ntp.yml
     - include: tasks/ssh.yml
+    - include: tasks/tools.yml
 
   handlers:
     - name: restart ntpd

@@ -6,7 +6,6 @@ log off
 
 hostport 27015
 sv_lan 0
-sv_region 255
 sv_allow_lobby_connect_only 0
 
 z_difficulty hard
@@ -14,11 +13,6 @@ z_difficulty hard
 mp_disable_autokick 1
 sv_pausable 0
 sv_forcepreload 1
-sv_pure_kick_clients 0
-sv_pure 2
-
-sv_voiceenable 1
-sv_alltalk 0
 
 sv_steamgroup_exclusive "1"
 sv_steamgroup "27260559"

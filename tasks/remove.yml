@@ -1,6 +1,6 @@
 ---
 - name: Remove unwanted packages
-  apt: name={{ item }} state=absent
+  apt: name={{ item }} state=absent purge=yes
   with_items:
     - rpcbind
     - avahi-daemon

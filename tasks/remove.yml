@@ -9,3 +9,31 @@
     - exim4-config
     - exim4-daemon-light
     - acpid
+    - acpi
+    - arping
+    - at
+    - bash-completion
+    - euca2ools
+    - emacsen-common
+    - gdisk
+    - ftp
+    - hicolor-icon-theme
+    - iamerican
+    - ibritish
+    - ienglish-common
+    - ispell
+    - laptop-detect
+    - mutt
+    - nano
+    - os-prober
+    - parted
+    - pciutils
+    - procmail
+    - pinentry-gtk2
+    - nfs-common
+    - tcpd
+    - telnet
+    - w3m
+    - wamerican
+    - whois
+    - xauth

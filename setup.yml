@@ -17,6 +17,7 @@
     - include: tasks/atop.yml
     - include: tasks/perf.yml
     - include: tasks/l4d2.yml
+    - include: tasks/apt_post.yml
 
   handlers:
     - name: restart ntp

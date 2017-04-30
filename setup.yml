@@ -6,6 +6,9 @@
     users:
       - cdown
 
+  vars_files:
+    - vars/common.yml
+
   tasks:
     - include: tasks/remove.yml
     - include: tasks/users.yml
@@ -18,6 +21,7 @@
     - include: tasks/perf.yml
     - include: tasks/ansible-update.yml
     - include: tasks/l4d2.yml
+      when: l4d2
     - include: tasks/apt_post.yml
 
   handlers:

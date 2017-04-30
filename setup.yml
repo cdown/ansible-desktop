@@ -16,6 +16,7 @@
     - include: tasks/tools.yml
     - include: tasks/atop.yml
     - include: tasks/perf.yml
+    - include: tasks/ansible-update.yml
     - include: tasks/l4d2.yml
     - include: tasks/apt_post.yml
 

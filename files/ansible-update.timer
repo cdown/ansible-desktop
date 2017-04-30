@@ -1,0 +1,6 @@
+[Timer]
+OnCalendar=*:0/15
+Unit=ansible-update.service
+
+[Install]
+WantedBy=multi-user.target

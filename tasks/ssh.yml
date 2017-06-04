@@ -3,7 +3,7 @@
   apt: name=ssh
 
 - name: Install SSH config
-  copy: src=files/sshd_config dest=/etc/sshd_config mode=644
+  copy: src=files/sshd_config dest=/etc/ssh/sshd_config mode=644
   notify: restart sshd
 
 - name: Enable SSH daemon

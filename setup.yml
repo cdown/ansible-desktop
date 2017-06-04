@@ -20,6 +20,7 @@
     - include: tasks/atop.yml
     - include: tasks/perf.yml
     - include: tasks/ansible-update.yml
+    - include: tasks/nginx.yml
     - include: tasks/l4d2.yml
       when: l4d2
     - include: tasks/apt_post.yml
@@ -33,3 +34,5 @@
       service: name=atop state=restarted
     - name: restart l4d2
       service: name=l4d2 state=restarted
+    - name: restart nginx
+      service: name=nginx state=restarted

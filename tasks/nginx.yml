@@ -1,0 +1,20 @@
+---
+- name: Make nginx dir
+  file: path=/etc/nginx state=directory mode=0755
+
+- name: Make nginx conf.d dir
+  file: path=/etc/nginx/conf.d state=directory mode=0755
+
+- name: Configure nginx.conf
+  copy: src=files/nginx.conf dest=/etc/nginx/nginx.conf mode=644
+  notify: restart nginx
+
+- name: Make nginx default site
+  copy: src=files/nginx_default_site.conf dest=/etc/nginx/conf.d/default.conf mode=644
+  notify: restart nginx
+
+- name: Install nginx
+  apt: name=nginx-light
+
+- name: Make default site dir
+  file: path=/srv/http/default state=directory mode=0755

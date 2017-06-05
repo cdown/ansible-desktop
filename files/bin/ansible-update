@@ -1,13 +1,7 @@
 #!/bin/bash -e
 
-playbook_dir=$(mktemp -ud)
-
-trap 'cd /; rm -rf "$playbook_dir"' 0
-
-git clone --recursive git://github.com/cdown/ansible-server.git "$playbook_dir"
-
-# set -e is already set, so...
-# shellcheck disable=SC2164
-cd "$playbook_dir"
-
-USE_CURRENT_CHECKOUT=1 ./run
+script=$(mktemp -u)
+trap 'rm -f "$script"' 0
+curl -o "$script" https://raw.githubusercontent.com/cdown/ansible-server/master/run
+chmod a+x "$script"
+"$script"

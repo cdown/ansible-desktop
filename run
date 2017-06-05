@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-# http://bit.ly/2omT14e
+# https://bit.ly/2omT14e
 
 if ! (( USE_CURRENT_CHECKOUT )); then
     apt-get -y install ansible git

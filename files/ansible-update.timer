@@ -1,5 +1,7 @@
 [Timer]
 OnCalendar=*:0/15
+# Not supported in the version of systemd in Debian 8
+# RandomizedDelaySec=7m
 Unit=ansible-update.service
 
 [Install]

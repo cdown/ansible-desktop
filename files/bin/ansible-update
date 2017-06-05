@@ -10,4 +10,4 @@ git clone --recursive git://github.com/cdown/ansible-server.git "$playbook_dir"
 # shellcheck disable=SC2164
 cd "$playbook_dir"
 
-./run
+USE_CURRENT_CHECKOUT=1 ./run

@@ -2,15 +2,18 @@
 
 # http://bit.ly/2omT14e
 
-apt-get -y install ansible git
+if ! (( USE_CURRENT_CHECKOUT )); then
+    apt-get -y install ansible git
 
-playbook_dir=$(mktemp -ud)
-trap 'cd /; rm -rf "$playbook_dir"' 0
+    playbook_dir=$(mktemp -ud)
+    trap 'cd /; rm -rf "$playbook_dir"' 0
 
-git clone --recursive git://github.com/cdown/ansible-server.git "$playbook_dir"
+    git clone --recursive git://github.com/cdown/ansible-server.git \
+        "$playbook_dir"
 
-# set -e is already set, so...
-# shellcheck disable=SC2164
-cd "$playbook_dir"
+    # set -e is already set, so...
+    # shellcheck disable=SC2164
+    cd "$playbook_dir"
+fi
 
 ansible-playbook -i localhost, -v setup.yml

@@ -6,4 +6,4 @@ create_ap_version: 0.4.6
 cap_dir: /opt/create_ap
 cap_tgz: "{{ cap_dir }}/{{ create_ap_version }}.tar.gz"
 cap_bin: "{{ cap_dir }}/create_ap-{{ create_ap_version }}/create_ap"
-cap_device: usb0
+cap_device: eth0

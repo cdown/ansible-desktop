@@ -40,3 +40,5 @@
       service: name=l4d2 state=restarted
     - name: restart nginx
       service: name=nginx state=restarted
+    - name: restart pifi
+      service: name=pifi state=restarted

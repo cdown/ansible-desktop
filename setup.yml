@@ -18,6 +18,7 @@
     - include: tasks/apt.yml
     - include: tasks/ntp.yml
     - include: tasks/tools.yml
+    - include: tasks/systemd.yml
     - include: tasks/atop.yml
     - include: tasks/perf.yml
     - include: tasks/ansible-update.yml
@@ -42,3 +43,5 @@
       service: name=nginx state=restarted
     - name: restart pifi
       service: name=pifi state=restarted
+    - name: restart journald
+      service: name=systemd-journald state=restarted

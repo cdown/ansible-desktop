@@ -1,0 +1,10 @@
+---
+- name: Make /var/log/journal dir
+  file: path=/var/log/journal state=directory mode=0755 owner=root group=systemd-journal
+  register: journal_dir
+  notify: restart journald
+
+- name: Set up tmpfiles
+  command: systemd-tmpfiles --create --prefix /var/log/journal
+  when: journal_dir.changed
+  notify: restart journald

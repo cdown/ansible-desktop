@@ -1,5 +1,6 @@
 l4d2: false
 nginx: false
+create_ap: false
 
 create_ap_version: 0.4.6
 cap_dir: /opt/create_ap

@@ -1,2 +1,6 @@
 l4d2: false
 nginx: false
+
+create_ap_version: 0.4.6
+cap_dir: /opt/create_ap
+cap_tgz: "{{ cap_dir }}/{{ create_ap_version }}.tar.gz"

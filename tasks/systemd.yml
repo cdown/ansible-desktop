@@ -1,6 +1,6 @@
 ---
 - name: Make /var/log/journal dir
-  file: path=/var/log/journal state=directory mode=0755 owner=root group=systemd-journal
+  file: path=/var/log/journal state=directory mode=2755 owner=root group=systemd-journal
   register: journal_dir
   notify: restart journald
 

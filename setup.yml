@@ -21,6 +21,7 @@
     - include: tasks/perf.yml
     - include: tasks/ansible-update.yml
     - include: tasks/nginx.yml
+      when: nginx
     - include: tasks/l4d2.yml
       when: l4d2
     - include: tasks/apt_post.yml

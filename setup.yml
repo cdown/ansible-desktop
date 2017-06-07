@@ -21,6 +21,7 @@
     - include: tasks/perf.yml
     - include: tasks/ansible-update.yml
     - include: tasks/rpi.yml
+      when: rpi
     - include: tasks/nginx.yml
       when: nginx
     - include: tasks/l4d2.yml

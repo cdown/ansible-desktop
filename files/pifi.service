@@ -1,0 +1,12 @@
+[Unit]
+Description=Set up create_ap
+
+[Service]
+Type=simple
+ExecStart={{ cap_bin }} -w 2 -c 9 --hostapd-debug 2 --no-virt -g 10.0.0.1 wlan0 {{ cap_device }} "{{ cap_ssid }}" "{{ cap_pass }}"
+KillSignal=SIGINT
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

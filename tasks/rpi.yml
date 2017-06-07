@@ -23,3 +23,6 @@
 - name: Extract create_ap {{ create_ap_version }}
   unarchive: src={{ cap_tgz }} dest={{ cap_dir }}
   when: downloaded_cap.changed
+
+- name: Install create_ap systemd unit
+  template: src=files/pifi.service dest=/etc/systemd/system/pifi.service

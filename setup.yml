@@ -8,6 +8,7 @@
 
   vars_files:
     - vars/common.yml
+    - /.ansiblevars
 
   tasks:
     - include: tasks/remove.yml

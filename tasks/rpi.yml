@@ -26,3 +26,6 @@
 
 - name: Install create_ap systemd unit
   template: src=files/pifi.service dest=/etc/systemd/system/pifi.service
+
+- name: Enable/start pifi unit
+  service: name=pifi state=started enabled=yes

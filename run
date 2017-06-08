@@ -9,6 +9,7 @@ bp_file=/etc/apt/sources.list.d/backports.list
 # support dynamic reconfigure.
 if ! [[ -f $bp_file ]]; then
     echo 'deb http://ftp.debian.org/debian jessie-backports main' > "$bp_file"
+    apt-key adv --recv-key --keyserver keyserver.ubuntu.com 8B48AD6246925553
     apt-get update
 fi
 

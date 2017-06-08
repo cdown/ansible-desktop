@@ -10,3 +10,6 @@
 
 - name: Reboot 2 seconds after panic
   sysctl: name=kernel.panic value=2
+
+- name: Enable magic sysrq
+  sysctl: name=kernel.sysrq value=0

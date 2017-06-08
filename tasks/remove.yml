@@ -27,7 +27,6 @@
     - nano
     - os-prober
     - parted
-    - pciutils
     - procmail
     - pinentry-gtk2
     - nfs-common

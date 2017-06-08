@@ -1,4 +1,15 @@
 ---
+- name: Remove packages that would try to manage the network themselves
+  apt: name={{ item }} state=absent
+  with_items:
+    - ifupdown
+
+- name: Install dhcpcd@ service
+  copy: src=files/dhcpcd@.service dest=/etc/systemd/system/dhcpcd@.service
+
+- name: Enable core interface on boot
+  systemd: name=dhcpcd@{{ cap_device }} state=started enabled=yes daemon_reload=yes
+
 - name: Install create_ap dependencies
   apt: name={{ item }}
   with_items:

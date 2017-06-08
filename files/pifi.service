@@ -1,12 +1,14 @@
 [Unit]
 Description=Set up create_ap
+Wants=dhcpcd@{{ cap_device }}.service
+After=dhcpcd@{{ cap_device }}.service
 
 [Service]
 Type=simple
 ExecStartPre=/sbin/iw dev wlan0 set power_save off
 ExecStart={{ cap_bin }} -w 2 -c 9 --hostapd-debug 2 --no-virt -g 10.0.0.1 wlan0 {{ cap_device }} "{{ cap_ssid }}" "{{ cap_pass }}"
 # Temporary hack due to Relish having PMTUD problems, sigh.
-ExecStartPost=/sbin/ip link set eth0 mtu 1400
+ExecStartPost=/sbin/ip link set {{ cap_device }} mtu 1400
 KillSignal=SIGINT
 Restart=always
 RestartSec=5

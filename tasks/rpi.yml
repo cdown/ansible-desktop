@@ -4,6 +4,9 @@
   with_items:
     - ifupdown
 
+- name: Disable default dhcpcd service
+  systemd: name=dhcpcd state=stopped enabled=no daemon_reload=yes
+
 - name: Install dhcpcd@ service
   copy: src=files/dhcpcd@.service dest=/etc/systemd/system/dhcpcd@.service
 

@@ -10,3 +10,4 @@
     - zsh
     - ca-certificates
     - strace
+    - pciutils

@@ -20,8 +20,8 @@
 
 - name: Extract steamcmd
   unarchive: src=/tmp/steamcmd.tar.gz dest=~steam/
-  sudo: yes
-  sudo_user: steam
+  become: yes
+  become_user: steam
   when: downloaded_steamcmd.changed
 
 - name: Install L4D2
@@ -62,8 +62,8 @@
 
 - name: Extract MetaMod
   unarchive: src=/tmp/mm.tar.gz dest=~steam/l4d2/left4dead2/
-  sudo: yes
-  sudo_user: steam
+  become: yes
+  become_user: steam
   when: downloaded_mm.changed
   notify: restart l4d2
 
@@ -79,8 +79,8 @@
 
 - name: Extract SourceMod
   unarchive: src=/tmp/sm.tar.gz dest=~steam/l4d2/left4dead2/
-  sudo: yes
-  sudo_user: steam
+  become: yes
+  become_user: steam
   when: downloaded_sm.changed
   notify: restart l4d2
 

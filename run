@@ -3,9 +3,18 @@
 # https://bit.ly/2omT14e
 
 vars_file=/.ansiblevars
+bp_file=/etc/apt/sources.list.d/backports.list
+
+# HACK: this *must* be the same as in tasks/apt.yml. sigh, ansible doesn't
+# support dynamic reconfigure.
+if ! [[ -f $bp_file ]]; then
+    echo 'deb http://ftp.debian.org/debian jessie-backports main' > "$bp_file"
+    apt-get update
+fi
 
 if ! (( USE_CURRENT_CHECKOUT )); then
-    apt-get -y install ansible git
+    apt-get -y install git
+    apt-get -y -t jessie-backports install ansible
 
     playbook_dir=$(mktemp -ud)
     trap 'cd /; rm -rf "$playbook_dir"' 0

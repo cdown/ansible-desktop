@@ -6,5 +6,5 @@ Before=network.target
 [Service]
 Type=forking
 PIDFile=/run/dhcpcd-%I.pid
-ExecStart=/usr/bin/dhcpcd -q -w %I
-ExecStop=/usr/bin/dhcpcd -x %I
+ExecStart=/sbin/dhcpcd -q -w %I
+ExecStop=/sbin/dhcpcd -x %I

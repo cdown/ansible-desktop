@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+(( DEBUG )) && set -x
+
 # https://bit.ly/2omT14e
 
 vars_file=/.ansiblevars

@@ -7,7 +7,7 @@
   notify: restart sshd
 
 - name: Enable SSH daemon
-  service: name=ssh state=started enabled=yes
+  service: name=ssh state=started enabled=yes daemon_reload=yes
 
 - name: Create ssh group
   group: name=ssh state=present

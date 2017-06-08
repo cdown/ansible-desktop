@@ -7,4 +7,4 @@
   notify: restart atop
 
 - name: Enable atop daemon
-  service: name=atop state=started enabled=yes
+  service: name=atop state=started enabled=yes daemon_reload=yes

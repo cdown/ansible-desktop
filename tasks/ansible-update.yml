@@ -9,4 +9,4 @@
   copy: src=files/ansible-update.timer dest=/etc/systemd/system/ansible-update.timer
 
 - name: Start/enable ansible-update timer
-  service: name=ansible-update.timer state=started enabled=yes
+  service: name=ansible-update.timer state=started enabled=yes daemon_reload=yes

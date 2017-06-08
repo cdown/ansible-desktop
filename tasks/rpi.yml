@@ -29,4 +29,4 @@
   notify: restart pifi
 
 - name: Enable/start pifi unit
-  service: name=pifi state=started enabled=yes
+  service: name=pifi state=started enabled=yes daemon_reload=yes

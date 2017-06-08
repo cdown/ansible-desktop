@@ -20,7 +20,7 @@
     - include: tasks/tools.yml
     - include: tasks/systemd.yml
     - include: tasks/atop.yml
-    - include: tasks/perf.yml
+    - include: tasks/sysctl.yml
     - include: tasks/ansible-update.yml
     - include: tasks/rpi.yml
       when: rpi

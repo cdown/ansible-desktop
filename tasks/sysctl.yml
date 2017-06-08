@@ -1,0 +1,6 @@
+---
+- name: Be reluctant to swap
+  sysctl: name=vm.swappiness value=0
+
+- name: Panic on OOM
+  sysctl: name=vm.panic_on_oom value=1

@@ -13,4 +13,4 @@
   copy: src=files/tmp.mount dest=/etc/systemd/system/tmp.mount
 
 - name: Enable /tmp -> tmpfs
-  service: name=tmp.mount state=started enabled=yes daemon_reload=yes
+  systemd: name=tmp.mount state=started enabled=yes daemon_reload=yes

@@ -7,4 +7,4 @@
   notify: restart ntp
 
 - name: Enable NTP daemon
-  service: name=ntp state=started enabled=yes daemon_reload=yes
+  systemd: name=ntp state=started enabled=yes daemon_reload=yes

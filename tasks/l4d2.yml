@@ -103,4 +103,4 @@
   notify: restart l4d2
 
 - name: Start and enable L4D2
-  service: name=l4d2 state=started enabled=yes daemon_reload=yes
+  systemd: name=l4d2 state=started enabled=yes daemon_reload=yes

@@ -32,16 +32,16 @@
 
   handlers:
     - name: restart ntp
-      service: name=ntp state=restarted daemon_reload=yes
+      systemd: name=ntp state=restarted daemon_reload=yes
     - name: restart sshd
-      service: name=sshd state=restarted daemon_reload=yes
+      systemd: name=sshd state=restarted daemon_reload=yes
     - name: restart atop
-      service: name=atop state=restarted daemon_reload=yes
+      systemd: name=atop state=restarted daemon_reload=yes
     - name: restart l4d2
-      service: name=l4d2 state=restarted daemon_reload=yes
+      systemd: name=l4d2 state=restarted daemon_reload=yes
     - name: restart nginx
-      service: name=nginx state=restarted daemon_reload=yes
+      systemd: name=nginx state=restarted daemon_reload=yes
     - name: restart pifi
-      service: name=pifi state=restarted daemon_reload=yes
+      systemd: name=pifi state=restarted daemon_reload=yes
     - name: restart journald
-      service: name=systemd-journald state=restarted daemon_reload=yes
+      systemd: name=systemd-journald state=restarted daemon_reload=yes

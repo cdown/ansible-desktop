@@ -8,3 +8,9 @@
   command: systemd-tmpfiles --create --prefix /var/log/journal
   when: journal_dir.changed
   notify: restart journald
+
+- name: Install /tmp -> tmpfs unit
+  copy: src=files/tmp.mount dest=/etc/systemd/system/tmp.mount
+
+- name: Enable /tmp -> tmpfs
+  service: name=tmp.mount state=started enabled=yes

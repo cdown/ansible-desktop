@@ -4,3 +4,6 @@
 
 - name: Panic on OOM
   sysctl: name=vm.panic_on_oom value=1
+
+- name: Reboot 2 seconds after panic
+  sysctl: name=kernel.panic value=2

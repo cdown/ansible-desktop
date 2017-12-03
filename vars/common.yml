@@ -1,9 +1,0 @@
-l4d2: "{{ true if ansible_hostname.startswith('game') else false }}"
-nginx: "{{ true if ansible_hostname.startswith('file') else false }}"
-rpi: "{{ true if ansible_hostname == 'raspberrypi' else false }}"
-
-create_ap_version: 0.4.6
-cap_dir: /opt/create_ap
-cap_tgz: "{{ cap_dir }}/{{ create_ap_version }}.tar.gz"
-cap_bin: "{{ cap_dir }}/create_ap-{{ create_ap_version }}/create_ap"
-cap_device: eth0

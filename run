@@ -4,8 +4,6 @@
 
 # https://bit.ly/2omT14e
 
-vars_file=/.ansiblevars
-
 if ! (( USE_CURRENT_CHECKOUT )); then
     apt-get -y install git ansible
 
@@ -18,15 +16,6 @@ if ! (( USE_CURRENT_CHECKOUT )); then
     # set -e is already set, so...
     # shellcheck disable=SC2164
     cd "$playbook_dir"
-fi
-
-if [[ $HOSTNAME == raspberrypi ]] && ! [[ -e $vars_file ]]; then
-    read -r -p 'Pi-Fi SSID: ' ssid
-    read -r -p 'Pi-Fi passphrase: ' pass
-    cat > "$vars_file" << EOF
-cap_ssid: "$ssid"
-cap_pass: "$pass"
-EOF
 fi
 
 ansible-playbook -i localhost, -v setup.yml

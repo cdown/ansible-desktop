@@ -44,3 +44,6 @@ sv_maxcmdrate 10
 sv_mincmdrate 10
 sv_maxupdaterate 10
 sv_minupdaterate 10
+
+// appease rebuild string dictionary spam
+stringtable_alwaysrebuilddictionaries 1

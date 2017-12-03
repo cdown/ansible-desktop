@@ -1,6 +1,3 @@
 ---
-- name: Enable backports
-  copy: src=files/backports.list dest=/etc/apt/sources.list.d/backports.list
-
 - name: Refresh apt cache
   apt: update_cache=yes

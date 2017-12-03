@@ -1,7 +1,7 @@
 ---
 - name: Create local users
   user: name={{ item }} shell=/bin/zsh
-  with_items: users
+  with_items: '{{ users }}'
 
 - name: Set up SSH dir for cdown
   file: path=~cdown/.ssh state=directory mode=0700 owner=cdown group=cdown

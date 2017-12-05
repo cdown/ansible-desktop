@@ -1,11 +1,11 @@
 #!/bin/bash -e
 
-(( DEBUG )) && set -x
-
 # https://bit.ly/2omT14e
 
+(( DEBUG )) && set -x
+
 if ! (( USE_CURRENT_CHECKOUT )); then
-    apt-get -y install git ansible
+    pacman -S --noconfirm git ansible python
 
     playbook_dir=$(mktemp -ud)
     trap 'cd /; rm -rf "$playbook_dir"' 0

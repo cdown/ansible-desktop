@@ -3,36 +3,9 @@
   connection: local
 
   vars:
-    users:
-      - cdown
+    kernel: linux
+    default_kernel_params: 'cgroup_no_v1=all systemd.unified_cgroup_hierarchy=1'
+    extra_kernel_params: ''
 
   tasks:
-    - include: tasks/remove.yml
-    - include: tasks/users.yml
-    - include: tasks/sudo.yml
-    - include: tasks/ssh.yml
-    - include: tasks/apt.yml
-    - include: tasks/ntp.yml
-    - include: tasks/tools.yml
-    - include: tasks/systemd.yml
-    - include: tasks/atop.yml
-    - include: tasks/sysctl.yml
-    - include: tasks/ansible-update.yml
-    - include: tasks/l4d2.yml
-    - include: tasks/apt_post.yml
-
-  handlers:
-    - name: restart ntp
-      systemd: name=ntp state=restarted daemon_reload=yes
-    - name: restart sshd
-      systemd: name=sshd state=restarted daemon_reload=yes
-    - name: restart atop
-      systemd: name=atop state=restarted daemon_reload=yes
-    - name: restart l4d2
-      systemd: name=l4d2 state=restarted daemon_reload=yes
-    - name: restart nginx
-      systemd: name=nginx state=restarted daemon_reload=yes
-    - name: restart pifi
-      systemd: name=pifi state=restarted daemon_reload=yes
-    - name: restart journald
-      systemd: name=systemd-journald state=restarted daemon_reload=yes
+    - include_tasks: tasks/arch.yml

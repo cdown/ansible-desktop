@@ -5,7 +5,7 @@
 (( DEBUG )) && set -x
 
 if ! (( USE_CURRENT_CHECKOUT )); then
-    pacman -S --noconfirm git ansible python
+    pacman -S --needed --noconfirm git ansible python
 
     playbook_dir=$(mktemp -ud)
     trap 'cd /; rm -rf "$playbook_dir"' 0

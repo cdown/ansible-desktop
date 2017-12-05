@@ -98,3 +98,6 @@
 
 - name: Start/enable atop-oneday
   systemd: name=atop-oneday state=started enabled=yes daemon_reload=yes
+
+- name: Enable systemd-timesyncd
+  service: name=systemd-timesyncd state=started enabled=yes

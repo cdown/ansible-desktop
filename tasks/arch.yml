@@ -30,6 +30,10 @@
     - smartmontools
     - vlan
     - wget
+    - gnu-efi-libs
+    - bc
+    - numactl
+    - haveged
 
 - name: Nuke motd
   copy: content="" dest=/etc/motd
@@ -78,6 +82,7 @@
     - mosh
     - rsync
     - tmux
+    - vim
 
 - name: Install atop
   pacman: name=atop

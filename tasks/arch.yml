@@ -103,6 +103,9 @@
   systemd: name=atop-oneday state=started enabled=yes daemon_reload=yes
 
 - name: Service to purge atop logs
+  copy: src=files/purge-atop-logs.service dest=/etc/systemd/system/purge-atop-logs.service
+
+- name: Timer to purge atop logs
   copy: src=files/purge-atop-logs.timer dest=/etc/systemd/system/purge-atop-logs.timer
 
 - name: Start/enable purge-atop-logs timer
@@ -111,8 +114,11 @@
 - name: Enable systemd-timesyncd
   service: name=systemd-timesyncd state=started enabled=yes
 
-- name: Service to clean Pacman cache
+- name: Timer to clean Pacman cache
   copy: src=files/clean-cache.timer dest=/etc/systemd/system/clean-cache.timer
+
+- name: Service to clean Pacman cache
+  copy: src=files/clean-cache.service dest=/etc/systemd/system/clean-cache.service
 
 - name: Start/enable clean-cache timer
   systemd: name=clean-cache.timer state=started enabled=yes daemon_reload=yes

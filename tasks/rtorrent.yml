@@ -1,0 +1,20 @@
+---
+- user: name=rtorrent system=yes home=/srv/rtorrent
+
+- pacman: name={{ item }}
+  with_items:
+    - rtorrent
+    - tmux
+
+- copy: src=files/rtorrent_rc dest=~rtorrent/.rtorrent.rc owner=rtorrent group=rtorrent
+
+- file: path={{ item }} state=directory owner=rtorrent group=rtorrent
+  with_items:
+    - ~rtorrent/data
+    - ~rtorrent/session
+
+- copy: src=files/attach_rtorrent dest=/usr/local/bin/attach_rtorrent owner=root group=root mode=0755
+
+- copy: src=files/rtorrent.service dest=/etc/systemd/system/rtorrent.service owner=root group=root mode=0644
+
+- systemd: name=rtorrent state=started enabled=yes daemon_reload=yes

@@ -14,6 +14,7 @@
     - include_tasks: tasks/users.yml
     - include_tasks: tasks/ssh.yml
     - include_tasks: tasks/sudo.yml
+    - include_tasks: tasks/rtorrent.yml
 
   handlers:
     - name: restart sshd

@@ -1,2 +1,4 @@
 root  ALL=(ALL) ALL
 %sudo ALL=(ALL) ALL
+
+%sudo ALL=(rtorrent) NOPASSWD: ALL

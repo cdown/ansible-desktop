@@ -110,3 +110,9 @@
 
 - name: Enable systemd-timesyncd
   service: name=systemd-timesyncd state=started enabled=yes
+
+- name: Service to clean Pacman cache
+  copy: src=files/clean-cache.timer dest=/etc/systemd/system/clean-cache.timer
+
+- name: Start/enable clean-cache timer
+  systemd: name=clean-cache.timer state=started enabled=yes daemon_reload=yes

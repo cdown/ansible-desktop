@@ -1,6 +1,6 @@
 ---
 - name: Install sudo
-  apt: name=sudo
+  pacman: name=sudo
 
 - name: Install sudoers config
   copy: src=files/sudoers dest=/etc/sudoers mode=440

@@ -14,6 +14,8 @@
     - ~rtorrent/data
     - ~rtorrent/session
 
+- file: src=~rtorrent/data dest=/srv/downloads state=link
+
 - copy: src=files/attach_rtorrent dest=/usr/local/bin/attach_rtorrent owner=root group=root mode=0755
 
 - copy: src=files/rtorrent.service dest=/etc/systemd/system/rtorrent.service owner=root group=root mode=0644

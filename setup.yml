@@ -20,3 +20,5 @@
   handlers:
     - name: restart sshd
       service: name=sshd state=restarted
+    - name: restart l4d2
+      service: name=l4d2 state=restarted

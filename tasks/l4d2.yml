@@ -3,7 +3,7 @@
   user: name=steam shell=/bin/zsh
 
 - name: Install steamcmd deps
-  apt: name=lib32gcc1
+  pacman: name=lib32-glibc
 
 - stat: path=~steam/steamcmd.sh
   register: steamcmd_stat

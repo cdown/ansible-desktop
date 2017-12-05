@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-ip=$(ip -4 route get 1 | awk '{ print $NF; exit }')
+ip=$(curl 'https://api.ipify.org')
 
 if ! [[ $ip ]]; then
     echo "Failed to get IP!" >&2

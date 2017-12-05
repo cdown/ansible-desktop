@@ -1,0 +1,11 @@
+[Service]
+ExecStart=/usr/local/bin/atop-oneday
+
+# USR2 is an undocumented feature to take one more sample, and then quit
+KillSignal=USR2
+TimeoutStopSec=60s
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

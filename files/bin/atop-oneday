@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+log_dir=/var/log/atop
+interval=5
+
+mkdir -p "$log_dir"
+exec atop -a -S -w "$log_dir/atop_$(date +%Y%m%d)" "$interval"

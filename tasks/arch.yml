@@ -4,6 +4,9 @@
   with_items:
     - lvm2
 
+- name: Nuke motd
+  copy: content="" dest=/etc/motd
+
 - name: Install kernel
   pacman: name={{ kernel }}
 

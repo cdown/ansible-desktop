@@ -9,3 +9,5 @@
 
   tasks:
     - include_tasks: tasks/arch.yml
+    - include_tasks: tasks/users.yml
+    - include_tasks: tasks/ssh.yml

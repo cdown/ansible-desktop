@@ -1,13 +1,13 @@
 ---
 - name: Install SSH daemon
-  apt: name=ssh
+  pacman: name=openssh
 
 - name: Install SSH config
   copy: src=files/sshd_config dest=/etc/ssh/sshd_config mode=644
   notify: restart sshd
 
 - name: Enable SSH daemon
-  systemd: name=ssh state=started enabled=yes daemon_reload=yes
+  systemd: name=sshd state=started enabled=yes daemon_reload=yes
 
 - name: Create ssh group
   group: name=ssh state=present

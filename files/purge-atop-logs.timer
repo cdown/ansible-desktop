@@ -1,0 +1,6 @@
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=6h
+
+[Install]
+WantedBy=multi-user.target

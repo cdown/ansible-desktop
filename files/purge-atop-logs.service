@@ -1,0 +1,6 @@
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/find /var/log/atop -type f -mtime +14 -name 'atop_[0-9]*' -delete
+
+[Install]
+WantedBy=multi-user.target

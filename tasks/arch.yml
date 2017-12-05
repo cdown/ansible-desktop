@@ -99,5 +99,11 @@
 - name: Start/enable atop-oneday
   systemd: name=atop-oneday state=started enabled=yes daemon_reload=yes
 
+- name: Service to purge atop logs
+  copy: src=files/purge-atop-logs.timer dest=/etc/systemd/system/purge-atop-logs.timer
+
+- name: Start/enable purge-atop-logs timer
+  systemd: name=purge-atop-logs.timer state=started enabled=yes daemon_reload=yes
+
 - name: Enable systemd-timesyncd
   service: name=systemd-timesyncd state=started enabled=yes

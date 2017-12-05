@@ -2,7 +2,16 @@
 - name: Remove unused
   pacman: name={{ item }} state=absent recurse=yes
   with_items:
+    # base
     - lvm2
+    - xfsprogs
+    - efibootmgr
+
+    # ovh
+    - ethtool
+    - hddtemp
+    - irqbalance
+    - jfsutils
 
 - name: Nuke motd
   copy: content="" dest=/etc/motd

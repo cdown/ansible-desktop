@@ -6,12 +6,30 @@
     - lvm2
     - xfsprogs
     - efibootmgr
+    - logrotate
+    - mdadm
+    - netctl
+    - reiserfsprogs
+    - ntp
+    - parted
+    - pciutilsq
+    - usbutils
 
     # ovh
     - ethtool
     - hddtemp
     - irqbalance
     - jfsutils
+    - dmidecode
+    - grub
+    - man-pages-de
+    - man-pages-it
+    - net
+    - screen
+    - tcpdump
+    - smartmontools
+    - vlan
+    - wget
 
 - name: Nuke motd
   copy: content="" dest=/etc/motd

@@ -10,3 +10,11 @@
 - name: Install SSH key for cdown
   copy: src=files/cdown_ssh_pubkey dest=~cdown/.ssh/authorized_keys mode=600 owner=cdown group=cdown
   when: '"cdown" in users'
+
+- name: Check if cdown lingers
+  stat: path=/var/lib/systemd/linger/cdown
+  register: linger
+
+- name: Enable linger for cdown
+  command: loginctl enable-linger cdown
+  when: 'not linger.stat.exists and "cdown" in users'

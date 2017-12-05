@@ -1,4 +1,9 @@
 ---
+- name: Remove unused
+  pacman: name={{ item }} state=absent recurse=yes
+  with_items:
+    - lvm2
+
 - name: Install kernel
   pacman: name={{ kernel }}
 

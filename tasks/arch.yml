@@ -42,6 +42,7 @@
     - htop
     - mosh
     - rsync
+    - tmux
 
 - name: Install atop
   pacman: name=atop

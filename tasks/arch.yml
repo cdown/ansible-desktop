@@ -2,6 +2,8 @@
 - name: Copy Pacman configuration
   copy: src=files/pacman.conf dest=/etc/pacman.conf
 
+- pacman: update_cache=yes
+
 - name: Remove unused
   pacman: name={{ item }} state=absent recurse=yes
   with_items:

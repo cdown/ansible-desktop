@@ -88,6 +88,9 @@
     - rsync
     - tmux
     - vim
+    - btrfs-progs
+    - git
+    - python
 
 - name: Install atop
   pacman: name=atop

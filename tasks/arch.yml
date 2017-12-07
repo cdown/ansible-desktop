@@ -43,8 +43,11 @@
 - name: Nuke motd
   copy: content="" dest=/etc/motd
 
-- name: Install kernel
-  pacman: name={{ kernel }}
+- name: Install kernel + LTS as backup
+  pacman: name={{ item }}
+  with_items:
+    - '{{ kernel }}'
+    - linux-lts
 
 - name: Copy generate syslinux script
   copy: src=files/bin/generate-syslinux-config dest=/usr/local/bin/generate-syslinux-config mode=755

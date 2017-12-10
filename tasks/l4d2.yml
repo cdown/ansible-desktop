@@ -104,3 +104,12 @@
 
 - name: Start and enable L4D2
   systemd: name=l4d2 state=started enabled=yes daemon_reload=yes
+
+- name: Copy timer to restart L4D2 nightly
+  copy: src=files/l4d2-restart.timer dest=/etc/systemd/system/l4d2-restart.timer
+
+- name: Copy service to restart L4D2 nightly
+  copy: src=files/l4d2-restart.service dest=/etc/systemd/system/l4d2-restart.service
+
+- name: Start and enable L4D2 restart service
+  systemd: name=l4d2-restart.timer state=started enabled=yes daemon_reload=yes

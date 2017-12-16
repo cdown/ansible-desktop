@@ -7,6 +7,7 @@
     - tmux
 
 - copy: src=files/rtorrent_rc dest=~rtorrent/.rtorrent.rc owner=rtorrent group=rtorrent
+  notify: restart rtorrent
 
 - file: path={{ item }} state=directory owner=rtorrent group=rtorrent mode=0755
   with_items:
@@ -19,5 +20,6 @@
 - copy: src=files/attach_rtorrent dest=/usr/local/bin/attach_rtorrent owner=root group=root mode=0755
 
 - copy: src=files/rtorrent.service dest=/etc/systemd/system/rtorrent.service owner=root group=root mode=0644
+  notify: restart rtorrent
 
 - systemd: name=rtorrent state=started enabled=yes daemon_reload=yes

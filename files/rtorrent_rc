@@ -11,3 +11,6 @@ peer_exchange = yes
 
 session = /srv/rtorrent/session
 directory = /srv/rtorrent/data
+
+throttle.global_down.max_rate.set_kb = 9500
+throttle.global_up.max_rate.set_kb = 9500

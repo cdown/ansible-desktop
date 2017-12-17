@@ -131,3 +131,9 @@
 
 - name: Start/enable clean-cache timer
   systemd: name=clean-cache.timer state=started enabled=yes daemon_reload=yes
+
+- name: Service to set performance cpu scaling governor
+  copy: src=files/cpu-perf.service dest=/etc/systemd/system/cpu-perf.service
+
+- name: Start/enable cpu-perf.service
+  systemd: name=cpu-perf.service state=started enabled=yes daemon_reload=yes

@@ -10,6 +10,7 @@ ExecStart=/usr/bin/tmux new-session -c /srv/rtorrent/data -s rtorrent -n rtorren
 ExecStop=/usr/bin/bash -c "/usr/bin/tmux send-keys -t rtorrent C-q && while pidof rtorrent > /dev/null; do sleep 0.5; done"
 WorkingDirectory=%h
 Restart=on-failure
+LimitNOFILE=infinity
 
 [Install]
 WantedBy=multi-user.target

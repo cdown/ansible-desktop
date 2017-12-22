@@ -14,3 +14,6 @@ directory = /srv/rtorrent/data
 
 throttle.global_down.max_rate.set_kb = 9500
 throttle.global_up.max_rate.set_kb = 9500
+
+view_sort_current = active,greater=d.get_up_rate=
+schedule = filter_active,12,20,"view_filter = active,\"or={d.get_up_rate=,d.get_down_rate=}\" ;view_sort=active"

@@ -95,6 +95,14 @@
     - btrfs-progs
     - git
     - python
+    - mktorrent
+    - p7zip
+
+- name: Install music tools
+  pacman: name={{ item }}
+  with_items:
+    - flac
+    - lame
 
 - name: Install atop
   pacman: name=atop

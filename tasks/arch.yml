@@ -97,6 +97,7 @@
     - python
     - mktorrent
     - p7zip
+    - lsof
 
 - name: Install music tools
   pacman: name={{ item }}

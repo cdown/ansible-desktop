@@ -14,7 +14,9 @@
   notify: restart nginx
 
 - name: Install nginx
-  apt: name=nginx-light
+  pacman: name=nginx
 
 - name: Make default site dir
   file: path=/srv/http/default state=directory mode=0755
+
+- systemd: name=nginx state=started enabled=yes daemon_reload=yes

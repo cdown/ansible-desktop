@@ -16,6 +16,7 @@
     - include_tasks: tasks/sudo.yml
     - include_tasks: tasks/rev.yml
     - include_tasks: tasks/rtorrent.yml
+    - include_tasks: tasks/nginx.yml
     - include_tasks: tasks/l4d2.yml
 
   handlers:
@@ -25,3 +26,5 @@
       service: name=l4d2 state=restarted
     - name: restart rtorrent
       service: name=rtorrent state=restarted
+    - name: restart nginx
+      service: name=nginx state=restarted

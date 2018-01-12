@@ -98,6 +98,8 @@
     - mktorrent
     - p7zip
     - lsof
+    - bind-tools
+    - net-tools
 
 - name: Install music tools
   pacman: name={{ item }}

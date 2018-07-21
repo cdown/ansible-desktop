@@ -1,2 +1,2 @@
 ---
-- systemd: name=dhcpcd state=started enabled=yes daemon_reload=yes
+- systemd: name=systemd-networkd state=started enabled=yes daemon_reload=yes

@@ -1,21 +1,21 @@
-min_peers = 100
-max_peers = 500
-max_uploads = 50
+throttle.min_peers.normal.set = 100              
+throttle.max_peers.normal.set = 500
+throttle.max_uploads.set = 50
 
 network.max_open_files.set = 1000
 
-port_random = yes
+network.port_random.set = yes
 
-dht = auto
-peer_exchange = yes
+dht.mode.set = auto
+protocol.pex.set = yes
 
-session = /srv/rtorrent/session
-directory = /srv/rtorrent/data
+session.path.set = /srv/rtorrent/session
+directory.default.set = /srv/rtorrent/data
 
 throttle.global_down.max_rate.set_kb = 95000
 throttle.global_up.max_rate.set_kb = 95000
 
-view_sort_current = active,greater=d.get_up_rate=
-schedule = filter_active,12,20,"view_filter = active,\"or={d.get_up_rate=,d.get_down_rate=}\" ;view_sort=active"
+view.sort_current = active,greater=d.up.rate=
+schedule2 = filter_active,12,20,"view.filter = active,\"or={d.up.rate=,d.down.rate=}\" ;view.sort=active"
 
 method.set_key = event.download.erased,delete_erased,"execute=rm,-rf,--,$d.base_path="

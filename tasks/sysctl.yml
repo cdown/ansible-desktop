@@ -1,6 +1,6 @@
 ---
-- name: Be reluctant to swap
-  sysctl: name=vm.swappiness value=0
+- name: Be reluctant to swap (thanks, rusty HDDs)
+  sysctl: name=vm.swappiness value=1
 
 - name: Panic on OOM
   sysctl: name=vm.panic_on_oom value=1
@@ -13,3 +13,5 @@
 
 - name: Enable magic sysrq
   sysctl: name=kernel.sysrq value=0
+
+

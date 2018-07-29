@@ -12,8 +12,8 @@ protocol.pex.set = yes
 session.path.set = /srv/rtorrent/session
 directory.default.set = /srv/rtorrent/data
 
-throttle.global_down.max_rate.set_kb = 9500
-throttle.global_up.max_rate.set_kb = 9500
+throttle.global_down.max_rate.set_kb = 11000
+throttle.global_up.max_rate.set_kb = 11000
 
 view.sort_current = active,greater=d.up.rate=
 schedule2 = filter_active,12,20,"view.filter = active,\"or={d.up.rate=,d.down.rate=}\" ;view.sort=active"

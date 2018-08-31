@@ -19,3 +19,6 @@ view.sort_current = active,greater=d.up.rate=
 schedule2 = filter_active,12,20,"view.filter = active,\"or={d.up.rate=,d.down.rate=}\" ;view.sort=active"
 
 method.set_key = event.download.erased,delete_erased,"execute=rm,-rf,--,$d.base_path="
+
+# https://github.com/rakshasa/rtorrent/issues/731
+network.local_address.set = 0.0.0.0

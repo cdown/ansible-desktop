@@ -4,7 +4,7 @@
 
   vars:
     kernel: linux
-    default_kernel_params: 'cgroup_no_v1=all systemd.unified_cgroup_hierarchy=1'
+    default_kernel_params: 'cgroup_no_v1=all cgroup_disable=rdma,cpu systemd.unified_cgroup_hierarchy=1'
     extra_kernel_params: ''
     users:
       - cdown

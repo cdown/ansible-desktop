@@ -10,22 +10,17 @@
       - cdown
 
   tasks:
-    - include_tasks: tasks/network.yml
     - include_tasks: tasks/sysctl.yml
     - include_tasks: tasks/arch.yml
     - include_tasks: tasks/users.yml
     - include_tasks: tasks/ssh.yml
     - include_tasks: tasks/sudo.yml
-    - include_tasks: tasks/rev.yml
     - include_tasks: tasks/rtorrent.yml
     - include_tasks: tasks/nginx.yml
-    - include_tasks: tasks/l4d2.yml
 
   handlers:
     - name: restart sshd
       service: name=sshd state=restarted
-    - name: restart l4d2
-      service: name=l4d2 state=restarted
     - name: restart rtorrent
       service: name=rtorrent state=restarted
     - name: restart nginx

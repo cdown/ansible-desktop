@@ -4,24 +4,9 @@
 
 - pacman: update_cache=yes
 
-- name: Remove unused
+- name: Remove unused OVH tools
   pacman: name={{ item }} state=absent recurse=yes
   with_items:
-    # base
-    - lvm2
-    - xfsprogs
-    - efibootmgr
-    - logrotate
-    - mdadm
-    - netctl
-    - reiserfsprogs
-    - ntp
-    - parted
-    - pciutilsq
-    - usbutils
-    - nano
-
-    # ovh
     - ethtool
     - hddtemp
     - irqbalance
@@ -71,18 +56,6 @@
   command: syslinux-install_update -i -a -m
   changed_when: false
 
-- name: Script to update from ansible-server
-  copy: src=files/bin/ansible-update dest=/usr/local/bin/ansible-update mode=755
-
-- name: Ansible update service
-  copy: src=files/ansible-update.service dest=/etc/systemd/system/ansible-update.service
-
-- name: Ansible update timer
-  copy: src=files/ansible-update.timer dest=/etc/systemd/system/ansible-update.timer
-
-- name: Start/enable ansible-update timer
-  systemd: name=ansible-update.timer state=started enabled=yes daemon_reload=yes
-
 - name: Install tools
   pacman: name={{ item }}
   with_items:
@@ -111,41 +84,5 @@
 - name: Install atop
   pacman: name=atop
 
-- name: Disable unused atop service, using atop-oneday instead
-  systemd: name=atop state=stopped enabled=no daemon_reload=yes
-
-- name: Install atop oneday script
-  copy: src=files/bin/atop-oneday dest=/usr/local/bin/atop-oneday mode=755
-
-- name: Install atop oneday service
-  copy: src=files/atop-oneday.service dest=/etc/systemd/system/atop-oneday.service
-
-- name: Start/enable atop-oneday
-  systemd: name=atop-oneday state=started enabled=yes daemon_reload=yes
-
-- name: Service to purge atop logs
-  copy: src=files/purge-atop-logs.service dest=/etc/systemd/system/purge-atop-logs.service
-
-- name: Timer to purge atop logs
-  copy: src=files/purge-atop-logs.timer dest=/etc/systemd/system/purge-atop-logs.timer
-
-- name: Start/enable purge-atop-logs timer
-  systemd: name=purge-atop-logs.timer state=started enabled=yes daemon_reload=yes
-
 - name: Enable systemd-timesyncd
   service: name=systemd-timesyncd state=started enabled=yes
-
-- name: Timer to clean Pacman cache
-  copy: src=files/clean-cache.timer dest=/etc/systemd/system/clean-cache.timer
-
-- name: Service to clean Pacman cache
-  copy: src=files/clean-cache.service dest=/etc/systemd/system/clean-cache.service
-
-- name: Start/enable clean-cache timer
-  systemd: name=clean-cache.timer state=started enabled=yes daemon_reload=yes
-
-- name: Service to set performance cpu scaling governor
-  copy: src=files/cpu-perf.service dest=/etc/systemd/system/cpu-perf.service
-
-- name: Start/enable cpu-perf.service
-  systemd: name=cpu-perf.service state=started enabled=yes daemon_reload=yes

@@ -1,6 +1,6 @@
 ---
 - name: Be reluctant to swap (thanks, rusty HDDs)
-  sysctl: name=vm.swappiness value=1
+  sysctl: name=vm.swappiness value=10
 
 - name: Panic on OOM
   sysctl: name=vm.panic_on_oom value=1
@@ -13,18 +13,3 @@
 
 - name: Enable magic sysrq
   sysctl: name=kernel.sysrq value=0
-
-- name: Increase socket buffers to 16M
-  sysctl: name=net.core.{{ item }}_max value=16777216
-  with_items:
-    - rmem
-    - wmem
-
-- name: Increase TCP buffer size
-  sysctl: name=net.ipv4.tcp_{{ item }} value="4096 12582912 16777216"
-  with_items:
-    - rmem
-    - wmem
-
-- name: Do not retune window size for long-idle connections
-  sysctl: name=net.ipv4.tcp_slow_start_after_idle value=0

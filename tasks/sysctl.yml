@@ -13,3 +13,15 @@
 
 - name: Enable magic sysrq
   sysctl: name=kernel.sysrq value=0
+
+- name: Increase socket buffers to 16M for rtorrent
+  sysctl: name=net.core.{{ item }}_max value=16777216
+  with_items:
+    - rmem
+    - wmem
+
+- name: Increase TCP buffer size for rtorrent
+  sysctl: name=net.ipv4.tcp_{{ item }} value="4096 12582912 16777216"
+  with_items:
+    - rmem
+    - wmem

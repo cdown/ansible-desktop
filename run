@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 # pacman -Syu
+# pacman -S pacman-contrib
 # pacdiff
 # [reboot]
 #

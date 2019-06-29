@@ -1,6 +1,13 @@
 #!/bin/bash -e
 
-# https://bit.ly/2omT14e
+# pacman -Syu
+# pacdiff
+# [reboot]
+#
+# curl -Lo setup https://bit.ly/2omT14e
+# chmod a+x setup
+# ./setup
+# [reboot]
 
 (( DEBUG )) && set -x
 

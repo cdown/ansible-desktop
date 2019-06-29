@@ -6,6 +6,9 @@ network.max_open_files.set = 10000
 
 network.port_random.set = yes
 
+network.receive_buffer.size.set = 16M
+network.send_buffer.size.set    = 16M
+
 dht.mode.set = auto
 protocol.pex.set = yes
 

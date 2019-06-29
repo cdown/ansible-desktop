@@ -2,7 +2,7 @@
 
 # pacman -Syu
 # pacman -S pacman-contrib
-# pacdiff
+# pacdiff (careful of shadow)
 # [reboot]
 #
 # curl -Lo setup https://bit.ly/2omT14e

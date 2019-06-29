@@ -3,6 +3,7 @@ throttle.max_peers.normal.set = 500
 throttle.max_uploads.set = 50
 
 network.max_open_files.set = 10000
+network.max_open_sockets.set = 999
 
 network.port_random.set = yes
 

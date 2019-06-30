@@ -26,6 +26,7 @@
     - rmem
     - wmem
 
+# Seems to alleviate contention when rtorrent has a lot of peers at once
 - sysctl: name=net.ipv4.ip_local_port_range value="10000 64999"
 - sysctl: name=net.core.netdev_max_backlog value=50000
 - sysctl: name=net.ipv4.tcp_max_syn_backlog value=30000

@@ -1,10 +1,10 @@
 ---
 - user: name=rtorrent system=yes home=/srv/rtorrent
 
-- pacman: name={{ item }}
-  with_items:
-    - rtorrent
-    - tmux
+- pacman:
+    name:
+      - rtorrent
+      - tmux
 
 - copy: src=files/rtorrent_rc dest=~rtorrent/.rtorrent.rc owner=rtorrent group=rtorrent
   notify: restart rtorrent

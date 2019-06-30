@@ -5,44 +5,45 @@
 - pacman: update_cache=yes
 
 - name: Remove unused OVH tools
-  pacman: name={{ item }} state=absent recurse=yes
-  with_items:
-    - ethtool
-    - hddtemp
-    - irqbalance
-    - jfsutils
-    - dmidecode
-    - grub
-    - man-pages-de
-    - man-pages-it
-    - net
-    - screen
-    - tcpdump
-    - smartmontools
-    - vlan
-    - wget
-    - gnu-efi-libs
-    - bc
-    - numactl
-    - haveged
+  pacman:
+    state: absent
+    name:
+      - ethtool
+      - hddtemp
+      - irqbalance
+      - jfsutils
+      - dmidecode
+      - grub
+      - man-pages-de
+      - man-pages-it
+      - net
+      - screen
+      - tcpdump
+      - smartmontools
+      - vlan
+      - wget
+      - gnu-efi-libs
+      - bc
+      - numactl
+      - haveged
 
 - name: Nuke motd
   copy: content="" dest=/etc/motd
 
 - name: Install kernel + LTS as backup
-  pacman: name={{ item }}
-  with_items:
-    - '{{ kernel }}'
-    - linux-lts
+  pacman:
+    name:
+      - '{{ kernel }}'
+      - linux-lts
 
 - name: Copy generate syslinux script
   copy: src=files/bin/generate-syslinux-config dest=/usr/local/bin/generate-syslinux-config mode=755
 
 - name: Install packages needed for boot
-  pacman: name={{ item }}
-  with_items:
-    - syslinux
-    - intel-ucode
+  pacman:
+    name:
+      - syslinux
+      - intel-ucode
 
 - name: Generate syslinux config
   command: "generate-syslinux-config {{ kernel }} '{{ default_kernel_params }} {{ extra_kernel_params }}'"
@@ -57,32 +58,30 @@
   changed_when: false
 
 - name: Install tools
-  pacman: name={{ item }}
-  with_items:
-    - zsh
-    - htop
-    - mosh
-    - rsync
-    - tmux
-    - vim
-    - btrfs-progs
-    - git
-    - python
-    - mktorrent
-    - p7zip
-    - lsof
-    - bind-tools
-    - net-tools
-    - pacman-contrib
+  pacman:
+    name:
+      - zsh
+      - htop
+      - mosh
+      - rsync
+      - tmux
+      - vim
+      - btrfs-progs
+      - git
+      - python
+      - mktorrent
+      - p7zip
+      - lsof
+      - bind-tools
+      - net-tools
+      - pacman-contrib
+      - atop
 
 - name: Install music tools
-  pacman: name={{ item }}
-  with_items:
-    - flac
-    - lame
-
-- name: Install atop
-  pacman: name=atop
+  pacman:
+    name:
+      - flac
+      - lame
 
 - name: Enable systemd-timesyncd
   service: name=systemd-timesyncd state=started enabled=yes

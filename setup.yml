@@ -18,6 +18,7 @@
     - include_tasks: tasks/sudo.yml
     - include_tasks: tasks/rtorrent.yml
     - include_tasks: tasks/nginx.yml
+    - include_tasks: tasks/rev.yml
 
   handlers:
     - name: restart sshd

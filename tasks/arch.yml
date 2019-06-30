@@ -86,3 +86,6 @@
 
 - name: Script to update from ansible-server
   copy: src=files/bin/ansible-update dest=/usr/local/bin/ansible-update mode=755
+
+- name: Set I/O schedulers
+  template: src=files/io-schedulers.rules dest=/etc/udev/rules.d/99-io-schedulers.rules

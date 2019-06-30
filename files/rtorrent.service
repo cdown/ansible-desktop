@@ -4,12 +4,12 @@ After=network.target
 
 [Service]
 Type=forking
-KillMode=none
+TimeoutStopSec=5m
 User=rtorrent
 ExecStart=/usr/bin/tmux new-session -c /srv/rtorrent/data -s rtorrent -n rtorrent -d -- bash -c 'ulimit -S -n unlimited; rtorrent'
-ExecStop=/usr/bin/bash -c "/usr/bin/tmux send-keys -t rtorrent C-q && while pidof rtorrent > /dev/null; do sleep 0.5; done"
+ExecStop=/usr/bin/bash -c "while pgrep rtorrent >/dev/null; do /usr/bin/tmux send-keys -t rtorrent C-q; sleep 5; done"
 WorkingDirectory=~
-Restart=on-failure
+Restart=always
 
 [Install]
 WantedBy=multi-user.target

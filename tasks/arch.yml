@@ -26,6 +26,7 @@
       - haveged
       - parted
       - bind
+      - ntp
 
 - name: Nuke motd
   copy: content="" dest=/etc/motd

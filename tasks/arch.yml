@@ -25,6 +25,7 @@
       - numactl
       - haveged
       - parted
+      - bind
 
 - name: Nuke motd
   copy: content="" dest=/etc/motd

@@ -72,7 +72,6 @@
       - mktorrent
       - p7zip
       - bind-tools
-      - net-tools
       - pacman-contrib
       - atop
 

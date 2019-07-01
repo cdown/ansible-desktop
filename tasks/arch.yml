@@ -71,7 +71,6 @@
       - python
       - mktorrent
       - p7zip
-      - lsof
       - bind-tools
       - net-tools
       - pacman-contrib

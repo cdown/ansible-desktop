@@ -20,6 +20,12 @@
     - include_tasks: tasks/rtorrent.yml
     - include_tasks: tasks/nginx.yml
     - include_tasks: tasks/rev.yml
+    - include_tasks: tasks/timers-pre.yml
+    - include_tasks: tasks/timers.yml
+      with_items:
+        - clean-cache
+        - cache-updates
+        - pacman-fy
 
   handlers:
     - name: restart sshd

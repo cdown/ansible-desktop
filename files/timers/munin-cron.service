@@ -1,0 +1,4 @@
+[Service]
+Type=oneshot
+User=munin
+ExecStart=/usr/bin/munin-cron

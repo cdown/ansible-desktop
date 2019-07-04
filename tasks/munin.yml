@@ -1,0 +1,9 @@
+---
+- pacman:
+    name:
+      - munin
+      - munin-node
+
+- file: path=/srv/http/munin state=directory owner=munin group=munin mode=0755
+
+- copy: src=files/munin.conf dest=/etc/munin/munin.conf

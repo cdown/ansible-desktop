@@ -34,3 +34,5 @@
   with_items:
     - if_
     - if_err_
+
+- systemd: name=munin-node state=started enabled=yes daemon_reload=yes

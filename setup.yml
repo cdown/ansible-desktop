@@ -21,6 +21,7 @@
     - include_tasks: tasks/nginx.yml
     - include_tasks: tasks/rev.yml
     - include_tasks: tasks/munin.yml
+    - include_tasks: tasks/atop.yml
     - include_tasks: tasks/timers-pre.yml
     - include_tasks: tasks/timers.yml
       with_items:
@@ -28,6 +29,7 @@
         - cache-updates
         - pacman-fy
         - munin-cron
+        - restart-atop-midnight
 
   handlers:
     - name: restart sshd

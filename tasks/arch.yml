@@ -75,7 +75,6 @@
       - lsof
       - bind-tools
       - pacman-contrib
-      - atop
 
 - name: Install music tools
   pacman:

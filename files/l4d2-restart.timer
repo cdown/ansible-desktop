@@ -1,7 +1,0 @@
-# Sigh. Source games still leak and rot badly over time in 2017 :-(
-
-[Timer]
-OnCalendar=*-*-* 04:00:00
-
-[Install]
-WantedBy=multi-user.target

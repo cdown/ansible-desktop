@@ -1,6 +1,0 @@
-[Service]
-Type=oneshot
-ExecStart=/usr/local/bin/ansible-update
-
-[Install]
-WantedBy=multi-user.target

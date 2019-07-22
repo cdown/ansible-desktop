@@ -1,8 +1,0 @@
-[Unit]
-Description=dhcpcd on %I
-Wants=network.target
-Before=network.target
-
-[Service]
-ExecStart=/sbin/dhcpcd -B -w %I
-ExecStop=/sbin/dhcpcd -B -x %I

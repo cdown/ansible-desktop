@@ -1,2 +1,0 @@
----
-- systemd: name=systemd-networkd state=started enabled=yes daemon_reload=yes

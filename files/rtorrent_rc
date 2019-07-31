@@ -26,6 +26,11 @@ system.file.allocate = 1
 # no reason to limit virt on 64-bit
 pieces.memory.max.set = 1000000M
 
+# test to reduce i/o from https://github.com/rakshasa/rtorrent/issues/443
+pieces.preload.type.set = 1
+pieces.preload.min_size.set = 1
+pieces.preload.min_rate.set = 1
+
 view.sort_current = active,greater=d.up.rate=
 schedule2 = filter_active,12,20,"view.filter = active,\"or={d.up.rate=,d.down.rate=}\" ;view.sort=active"
 

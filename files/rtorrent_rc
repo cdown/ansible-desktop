@@ -22,7 +22,9 @@ throttle.global_down.max_rate.set_kb = 11000
 throttle.global_up.max_rate.set_kb = 11000
 
 system.file.allocate = 1
-pieces.memory.max.set = 2048M
+
+# no reason to limit virt on 64-bit
+pieces.memory.max.set = 1000000M
 
 view.sort_current = active,greater=d.up.rate=
 schedule2 = filter_active,12,20,"view.filter = active,\"or={d.up.rate=,d.down.rate=}\" ;view.sort=active"

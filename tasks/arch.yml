@@ -2,6 +2,9 @@
 - name: Copy Pacman configuration
   copy: src=files/pacman.conf dest=/etc/pacman.conf
 
+- name: Copy fstab
+  copy: src=files/fstab dest=/etc/fstab
+
 - name: Remove unused OVH tools
   pacman:
     state: absent

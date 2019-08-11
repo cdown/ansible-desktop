@@ -909,6 +909,5 @@ video/x-msvideo					avi;
 video/x-sgi-movie				movie;
 x-conference/x-cooltalk				ice;
 x-epoc/x-sisx-app				sisx;
-video/webm mkv;
 }
 

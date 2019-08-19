@@ -3,7 +3,7 @@
   connection: local
 
   vars:
-    kernel: linux
+    kernel: linux-lts
     kernel_params: 'cgroup_no_v1=all audit=0'
     hdd_scheduler: mq-deadline
     ssd_scheduler: mq-deadline

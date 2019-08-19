@@ -4,7 +4,7 @@
 
   vars:
     kernel: linux
-    kernel_params: 'cgroup_no_v1=all audit=0 scsi_mod.use_blk_mq=1 page_poison=1 slab_nomerge=1 vsyscall=none mce=0'
+    kernel_params: 'cgroup_no_v1=all audit=0 scsi_mod.use_blk_mq=1'
     hdd_scheduler: mq-deadline
     ssd_scheduler: mq-deadline
     users:

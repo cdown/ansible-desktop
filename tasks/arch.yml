@@ -5,6 +5,8 @@
 - name: Copy fstab
   copy: src=files/fstab dest=/etc/fstab
 
+- pacman: name=base
+
 - name: Remove unused OVH tools
   pacman:
     state: absent

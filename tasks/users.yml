@@ -1,4 +1,7 @@
 ---
+- name: Remove OVH users
+  user: name=ntp state=absent
+
 - name: Create local users
   user: name={{ item }} shell=/bin/zsh
   with_items: '{{ users }}'

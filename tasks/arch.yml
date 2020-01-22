@@ -22,6 +22,7 @@
       - less
       - linux-firmware
       - systemd-sysvcompat  # TODO: remove and just use init=...?
+      - util-linux
 
 - name: Remove unused OVH tools
   pacman:

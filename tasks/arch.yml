@@ -53,6 +53,10 @@
 - name: Nuke motd
   copy: content="" dest=/etc/motd
 
+- aur: name=nocache skip_installed=yes
+  become: yes
+  become_user: makepkg
+
 - name: Install kernel + LTS as backup
   pacman:
     name:

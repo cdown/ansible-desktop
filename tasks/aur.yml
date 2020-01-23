@@ -1,0 +1,11 @@
+---
+- name: Create local user for makepkg
+  user: name=makepkg shell=/bin/sh
+
+- name: Install base-devel
+  pacman: name=base-devel state=present
+
+- name: Install yay
+  aur: name=yay-bin skip_installed=yes use=makepkg
+  become: yes
+  become_user: makepkg

@@ -13,6 +13,7 @@
   tasks:
     - include_tasks: tasks/locale.yml
     - include_tasks: tasks/sysctl.yml
+    - include_tasks: tasks/aur.yml
     - include_tasks: tasks/arch.yml
     - include_tasks: tasks/users.yml
     - include_tasks: tasks/ssh.yml

@@ -11,5 +11,9 @@ ExecStop=/usr/bin/bash -c "while pgrep rtorrent >/dev/null; do /usr/bin/tmux sen
 WorkingDirectory=~
 Restart=always
 
+# Needs adjustment based on machine max, and whether it's primary workload
+MemoryLow=3000M
+Slice=workload.slice
+
 [Install]
 WantedBy=multi-user.target

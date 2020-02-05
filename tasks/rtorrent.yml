@@ -19,6 +19,8 @@
 
 - copy: src=files/attach_rtorrent dest=/usr/local/bin/attach_rtorrent owner=root group=root mode=0755
 
+- copy: src=files/workload.slice dest=/etc/systemd/system/workload.slice owner=root group=root mode=0644
+
 - copy: src=files/rtorrent.service dest=/etc/systemd/system/rtorrent.service owner=root group=root mode=0644
   notify: restart rtorrent
 

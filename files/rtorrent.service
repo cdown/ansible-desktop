@@ -12,7 +12,7 @@ WorkingDirectory=~
 Restart=always
 
 # Needs adjustment based on machine max, and whether it's primary workload
-MemoryLow=3000M
+MemoryLow=2500M
 Slice=workload.slice
 
 [Install]

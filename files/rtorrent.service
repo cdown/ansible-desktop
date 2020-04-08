@@ -10,9 +10,6 @@ ExecStart=/usr/bin/tmux new-session -c /srv/rtorrent/data -s rtorrent -n rtorren
 ExecStop=/usr/bin/bash -c "while pgrep rtorrent >/dev/null; do /usr/bin/tmux send-keys -t rtorrent C-q; sleep 5; done"
 WorkingDirectory=~
 Restart=always
-
-# Needs adjustment based on machine max, and whether it's primary workload
-MemoryLow=2000M
 Slice=workload.slice
 
 [Install]

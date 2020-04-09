@@ -38,6 +38,3 @@ schedule2 = filter_active,12,20,"view.filter = active,\"or={d.up.rate=,d.down.ra
 schedule2 = session_save, 1200, 43200, ((session.save))
 
 method.set_key = event.download.erased,delete_erased,"execute=rm,-rf,--,$d.base_path="
-
-# https://github.com/rakshasa/rtorrent/issues/731
-network.local_address.set = 0.0.0.0

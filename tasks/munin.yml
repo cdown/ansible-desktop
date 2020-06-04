@@ -4,7 +4,11 @@
       - munin
       - munin-node
 
-- file: path=/srv/http/munin state=directory owner=munin group=munin mode=0755
+- file: path={{ item }} state=directory owner=munin group=munin mode=0755
+  with_items:
+    - /srv/http/munin
+    - /var/lib/munin
+    - /var/log/munin
 
 - copy: src=files/munin.conf dest=/etc/munin/munin.conf
 

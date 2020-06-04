@@ -2,9 +2,6 @@
 - name: Copy Pacman configuration
   copy: src=files/pacman.conf dest=/etc/pacman.conf
 
-- name: Copy fstab
-  copy: src=files/fstab dest=/etc/fstab
-
 # Workaround to avoid https://github.com/ansible/ansible/issues/37334
 - command: pacman -Qi base
   changed_when: False

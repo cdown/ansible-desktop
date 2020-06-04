@@ -103,12 +103,6 @@
       - bind-tools
       - pacman-contrib
 
-- name: Install music tools
-  pacman:
-    name:
-      - flac
-      - lame
-
 - name: Enable systemd-timesyncd
   service: name=systemd-timesyncd state=started enabled=yes
 

@@ -18,8 +18,6 @@
     - include_tasks: tasks/arch.yml
     - include_tasks: tasks/users.yml
     - include_tasks: tasks/ssh.yml
-    - include_tasks: tasks/rtorrent.yml
-    - include_tasks: tasks/nginx.yml
     - include_tasks: tasks/rev.yml
     - include_tasks: tasks/munin.yml
     - include_tasks: tasks/atop.yml
@@ -36,7 +34,3 @@
   handlers:
     - name: restart sshd
       service: name=sshd state=restarted
-    - name: restart rtorrent
-      service: name=rtorrent state=restarted
-    - name: restart nginx
-      service: name=nginx state=restarted

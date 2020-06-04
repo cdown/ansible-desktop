@@ -104,6 +104,9 @@
 - name: Enable systemd-timesyncd
   service: name=systemd-timesyncd state=started enabled=yes
 
+- name: Enable dhcpcd
+  service: name=dhcpcd state=started enabled=yes
+
 - name: Script to update from ansible-server
   copy: src=files/bin/ansible-update dest=/usr/local/bin/ansible-update mode=755
 

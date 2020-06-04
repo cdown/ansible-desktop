@@ -19,6 +19,7 @@
     - include_tasks: tasks/users.yml
     - include_tasks: tasks/ssh.yml
     - include_tasks: tasks/rev.yml
+    - include_tasks: tasks/nginx.yml
     - include_tasks: tasks/munin.yml
     - include_tasks: tasks/atop.yml
     - include_tasks: tasks/timers-pre.yml
@@ -34,3 +35,5 @@
   handlers:
     - name: restart sshd
       service: name=sshd state=restarted
+    - name: restart nginx
+      service: name=nginx state=restarted

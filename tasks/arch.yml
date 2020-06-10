@@ -86,6 +86,7 @@
 - name: Install tools
   pacman:
     name:
+      - ansible
       - zsh
       - htop
       - mosh

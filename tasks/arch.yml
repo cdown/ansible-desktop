@@ -69,7 +69,6 @@
     name:
       - syslinux
       - intel-ucode
-      - kexec-tools
 
 - name: Generate syslinux config
   command: "generate-syslinux-config {{ kernel }} '{{ kernel_params }}'"
@@ -86,20 +85,23 @@
 - name: Install tools
   pacman:
     name:
-      - ansible
-      - zsh
-      - htop
       - mosh
-      - rsync
       - tmux
       - vim
+
+      # Environmental deps
       - btrfs-progs
+      - zsh
+
+      # upgrade
+      - ansible
       - git
-      - python
-      - mktorrent
-      - p7zip
+      - rsync
+
+      # unite
       - lsof
-      - bind-tools
+
+      # pacdiff
       - pacman-contrib
 
 - name: Enable systemd-timesyncd

@@ -4,6 +4,9 @@ PasswordAuthentication no
 UseDNS no
 UsePAM yes
 
+ClientAliveInterval 60
+ClientAliveCountMax 5
+
 KexAlgorithms diffie-hellman-group18-sha512,diffie-hellman-group16-sha512,diffie-hellman-group14-sha256,curve25519-sha256@libssh.org
 HostKeyAlgorithms rsa-sha2-512,rsa-sha2-256,ssh-ed25519
 Ciphers chacha20-poly1305@openssh.com,aes256-ctr,aes256-gcm@openssh.com

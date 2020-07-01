@@ -5,9 +5,6 @@
 - name: Disable unused atop service, using atop-oneday instead
   systemd: name=atop state=stopped enabled=no masked=yes daemon_reload=yes
 
-- name: Disable unused atop-rotate.timer
-  systemd: name=atop-rotate.timer state=stopped enabled=no masked=yes daemon_reload=yes
-
 - name: Install atop oneday script
   copy: src=files/bin/atop-oneday dest=/usr/local/bin/atop-oneday mode=755
 

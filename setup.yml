@@ -31,6 +31,7 @@
         - munin-cron
         - restart-atop-midnight
         - btrfs-balance-root
+        - vacuum-journals
 
   handlers:
     - name: restart sshd

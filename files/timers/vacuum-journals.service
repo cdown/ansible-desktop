@@ -1,4 +1,4 @@
 [Service]
 Type=oneshot
 ExecStart=/bin/journalctl --rotate
-ExecStart=/bin/journalctl --vacuum-time=30d
+ExecStart=/bin/journalctl --vacuum-time=14d

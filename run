@@ -1,29 +1,16 @@
 #!/bin/bash -e
 
-# pacman -Syu
-# pacman -S pacman-contrib
-# pacdiff (careful of shadow)
-# [reboot]
-#
-# curl -Lo setup https://bit.ly/2omT14e
-# chmod a+x setup
-# ./setup
-# [reboot]
+(( UID )) && exec sudo "$0" "$@"
 
-(( DEBUG )) && set -x
+config_file=/.ansibleconfig
+type_file=/.ansibletype
 
-if ! (( USE_CURRENT_CHECKOUT )); then
-    pacman -S --needed --noconfirm git ansible python
-
-    playbook_dir=$(mktemp -ud)
-    trap 'cd /; rm -rf "$playbook_dir"' 0
-
-    git clone --recursive git://github.com/cdown/ansible-server.git \
-        "$playbook_dir"
-
-    # set -e is already set, so...
-    # shellcheck disable=SC2164
-    cd "$playbook_dir"
+if ! [[ -e $config_file ]]; then
+    read -r -p 'Config: ' AS_CONFIG
+    echo "$AS_CONFIG" > "$config_file"
 fi
 
-ansible-playbook -i localhost, -v setup.yml
+AS_CONFIG=$(cat "$config_file")
+export AS_CONFIG
+
+ansible-playbook -c local -i localhost, "$@" "${0%/*}"/setup.yml

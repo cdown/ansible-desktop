@@ -10,6 +10,13 @@
     users:
       - cdown
 
+  vars_files:
+    - "vars/{{ lookup('env', 'AS_CONFIG') }}.yml"
+
+- name: Install tools
+  pacman:
+    name:
+
   tasks:
     - include_tasks: tasks/locale.yml
     - include_tasks: tasks/sysctl.yml

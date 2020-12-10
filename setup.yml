@@ -39,7 +39,6 @@
         - clean-cache
         - cache-updates
         - pacman-fy
-        - munin-cron
         - restart-atop-midnight
         - vacuum-journals
 

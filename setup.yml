@@ -7,6 +7,7 @@
     kernel_params: 'cgroup_no_v1=all audit=0'
     hdd_scheduler: mq-deadline
     ssd_scheduler: mq-deadline
+    boot_mode: uefi
     remote_server: false
     users:
       - cdown

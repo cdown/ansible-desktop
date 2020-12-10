@@ -7,39 +7,53 @@
     kernel_params: 'cgroup_no_v1=all audit=0'
     hdd_scheduler: mq-deadline
     ssd_scheduler: mq-deadline
+    remote_server: false
     users:
       - cdown
 
   vars_files:
     - "vars/{{ lookup('env', 'AS_CONFIG') }}.yml"
 
-- name: Install tools
-  pacman:
-    name:
-
   tasks:
-    - include_tasks: tasks/locale.yml
-    - include_tasks: tasks/sysctl.yml
-    - include_tasks: tasks/sudo.yml
-    - include_tasks: tasks/aur.yml
-    - include_tasks: tasks/pacman.yml
-    - include_tasks: tasks/packages.yml
-    - include_tasks: tasks/core.yml
-    - include_tasks: tasks/boot/uefi.yml
-    - include_tasks: tasks/boot/legacy.yml
-    - include_tasks: tasks/users.yml
-    - include_tasks: tasks/ssh.yml
-    - include_tasks: tasks/rev.yml
-    - include_tasks: tasks/nginx.yml
-    - include_tasks: tasks/munin.yml
-    - include_tasks: tasks/atop.yml
-    - include_tasks: tasks/timers-pre.yml
-    - include_tasks: tasks/timers.yml
+
+    # Base: things wanted no matter what config is used
+
+    - include_tasks: tasks/base/locale.yml
+    - include_tasks: tasks/base/pacman.yml
+    - include_tasks: tasks/base/sysctl.yml
+    - include_tasks: tasks/base/sudo.yml
+    - include_tasks: tasks/base/aur.yml
+    - include_tasks: tasks/base/packages.yml
+    - include_tasks: tasks/base/filesystem.yml
+    - include_tasks: tasks/base/core.yml
+    - include_tasks: tasks/base/users.yml
+    - include_tasks: tasks/base/ssh.yml
+    - include_tasks: tasks/base/timers-pre.yml
+    - include_tasks: tasks/base/timers.yml
       with_items:
         - clean-cache
         - cache-updates
         - pacman-fy
         - vacuum-journals
+
+    # Boot
+
+    - include_tasks: tasks/boot/uefi.yml
+      when: boot_mode == "uefi"
+    - include_tasks: tasks/boot/legacy.yml
+      when: boot_mode == "legacy"
+
+    # Remote only
+
+    - include_tasks: tasks/remote_server/{{ item }}.yml
+      with_items:
+        - rev
+        - nginx
+        - munin
+        - atop
+      when: remote_server
+
+    # Currently unused: seedbox/
 
   handlers:
     - name: restart sshd

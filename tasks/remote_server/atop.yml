@@ -22,3 +22,7 @@
 
 - name: Start/enable purge-atop-logs timer
   systemd: name=purge-atop-logs.timer state=started enabled=yes daemon_reload=yes
+
+- include_tasks: tasks/timers.yml
+  with_items:
+    - restart-atop-midnight

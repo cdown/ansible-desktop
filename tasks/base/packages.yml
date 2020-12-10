@@ -1,0 +1,42 @@
+---
+- name: Install minimal base
+  pacman:
+    name:
+      - base
+      - base-devel
+      - dhcpcd
+      - less
+      - linux-firmware
+      - systemd-sysvcompat
+      - util-linux
+
+      # If we ever use AMD, this can go to optional
+      - intel-ucode
+
+- name: Install tools
+  pacman:
+    name:
+      - mosh
+      - tmux
+      - vim
+      - ncdu
+
+      # Environmental deps
+      - zsh
+
+      # upgrade
+      - ansible
+      - git
+      - rsync
+
+      # unite
+      - lsof
+
+      # pacdiff
+      - pacman-contrib
+
+- name: Install kernel + LTS as backup
+  pacman:
+    name:
+      - '{{ kernel }}'
+      - linux-lts

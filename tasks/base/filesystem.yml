@@ -1,0 +1,12 @@
+---
+- name: btrfs tools
+  pacman:
+    name:
+      - btrfs-progs
+  when: filesystem == "btrfs"
+
+- name: ext tools
+  pacman:
+    name:
+      - e2fsprogs
+  when: filesystem == "ext4"

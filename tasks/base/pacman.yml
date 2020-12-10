@@ -1,0 +1,8 @@
+---
+- name: Copy Pacman configuration
+  copy: src=files/pacman.conf dest=/etc/pacman.conf
+  register: pacman_conf
+
+- name: Manual pacman repo update to sync new dbs
+  command: pacman -Syy
+  when: pacman_conf.changed

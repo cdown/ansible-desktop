@@ -1,0 +1,20 @@
+---
+- name: Copy generate syslinux script
+  copy: src=files/bin/generate-syslinux-config dest=/usr/local/bin/generate-syslinux-config mode=755
+
+- name: Install packages needed for boot
+  pacman:
+    name:
+      - syslinux
+
+- name: Generate syslinux config
+  command: "generate-syslinux-config {{ kernel }} '{{ kernel_params }}'"
+  register: gsc
+  changed_when: false
+
+- name: Copy syslinux config
+  copy: 'content="{{ gsc.stdout }}\n" dest=/boot/syslinux/syslinux.cfg'
+
+- name: Install syslinux to /boot
+  command: syslinux-install_update -i -a -m
+  changed_when: false

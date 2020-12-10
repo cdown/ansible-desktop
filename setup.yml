@@ -41,7 +41,6 @@
         - pacman-fy
         - munin-cron
         - restart-atop-midnight
-        - btrfs-balance-root
         - vacuum-journals
 
   handlers:

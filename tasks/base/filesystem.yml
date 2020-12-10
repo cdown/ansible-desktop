@@ -1,11 +1,21 @@
 ---
+
+# btrfs
+
 - name: btrfs tools
   pacman:
     name:
       - btrfs-progs
   when: filesystem == "btrfs"
 
-- name: ext tools
+- include_tasks: tasks/timers.yml
+  with_items:
+    - btrfs-balance-root
+  when: filesystem == "btrfs"
+
+# ext4
+
+- name: ext4 tools
   pacman:
     name:
       - e2fsprogs

@@ -1,7 +1,0 @@
-#!/bin/bash -e
-
-script=$(mktemp -u)
-trap 'rm -f "$script"' 0
-curl -o "$script" https://raw.githubusercontent.com/cdown/ansible-server/master/run
-chmod a+x "$script"
-"$script"

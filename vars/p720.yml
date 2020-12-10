@@ -1,0 +1,3 @@
+---
+boot_mode: uefi
+filesystem: ext4

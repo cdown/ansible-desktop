@@ -1,0 +1,29 @@
+---
+- name: Mount efivars read-only to avoid EFIgeddon
+  mount: src=efivarfs path=/sys/firmware/efi/efivars fstype=efivarfs opts="ro,nosuid,nodev,noexec,noatime" state=present
+
+- name: Copy generate systemd-boot script
+  copy: src=files/bin/generate-systemd-boot-config dest=/usr/local/bin/generate-systemd-boot-config mode=755
+
+- name: Copy bootctl-remount script
+  copy: src=files/bin/bootctl-remount dest=/usr/local/bin/bootctl-remount mode=755
+
+- name: Install systemd-boot to /boot
+  command: bootctl-remount --path=/boot install
+  changed_when: false
+
+- name: Generate systemd-boot config
+  command: "generate-systemd-boot-config {{ kernel }} '{{ default_kernel_params }} {{ extra_kernel_params }}'"
+  register: gsc
+  changed_when: false
+
+- name: Copy systemd-boot config
+  copy: 'content="{{ gsc.stdout }}\n" dest=/boot/loader/entries/arch.conf'
+
+- name: Copy loader config
+  copy: 'content="default arch\n" dest=/boot/loader/loader.conf'
+
+- name: Install pacman hook to regenerate systemd-boot install
+  aur: name=systemd-boot-pacman-hook skip_installed=yes
+  become: yes
+  become_user: makepkg

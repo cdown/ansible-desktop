@@ -4,7 +4,8 @@
 
   vars:
     kernel: linux-lts
-    kernel_params: 'cgroup_no_v1=all audit=0'
+    default_kernel_params: 'cgroup_no_v1=all audit=0'
+    extra_kernel_params: ''
     hdd_scheduler: mq-deadline
     ssd_scheduler: mq-deadline
     boot_mode: uefi

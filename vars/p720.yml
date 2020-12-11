@@ -1,5 +1,5 @@
 ---
 boot_mode: uefi
 filesystem: ext4
-extra_kernel_params: 'nomodeset'
+extra_kernel_params: 'nomodeset mitigations=off'  # no external access anyway
 compile_server: true

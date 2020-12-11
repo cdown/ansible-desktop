@@ -1,0 +1,5 @@
+---
+- name: Install linux build dependencies
+  pacman:
+    name:
+      - bc

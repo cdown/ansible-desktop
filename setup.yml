@@ -63,6 +63,7 @@
     - include_tasks: tasks/compile_server/{{ item }}.yml
       with_items:
         - systemd
+        - linux
       when: compile_server
 
     # Currently unused: seedbox/

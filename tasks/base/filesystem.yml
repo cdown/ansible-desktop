@@ -8,7 +8,7 @@
       - btrfs-progs
   when: filesystem == "btrfs"
 
-- include_tasks: tasks/timers.yml
+- include_tasks: tasks/base/timers.yml
   with_items:
     - btrfs-balance-root
   when: filesystem == "btrfs"
@@ -29,7 +29,7 @@
       - util-linux  # fstrim
   when: root_on_ssd
 
-- include_tasks: tasks/timers.yml
+- include_tasks: tasks/base/timers.yml
   with_items:
     - fstrim-root
   when: root_on_ssd

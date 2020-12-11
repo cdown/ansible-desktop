@@ -10,6 +10,7 @@
     ssd_scheduler: mq-deadline
     boot_mode: uefi
     remote_server: false
+    compile_server: false
     users:
       - cdown
 
@@ -55,6 +56,13 @@
         - munin
         - atop
       when: remote_server
+
+    # Compile server only
+
+    - include_tasks: tasks/compile_server/{{ item }}.yml
+      with_items:
+        - systemd
+      when: compile_server
 
     # Currently unused: seedbox/
 

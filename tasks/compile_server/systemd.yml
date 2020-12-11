@@ -1,0 +1,9 @@
+---
+- name: Install systemd build dependencies
+  pacman:
+    name:
+      - meson
+      - ninja
+      - gperf
+      - docbook-xsl
+      - libmicrohttpd

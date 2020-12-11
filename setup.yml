@@ -9,6 +9,7 @@
     hdd_scheduler: mq-deadline
     ssd_scheduler: mq-deadline
     boot_mode: uefi
+    root_on_ssd: true
     remote_server: false
     compile_server: false
     users:

@@ -20,3 +20,16 @@
     name:
       - e2fsprogs
   when: filesystem == "ext4"
+
+# SSD
+
+- name: TRIM tools
+  pacman:
+    name:
+      - fstrim
+  when: root_on_ssd
+
+- include_tasks: tasks/timers.yml
+  with_items:
+    - fstrim-root
+  when: root_on_ssd

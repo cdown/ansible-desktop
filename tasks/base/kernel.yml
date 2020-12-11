@@ -1,0 +1,23 @@
+---
+- name: For whatever kernel we installed, add standard + LTS ones as a backup
+  pacman:
+    name:
+      - "{{ kernel }}"
+      - "{{ kernel }}-headers"
+
+- name: Install mkinitcpio config
+  copy: src=files/mkinitcpio.conf dest=/etc/mkinitcpio.conf
+  register: cpio
+
+- name: Regenerate initcpios
+  command: mkinitcpio -P
+  when: cpio.changed
+
+- name: Install kernel-modules-hook
+  aur: name=kernel-modules-hook skip_installed=yes
+  become: yes
+  become_user: makepkg
+  with_items:
+    - kernel-modules-hook
+
+- systemd: name=linux-modules-cleanup enabled=yes daemon_reload=yes

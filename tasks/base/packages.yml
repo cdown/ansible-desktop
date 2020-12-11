@@ -34,9 +34,3 @@
 
       # pacdiff
       - pacman-contrib
-
-- name: Install kernel + LTS as backup
-  pacman:
-    name:
-      - '{{ kernel }}'
-      - linux-lts

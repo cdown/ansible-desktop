@@ -25,6 +25,7 @@
     - include_tasks: tasks/base/sysctl.yml
     - include_tasks: tasks/base/sudo.yml
     - include_tasks: tasks/base/aur.yml
+    - include_tasks: tasks/base/kernel.yml
     - include_tasks: tasks/base/packages.yml
     - include_tasks: tasks/base/filesystem.yml
     - include_tasks: tasks/base/core.yml

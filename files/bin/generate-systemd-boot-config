@@ -22,6 +22,8 @@ if blkid "$root_partition" | grep -q 'TYPE="crypto_LUKS"'; then
 fi
 
 if (( encrypt )); then
+    # Make sure we don't spam with cryptsetup warnings
+    mkdir -m0700 /run/cryptsetup
     encrypted_root_uuid=$(cryptsetup luksUUID "$root_partition")
     append="cryptdevice=UUID=$encrypted_root_uuid:$root_crypt_device:allow-discards root=$root_crypt_device_path rw"
 else

@@ -3,3 +3,6 @@
   pacman:
     name:
       - bc
+
+      # Testing
+      - qemu-headless

@@ -58,6 +58,13 @@
         - atop
       when: remote_server
 
+    # Local only
+
+    - include_tasks: tasks/local_server/{{ item }}.yml
+      with_items:
+        - rev
+      when: not remote_server
+
     # Compile server only
 
     - include_tasks: tasks/compile_server/{{ item }}.yml

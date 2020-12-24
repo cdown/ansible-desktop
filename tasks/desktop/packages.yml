@@ -1,0 +1,35 @@
+---
+- name: Install desktop minimal base
+  pacman:
+    name:
+      - mupdf
+      - graphviz
+      - mpv
+      - bats
+
+      # Technically could also be used on the server, but in reality we only
+      # use this on desktop for note/e-mail writing.
+      - aspell
+      - aspell-en
+
+      # We just use dhcpcd directly on servers
+      - netctl
+
+      # Screenshots
+      - maim
+      - slop
+
+      # X
+      - xclip
+      - redshift
+
+- name: Install desktop minimal base (cdown specific, AUR)
+  aur: name={{ item }} skip_installed=yes skip_pgp_check=yes
+  with_items:
+    - pngquant
+    - google-chrome
+    - downgrade
+    - psi-notify
+    - xob
+  become: yes
+  become_user: makepkg

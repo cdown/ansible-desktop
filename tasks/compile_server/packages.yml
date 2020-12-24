@@ -1,0 +1,6 @@
+---
+- name: Install core build dependencies
+  pacman:
+    name:
+      - base-devel
+      - ctags

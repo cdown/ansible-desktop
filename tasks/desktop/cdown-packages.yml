@@ -1,0 +1,64 @@
+---
+- name: Install desktop minimal base (cdown specific)
+  pacman:
+    name:
+      # VPN -- only used for FB right now
+      - openconnect
+
+      # Unused by Lin
+      - msmtp
+      - pass
+      - irssi
+      - python-boto  # for duply
+      - pdfpc
+      - mktorrent
+      - python-virtualenvwrapper
+      - asp
+      - clipmenu
+
+      # Android, can be moved if Lin eventually uses it
+      - android-tools
+      - android-udev
+
+      # Photos
+      - hugin
+      - gimp
+      - imagemagick
+      - ghostscript  # imagemagick optdepends
+
+      # Music
+      - mpd
+      - mpc
+      - easytag
+
+      # USB creation
+      - udftools
+
+      # Camera SD card
+      - exfat-tools
+
+      # Subtitles
+      - enca
+
+- name: Install desktop minimal base (cdown specific, AUR)
+  aur: name={{ item }} skip_installed=yes skip_pgp_check=yes
+  with_items:
+    - cconv
+    - duply
+    - drive-bin
+    - sshrc
+    - xinput-toggle
+    - nota
+    - mpdscribble
+    - mpdmenu
+    - btmenu
+    - geteltorito
+    - sxiv-photoorg-git
+    - acestream-engine-stable
+    - whatmp3
+    - shellcheck-bin
+  become: yes
+  become_user: makepkg
+
+- name: Install ImageMagick policy
+  copy: src=files/policy.xml dest=/etc/ImageMagick-7/policy.xml

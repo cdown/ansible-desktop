@@ -12,6 +12,8 @@
     root_on_ssd: true
     remote_server: false
     compile_server: false
+    desktop: false
+    cdown: true
     users:
       - cdown
 
@@ -69,9 +71,22 @@
 
     - include_tasks: tasks/compile_server/{{ item }}.yml
       with_items:
+        - packages
         - systemd
         - linux
       when: compile_server
+
+    # Desktop only
+
+    - include_tasks: tasks/desktop/{{ item }}.yml
+      with_items:
+        - packages
+      when: desktop
+
+    - include_tasks: tasks/desktop/{{ item }}.yml
+      with_items:
+        - cdown-packages
+      when: desktop and cdown
 
     # Currently unused: seedbox/
 

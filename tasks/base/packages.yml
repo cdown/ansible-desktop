@@ -4,25 +4,28 @@
     name:
       - base
       - base-devel
-      - dhcpcd
-      - less
       - linux-firmware
       - systemd-sysvcompat
       - util-linux
+      - p7zip
 
-      # If we ever use AMD, this can go to optional
+      # CPU microcode
       - intel-ucode
 
-- name: Install tools
-  pacman:
-    name:
+      # Encryption
+      - cryptsetup
+      - device-mapper
+
+      # Core tools
       - mosh
       - tmux
       - vim
       - ncdu
-
-      # Environmental deps
+      - diffutils
+      - less
       - zsh
+      - parallel
+      - zsh-syntax-highlighting
 
       # upgrade
       - ansible
@@ -42,3 +45,13 @@
       - bcc-tools
       - perf
       - time
+      - man-db
+      - man-pages
+      - htop
+      - bind
+
+      # Network
+      - dhcpcd
+
+      # Access
+      - openssh

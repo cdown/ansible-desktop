@@ -60,6 +60,9 @@
   when: not mm_stat.stat.exists
   register: downloaded_mm
 
+# For the next task
+- pacman: name=unzip
+
 - name: Extract MetaMod
   unarchive: src=/tmp/mm.tar.gz dest=~steam/l4d2/left4dead2/
   become: yes

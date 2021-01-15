@@ -1,0 +1,11 @@
+---
+- pacman: name=samba
+
+- copy: src=files/smb.conf dest=/etc/samba/smb.conf mode=644
+
+- file: path=/srv/samba state=directory mode=0700 owner=cdown
+
+- name: Enable smb service
+  systemd: name=smb state=started enabled=yes daemon_reload=yes
+
+# Also needs `smbpasswd -a cdown`

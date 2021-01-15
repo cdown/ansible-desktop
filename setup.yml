@@ -66,6 +66,7 @@
     - include_tasks: tasks/local_server/{{ item }}.yml
       with_items:
         - rev
+        - scratch
       when: not remote_server
 
     # Compile server only

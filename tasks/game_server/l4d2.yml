@@ -55,7 +55,7 @@
 
 - name: Download MetaMod
   get_url:
-    url: http://www.gsptalk.com/mirror/sourcemod/mmsource-1.10.6-linux.tar.gz
+    url: https://mms.alliedmods.net/mmsdrop/1.11/mmsource-1.11.0-git1144-linux.tar.gz
     dest: /tmp/mm.tar.gz
   when: not mm_stat.stat.exists
   register: downloaded_mm
@@ -75,7 +75,7 @@
 
 - name: Download SourceMod
   get_url:
-    url: https://sm.alliedmods.net/smdrop/1.8/sourcemod-1.8.0-git5982-linux.tar.gz
+    url: https://sm.alliedmods.net/smdrop/1.10/sourcemod-1.10.0-git6502-linux.tar.gz
     dest: /tmp/sm.tar.gz
   when: not sm_stat.stat.exists
   register: downloaded_sm

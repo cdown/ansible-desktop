@@ -30,8 +30,8 @@ sm_cvar sv_hibernate_when_empty 1
 sv_cheats 0
 
 sv_consistency 1
-sv_pure 2
-sv_pure_kick_clients 1
+sv_pure 0
+sv_pure_kick_clients 0
 sv_voiceenable 1
 sv_alltalk 0
 sv_region 5

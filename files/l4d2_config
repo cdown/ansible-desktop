@@ -5,7 +5,7 @@ motd_enabled 0
 log off
 
 hostport 27015
-sv_lan 0
+sv_lan 1
 sv_allow_lobby_connect_only 0
 
 z_difficulty hard

@@ -1,0 +1,56 @@
+hostname "cdown"
+
+motd_enabled 0
+
+log off
+
+hostport 27015
+sv_lan 0
+sv_allow_lobby_connect_only 0
+
+z_difficulty hard
+
+mp_disable_autokick 1
+sv_forcepreload 1
+
+sv_steamgroup_exclusive "1"
+sv_steamgroup "27260559"
+
+// survivor bot select
+l4d_sbs_pick 1
+l4d_sbs_idle 0
+l4d_sbs_dead 0
+
+// no server shutdown on idle, but do hibernate
+// also see https://forums.alliedmods.net/showthread.php?t=140347
+sm_cvar sb_all_bot_game 1
+sm_cvar allow_all_bot_survivor_team 1
+sm_cvar sv_hibernate_when_empty 1
+
+sv_cheats 0
+
+sv_consistency 1
+sv_pure 2
+sv_pure_kick_clients 1
+sv_voiceenable 1
+sv_alltalk 0
+sv_region 5
+
+// L4D2 caps at 30000 rate, and runs at 30 tick. Just clamp low to avoid lag.
+sv_minrate 30000
+sv_maxrate 30000
+sv_maxcmdrate 10
+sv_mincmdrate 10
+sv_maxupdaterate 10
+sv_minupdaterate 10
+
+// appease rebuild string dictionary spam
+stringtable_alwaysrebuilddictionaries 1
+
+mp_friendlyfire 0
+sv_pausable 1
+
+sm_cvar survivor_friendly_fire_factor_easy 0
+sm_cvar survivor_friendly_fire_factor_expert 0
+sm_cvar survivor_friendly_fire_factor_hard 0
+sm_cvar survivor_friendly_fire_factor_normal 0

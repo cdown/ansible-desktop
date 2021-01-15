@@ -14,6 +14,7 @@
     compile_server: false
     desktop: false
     cdown: true
+    game_server: false
     users:
       - cdown
 
@@ -87,6 +88,13 @@
       with_items:
         - cdown-packages
       when: desktop and cdown
+
+    # Game server only
+
+    - include_tasks: tasks/game_server/{{ item }}.yml
+      with_items:
+        - l4d2
+      when: game_server
 
     # Currently unused: seedbox/
 

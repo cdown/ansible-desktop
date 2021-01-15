@@ -1,0 +1,5 @@
+[Unit]
+Description=Left 4 Dead 2 periodic restart
+
+[Service]
+ExecStart=/usr/bin/systemctl restart l4d2

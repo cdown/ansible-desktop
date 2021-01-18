@@ -8,8 +8,6 @@ hostport 27015
 sv_lan 1
 sv_allow_lobby_connect_only 0
 
-z_difficulty normal
-
 mp_disable_autokick 1
 sv_forcepreload 1
 
@@ -47,12 +45,26 @@ sv_minupdaterate 10
 // appease rebuild string dictionary spam
 stringtable_alwaysrebuilddictionaries 1
 
-mp_friendlyfire 0
 sv_pausable 1
 
+// Difficulty
+
+z_difficulty normal
+
+mp_friendlyfire 0
 sm_cvar survivor_friendly_fire_factor_easy 0
 sm_cvar survivor_friendly_fire_factor_expert 0
 sm_cvar survivor_friendly_fire_factor_hard 0
 sm_cvar survivor_friendly_fire_factor_normal 0
 
-sm_cvar z_tank_health 6000
+// Buff tank health (default is 4000)
+sm_cvar z_tank_health 6500
+
+// TODO: Not sure exactly how long this lasts
+sm_cvar z_boomer_limit 1
+sm_cvar z_smoker_limit 1
+sm_cvar z_hunter_limit 1
+sm_cvar z_spitter_limit 1
+sm_cvar z_jockey_limit 1
+sm_cvar z_charger_limit 1
+sm_cvar z_tank_limit 1

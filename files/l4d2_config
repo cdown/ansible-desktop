@@ -58,7 +58,7 @@ sm_cvar survivor_friendly_fire_factor_hard 0
 sm_cvar survivor_friendly_fire_factor_normal 0
 
 // Buff tank health (default is 4000)
-sm_cvar z_tank_health 6500
+sm_cvar z_tank_health 8000
 
 // TODO: Not sure exactly how long this lasts
 sm_cvar z_boomer_limit 1

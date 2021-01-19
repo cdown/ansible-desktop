@@ -16,3 +16,6 @@
 
 - name: Install nsswitch.conf
   copy: src=files/nsswitch.conf dest=/etc/nsswitch.conf
+
+- name: Install /etc/hosts for localhost
+  template: src=files/hosts dest=/etc/hosts

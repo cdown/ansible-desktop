@@ -4,7 +4,7 @@
 #ip=$(curl 'https://api.ipify.org')
 
 # LAN
-ip=192.168.1.144
+ip=$(ip addr show dev eno1 | awk '$1 == "inet" { print $2 }' | sed 's/\/.*//')
 
 if ! [[ $ip ]]; then
     echo "Failed to get IP!" >&2

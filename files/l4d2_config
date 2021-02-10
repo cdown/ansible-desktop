@@ -37,10 +37,10 @@ sv_region 5
 // L4D2 caps at 30000 rate, and runs at 30 tick. Just clamp low to avoid lag.
 sv_minrate 30000
 sv_maxrate 30000
-sv_maxcmdrate 10
-sv_mincmdrate 10
-sv_maxupdaterate 10
-sv_minupdaterate 10
+sv_maxcmdrate 30
+sv_mincmdrate 30
+sv_maxupdaterate 30
+sv_minupdaterate 30
 
 // appease rebuild string dictionary spam
 stringtable_alwaysrebuilddictionaries 1

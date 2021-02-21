@@ -13,4 +13,4 @@ fi
 
 # can't use stdbuf because that uses 64-bit, but this is 32-bit. you'll get
 # wrong timestamps without script to unbuffer, and messages may be delayed
-exec /usr/bin/script -c "exec /home/steam/l4d2/srcds_run +ip $ip -port 27015 +map c1m4_atrium +sv_pure 2 +z_difficulty normal -insecure -norestart -notrap" /dev/null
+exec /usr/bin/script -c "exec /home/steam/l4d2/srcds_run +ip $ip -port 27015 +map c1m4_atrium +sv_pure 2 +z_difficulty hard -insecure -norestart -notrap" /dev/null

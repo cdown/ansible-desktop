@@ -49,7 +49,7 @@ sv_pausable 1
 
 // Difficulty
 
-z_difficulty normal
+z_difficulty hard
 
 mp_friendlyfire 0
 sm_cvar survivor_friendly_fire_factor_easy 0

@@ -36,6 +36,9 @@
   copy: src=files/run_l4d2 dest=/usr/local/bin/run_l4d2 mode=755
   notify: restart l4d2
 
+- name: Install l4d2_update
+  copy: src=files/bin/l4d2_update dest=/usr/local/bin/l4d2_update mode=755
+
 - name: Install L4D2 systemd service
   copy: src=files/l4d2.service dest=/etc/systemd/system/l4d2.service
   notify: restart l4d2

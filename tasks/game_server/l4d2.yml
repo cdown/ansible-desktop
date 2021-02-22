@@ -108,6 +108,11 @@
   copy: src=files/l4d2/l4d_survivorai_pouncedfix.smx dest=~steam/l4d2/left4dead2/addons/sourcemod/plugins/l4d_survivorai_pouncedfix.smx owner=steam
   notify: restart l4d2
 
+# https://forums.alliedmods.net/showthread.php?t=306477
+- name: 200IQBots_FlyYouFools.smx
+  copy: src=files/l4d2/200IQBots_FlyYouFools.smx dest=~steam/l4d2/left4dead2/addons/sourcemod/plugins/200IQBots_FlyYouFools.smx owner=steam
+  notify: restart l4d2
+
 - name: Start and enable L4D2
   systemd: name=l4d2 state=started enabled=yes daemon_reload=yes
 

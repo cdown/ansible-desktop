@@ -5,3 +5,4 @@
       - base-devel
       - ctags
       - asp
+      - cppcheck

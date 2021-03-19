@@ -1,0 +1,5 @@
+---
+
+- pacman: xf86-video-intel
+- pacman: xf86-input-synaptics
+- pacman: libva-intel-driver

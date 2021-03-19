@@ -15,6 +15,8 @@
     desktop: false
     cdown: true
     game_server: false
+    xorg: false
+    xorg_profile: ""
     users:
       - cdown
 
@@ -85,6 +87,14 @@
         - packages
         - fonts
       when: desktop
+
+    - include_tasks: tasks/desktop/{{ item }}.yml
+      with_items:
+        - xorg
+      when: desktop and xorg
+
+    - include_tasks: tasks/desktop/xorg-profiles/{{ xorg_profile }}.yml
+      when: 'desktop and xorg and xorg_profile != ""'
 
     - include_tasks: tasks/desktop/{{ item }}.yml
       with_items:

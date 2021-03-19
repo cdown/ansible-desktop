@@ -1,0 +1,25 @@
+---
+- name: Install Xorg base
+  pacman:
+    name:
+      - xorg-server
+      - xorg-xinit
+      - xorg-xrdb
+
+- name: Install xorg tools
+  pacman:
+    name:
+      # Debugging
+      - xorg-xev
+
+      # xr
+      - xorg-xrandr
+
+      # no-dpms/no-screensaver
+      - xorg-xset
+
+      # xinput-disable@.service
+      - xorg-xinput
+
+- name: Caps -> Ctrl in Xorg
+  copy: src=files/xorg-no-caps dest=/etc/X11/xorg.conf.d/00-keyboard.conf mode=644

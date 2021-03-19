@@ -17,6 +17,7 @@
     game_server: false
     xorg: false
     xorg_profile: ""
+    lang_env: true
     users:
       - cdown
 
@@ -101,6 +102,33 @@
       with_items:
         - cdown-packages
       when: desktop and cdown
+
+    # Langenv only
+    - include_tasks: tasks/env/rustup.yml
+      with_items: '{{ users }}'
+      loop_control:
+        loop_var: user
+      when: lang_env
+    - include_tasks: tasks/env/rbenv.yml
+      with_items: '{{ users }}'
+      loop_control:
+        loop_var: user
+      when: lang_env
+    - include_tasks: tasks/env/pyenv.yml
+      with_items: '{{ users }}'
+      loop_control:
+        loop_var: user
+      when: lang_env
+    - include_tasks: tasks/env/nodenv.yml
+      with_items: '{{ users }}'
+      loop_control:
+        loop_var: user
+      when: lang_env
+    - include_tasks: tasks/env/plenv.yml
+      with_items: '{{ users }}'
+      loop_control:
+        loop_var: user
+      when: lang_env
 
     # Game server only
 

@@ -23,6 +23,11 @@
       - xclip
       - redshift
 
+      # Pinyin input
+      - fcitx
+      - fcitx-sunpinyin
+      - fcitx-gtk3
+
 - name: Install desktop minimal base (cdown specific, AUR)
   aur: name={{ item }} skip_installed=yes skip_pgp_check=yes
   with_items:

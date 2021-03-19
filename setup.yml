@@ -28,6 +28,7 @@
     # Base: things wanted no matter what config is used
 
     - include_tasks: tasks/base/locale.yml
+    - include_tasks: tasks/base/systemd.yml
     - include_tasks: tasks/base/pacman.yml
     - include_tasks: tasks/base/sysctl.yml
     - include_tasks: tasks/base/sudo.yml

@@ -1,0 +1,17 @@
+---
+- name: Create journald.conf.d dir
+  file: path=/etc/journald.conf.d state=directory
+
+- name: Install journald config
+  copy: src=files/journald.conf dest=/etc/journald.conf.d/local.conf
+
+- name: Create system.conf.d dir
+  file: path=/etc/system.conf.d state=directory
+
+- name: Install system config
+  copy: src=files/system.conf dest=/etc/system.conf.d/local.conf
+
+- file: path=/etc/systemd/system/-.slice.d state=directory
+
+- name: Install DisableControllers for root slice
+  copy: src=files/root_override.conf dest=/etc/systemd/system/-.slice.d/override.conf

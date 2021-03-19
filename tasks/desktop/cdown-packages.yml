@@ -5,16 +5,23 @@
       # VPN -- only used for FB right now
       - openconnect
 
-      # Unused by Lin
-      - msmtp
+      # Directly unused by Lin
       - pass
       - irssi
-      - python-boto  # for duply
       - pdfpc
       - mktorrent
       - python-virtualenvwrapper
       - asp
       - clipmenu
+
+      # Duply
+      - python-boto
+
+      # Mail
+      - mutt
+      - w3m
+      - procmail
+      - msmtp
 
       # Android, can be moved if Lin eventually uses it
       - android-tools

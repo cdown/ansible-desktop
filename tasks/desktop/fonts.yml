@@ -1,0 +1,12 @@
+---
+- pacman: name=ttf-droid
+- pacman: name=terminus-font
+- aur: name=ttf-inconsolata-g skip_installed=yes skip_pgp_check=yes
+
+- name: 'Workaround for https://bugs.archlinux.org/task/63205'
+  file: dest=/etc/fonts/conf.d/{{ item }}.conf src=/dev/null state=link
+  with_items:
+    - 60-droid-sans-mono
+    - 65-droid-kufi
+    - 65-droid-sans
+    - 65-droid-serif

@@ -1,0 +1,10 @@
+---
+
+# More or less the same as the T470s config, for testing large changes.
+
+boot_mode: uefi
+filesystem: ext4
+compile_server: true
+desktop: true
+xorg: true
+xorg_profile: virtualbox

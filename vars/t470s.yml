@@ -1,0 +1,9 @@
+---
+boot_mode: uefi
+filesystem: btrfs
+compile_server: true
+desktop: true
+xorg: true
+xorg_profile: t4xxs
+quirks:
+  - thinkpad-cpu-throttling

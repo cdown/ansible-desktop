@@ -27,9 +27,18 @@
       - fcitx-sunpinyin
       - fcitx-gtk3
 
+      # Desktop environment
+      - dmenu
+      - rxvt-unicode
+      - physlock
+      - libnotify
+      - dunst
+      - urxvt-perls
+
 - name: Install desktop minimal base (AUR)
   aur: name={{ item }} skip_installed=yes skip_pgp_check=yes
   with_items:
+    - dwm-cdown-git
     - pngquant
     - google-chrome
     - downgrade

@@ -1,0 +1,10 @@
+---
+- name: Install PulseAudio
+  pacman:
+    name:
+      - pulseaudio
+      - pavucontrol
+
+- aur: name=pulseaudio-ctl skip_installed=yes
+  become: yes
+  become_user: makepkg

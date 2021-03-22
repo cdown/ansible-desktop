@@ -87,6 +87,7 @@
     - include_tasks: tasks/desktop/{{ item }}.yml
       with_items:
         - packages
+        - sound
         - fonts
       when: desktop
 

@@ -1,7 +1,10 @@
 ---
 - pacman: name=ttf-droid
 - pacman: name=terminus-font
+
 - aur: name=ttf-inconsolata-g skip_installed=yes skip_pgp_check=yes
+  become: yes
+  become_user: makepkg
 
 - name: 'Workaround for https://bugs.archlinux.org/task/63205'
   file: dest=/etc/fonts/conf.d/{{ item }}.conf src=/dev/null state=link

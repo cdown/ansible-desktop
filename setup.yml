@@ -143,12 +143,12 @@
     # Quirks (machine-specific workarounds)
 
     - include_tasks: tasks/quirks/{{ item }}.yml
-      with_items: {{ quirks }}
+      with_items: "{{ quirks }}"
 
     # Features (one-off, small features with little impact on the system)
 
     - include_tasks: tasks/features/{{ item }}.yml
-      with_items: {{ features }}
+      with_items: "{{ features }}"
 
     # Currently unused: seedbox/
 

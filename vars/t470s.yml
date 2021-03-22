@@ -9,3 +9,4 @@ quirks:
   - thinkpad-cpu-throttling
 features:
   - tex
+  - bluetooth-audio

@@ -21,6 +21,7 @@
     users:
       - cdown
     quirks: []
+    features: []
 
   vars_files:
     - "vars/{{ lookup('env', 'AS_CONFIG') }}.yml"
@@ -139,10 +140,15 @@
         - l4d2
       when: game_server
 
-    # Quirks
+    # Quirks (machine-specific workarounds)
 
     - include_tasks: tasks/quirks/{{ item }}.yml
       with_items: {{ quirks }}
+
+    # Features (one-off, small features with little impact on the system)
+
+    - include_tasks: tasks/features/{{ item }}.yml
+      with_items: {{ features }}
 
     # Currently unused: seedbox/
 

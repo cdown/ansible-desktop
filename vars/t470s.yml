@@ -7,3 +7,5 @@ xorg: true
 xorg_profile: t4xxs
 quirks:
   - thinkpad-cpu-throttling
+features:
+  - tex

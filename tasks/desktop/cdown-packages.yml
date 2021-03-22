@@ -42,7 +42,7 @@
       - udftools
 
       # Camera SD card
-      - exfat-tools
+      - exfat-utils
 
       # Subtitles
       - enca

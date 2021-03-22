@@ -2,6 +2,7 @@
 - name: Install rbenv
   aur: name={{ item }} skip_installed=yes
   with_items:
+    - ruby  # host ruby is required to build
     - rbenv
     - ruby-build
   become: yes

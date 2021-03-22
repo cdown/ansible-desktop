@@ -5,7 +5,6 @@
       - mupdf
       - graphviz
       - mpv
-      - bats
 
       # Technically could also be used on the server, but in reality we only
       # use this on desktop for note/e-mail writing.
@@ -28,7 +27,7 @@
       - fcitx-sunpinyin
       - fcitx-gtk3
 
-- name: Install desktop minimal base (cdown specific, AUR)
+- name: Install desktop minimal base (AUR)
   aur: name={{ item }} skip_installed=yes skip_pgp_check=yes
   with_items:
     - pngquant
@@ -36,5 +35,6 @@
     - downgrade
     - psi-notify
     - xob
+    - bats
   become: yes
   become_user: makepkg

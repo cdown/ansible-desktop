@@ -1,0 +1,10 @@
+---
+
+boot_mode: null
+filesystem: null
+root_on_ssd: false  # Don't try to TRIM from WSL
+compile_server: true
+desktop: false
+xorg: false
+systemd_init: false
+server: false

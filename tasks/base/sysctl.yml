@@ -5,4 +5,4 @@
   register: sysctls
 
 - systemd: name=systemd-modules-load state=started
-  when: sysctls.changed
+  when: systemd_init and sysctls.changed

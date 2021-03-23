@@ -21,3 +21,4 @@
     - kernel-modules-hook
 
 - systemd: name=linux-modules-cleanup enabled=yes daemon_reload=yes
+  when: systemd_init

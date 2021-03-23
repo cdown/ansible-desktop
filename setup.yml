@@ -17,6 +17,11 @@
     game_server: false
     xorg: false
     xorg_profile: ""
+    server: true
+
+    # WSL doesn't run with systemd. Genie may be possible for later, but for
+    # now just omit it.
+    systemd_init: true
 
     lang_env: true
     python_3_version: 3.8.2
@@ -43,18 +48,22 @@
     - include_tasks: tasks/base/sudo.yml
     - include_tasks: tasks/base/aur.yml
     - include_tasks: tasks/base/kernel.yml
+      when: boot_mode  # if boot_mode is null, it's WSL or similar
     - include_tasks: tasks/base/packages.yml
     - include_tasks: tasks/base/filesystem.yml
     - include_tasks: tasks/base/core.yml
     - include_tasks: tasks/base/users.yml
     - include_tasks: tasks/base/ssh.yml
+      when: systemd_init
     - include_tasks: tasks/base/timers-pre.yml
+      when: systemd_init
     - include_tasks: tasks/base/timers.yml
       with_items:
         - clean-cache
         - cache-updates
         - pacman-fy
         - vacuum-journals
+      when: systemd_init
 
     # Boot
 
@@ -79,7 +88,7 @@
       with_items:
         - rev
         - scratch
-      when: not remote_server
+      when: not remote_server and server
 
     # Compile server only
 

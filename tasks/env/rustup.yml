@@ -54,6 +54,11 @@
   become_user: "{{ user }}"
   when: 'item not in rustup_stable_components.stdout_lines'
 
+- name: Install taglib for mack
+  aur: name=taglib skip_installed=yes
+  become: yes
+  become_user: makepkg
+
 - name: Install rust utilities
   command: "cargo install {{ item }}"
   with_items:

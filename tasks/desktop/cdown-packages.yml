@@ -38,6 +38,9 @@
       - mpc
       - easytag
 
+      # mack
+      - taglib
+
       # USB creation
       - udftools
 

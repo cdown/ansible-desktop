@@ -4,7 +4,7 @@ boot_mode: null
 filesystem: null
 root_on_ssd: false  # Don't try to TRIM from WSL
 compile_server: true
-desktop: false
+desktop: true  # While we don't use X/dwm, we do use other "desktop" utils
 xorg: false
 systemd_init: false
 server: false

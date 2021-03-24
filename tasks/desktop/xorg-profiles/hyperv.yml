@@ -1,0 +1,3 @@
+---
+
+- pacman: name=xf86-video-fbdev

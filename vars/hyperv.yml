@@ -1,0 +1,9 @@
+---
+
+boot_mode: uefi
+filesystem: ext4
+compile_server: true
+desktop: true
+xorg: true
+xorg_profile: hyperv
+extra_kernel_params: 'video=hyperv_fb:3840x1600'

@@ -42,6 +42,7 @@
       - gdb
       - strace
       - bpftrace
+      - python-bcc  # bcc-tools optdepends
       - bcc-tools
       - perf
       - time

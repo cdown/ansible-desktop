@@ -1,5 +1,5 @@
 ---
-- name: For whatever kernel we installed, add standard + LTS ones as a backup
+- name: Install kernel + headers
   pacman:
     name:
       - "{{ kernel }}"

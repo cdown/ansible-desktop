@@ -39,11 +39,19 @@
 
   tasks:
 
-    # Base: things wanted no matter what config is used
+    # Base (crit): things that cannot be altered by quirks
 
     - include_tasks: tasks/base/locale.yml
     - include_tasks: tasks/base/systemd.yml
     - include_tasks: tasks/base/pacman.yml
+
+    # Quirks (machine-specific workarounds)
+
+    - include_tasks: tasks/quirks/{{ item }}.yml
+      with_items: "{{ quirks }}"
+
+    # Base: things wanted no matter what config is used
+
     - include_tasks: tasks/base/sysctl.yml
     - include_tasks: tasks/base/sudo.yml
     - include_tasks: tasks/base/aur.yml
@@ -154,11 +162,6 @@
       with_items:
         - l4d2
       when: game_server
-
-    # Quirks (machine-specific workarounds)
-
-    - include_tasks: tasks/quirks/{{ item }}.yml
-      with_items: "{{ quirks }}"
 
     # Features (one-off, small features with little impact on the system)
 

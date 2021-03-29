@@ -13,6 +13,8 @@
 
       # We just use dhcpcd directly on servers
       - netctl
+      - wpa_supplicant
+      - dialog  # optdepends for wifi-menu
 
       # Screenshots
       - maim

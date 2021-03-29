@@ -6,6 +6,10 @@
   copy: src=files/sshd_config dest=/etc/ssh/sshd_config mode=644
   notify: restart sshd
 
+# Run all pending handlers. Otherwise, we might restart ssh at the end despite
+# stopping/disabling it here.
+- meta: flush_handlers
+
 - name: Enable SSH daemon
   systemd: name=sshd state=started enabled=yes daemon_reload=yes
   when: remote_server

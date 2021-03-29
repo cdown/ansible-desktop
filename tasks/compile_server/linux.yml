@@ -4,5 +4,8 @@
     name:
       - bc
 
-      # Testing
-      - qemu-headless
+# On server, no point in having GTK frontend.
+- pacman: name=qemu
+  when: desktop
+- pacman: name=qemu-headless
+  when: not desktop

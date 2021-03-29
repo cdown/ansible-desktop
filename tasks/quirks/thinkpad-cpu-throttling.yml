@@ -3,3 +3,6 @@
 # To avoid spurious thermal throttling
 - pacman: name=throttled
 - systemd: name=lenovo_fix state=started enabled=yes masked=no
+
+- set_fact:
+    extra_kernel_params: "{{ extra_kernel_params }} msr.allow_writes=on"

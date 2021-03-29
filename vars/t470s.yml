@@ -3,6 +3,7 @@ boot_mode: uefi
 filesystem: btrfs
 compile_server: true
 desktop: true
+server: false
 xorg: true
 xorg_profile: t4xxs
 quirks:

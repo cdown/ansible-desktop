@@ -57,17 +57,7 @@ sm_cvar survivor_friendly_fire_factor_expert 0
 sm_cvar survivor_friendly_fire_factor_hard 0
 sm_cvar survivor_friendly_fire_factor_normal 0
 
-// Buff tank health (default is 4000)
-sm_cvar z_tank_health 8000
-
-// TODO: Not sure exactly how long this lasts
-sm_cvar z_boomer_limit 1
-sm_cvar z_smoker_limit 1
-sm_cvar z_hunter_limit 1
-sm_cvar z_spitter_limit 1
-sm_cvar z_jockey_limit 1
-sm_cvar z_charger_limit 1
-sm_cvar z_tank_limit 1
+sm_cvar z_witch_anger_rate 0.1
 
 // Bot improvements
 sm_cvar sb_debug_apoproach_wait_time 0.5

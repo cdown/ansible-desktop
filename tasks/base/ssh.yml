@@ -12,11 +12,11 @@
 
 - name: Enable SSH daemon
   systemd: name=sshd state=started enabled=yes daemon_reload=yes
-  when: remote_server
+  when: server
 
 - name: Disable SSH daemon
   systemd: name=sshd state=stopped enabled=no daemon_reload=yes
-  when: not remote_server
+  when: not server
 
 - name: Create ssh group
   group: name=ssh state=present

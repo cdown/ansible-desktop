@@ -13,23 +13,3 @@
 - name: Install SSH key for cdown
   copy: src=files/cdown_ssh_pubkey dest=~cdown/.ssh/authorized_keys mode=600 owner=cdown group=cdown
   when: '"cdown" in users'
-
-- file: path=/var/lib/systemd/linger state=directory
-- copy: content="" dest=/var/lib/systemd/linger/cdown
-
-- stat: path=~cdown/git/dotfiles
-  register: dotfiles_dir
-
-- name: Clone dotfiles for cdown
-  become: yes
-  become_user: "cdown"
-  git: repo=git://github.com/cdown/dotfiles.git dest=~cdown/git/dotfiles accept_hostkey=yes update=no
-  register: df_clone
-  when: not dotfiles_dir.stat.exists
-
-- name: Set up dotfiles for cdown
-  become: yes
-  become_user: "cdown"
-  command: ./setup chdir="~cdown/git/dotfiles"
-  changed_when: false
-  when: df_clone.changed

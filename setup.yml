@@ -61,6 +61,10 @@
     - include_tasks: tasks/base/filesystem.yml
     - include_tasks: tasks/base/core.yml
     - include_tasks: tasks/base/users.yml
+    - include_tasks: tasks/base/dotfiles.yml
+      with_items: '{{ users }}'
+      loop_control:
+        loop_var: user
     - include_tasks: tasks/base/ssh.yml
       when: systemd_init
     - include_tasks: tasks/base/timers-pre.yml

@@ -11,6 +11,12 @@
 - name: Install system config
   copy: src=files/system.conf dest=/etc/systemd/system.conf.d/local.conf
 
+- name: Create logind.conf.d dir
+  file: path=/etc/systemd/logind.conf.d state=directory
+
+- name: Install logind config
+  copy: src=files/logind.conf dest=/etc/systemd/logind.conf.d/local.conf
+
 - file: path=/etc/systemd/system/-.slice.d state=directory
 
 - name: Install DisableControllers for root slice

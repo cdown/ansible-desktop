@@ -77,8 +77,6 @@
         - pacman-fy
         - vacuum-journals
       when: systemd_init
-    - include_tasks: tasks/base/virtualbox-host.yml
-      when: virtualbox_host
 
     # Boot
 
@@ -122,6 +120,9 @@
         - sound
         - fonts
       when: desktop
+
+    - include_tasks: tasks/desktop/virtualbox-host.yml
+      when: virtualbox_host
 
     - include_tasks: tasks/desktop/{{ item }}.yml
       with_items:

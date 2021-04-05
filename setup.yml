@@ -18,6 +18,7 @@
     xorg: false
     xorg_profile: ""
     server: true
+    virtualbox_host: false
 
     # WSL doesn't run with systemd. Genie may be possible for later, but for
     # now just omit it.
@@ -76,6 +77,8 @@
         - pacman-fy
         - vacuum-journals
       when: systemd_init
+    - include_tasks: tasks/base/virtualbox-host.yml
+      when: virtualbox_host
 
     # Boot
 

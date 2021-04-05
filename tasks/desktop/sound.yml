@@ -8,3 +8,6 @@
 - aur: name=pulseaudio-ctl skip_installed=yes
   become: yes
   become_user: makepkg
+
+- name: Blacklist pcspkr
+  kernel_blacklist: name=pcspkr state=present

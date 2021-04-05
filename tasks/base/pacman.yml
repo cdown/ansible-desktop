@@ -6,3 +6,7 @@
 - name: Manual pacman repo update to sync new dbs
   command: pacman -Syy
   when: pacman_conf.changed
+
+- name: Manual pacman file list update for new dbs
+  command: pacman -Fy
+  when: pacman_conf.changed

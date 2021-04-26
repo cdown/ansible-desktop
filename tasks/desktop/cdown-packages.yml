@@ -13,6 +13,7 @@
       - python-virtualenvwrapper
       - asp
       - clipmenu
+      - todobg
 
       # Duply
       - python-boto

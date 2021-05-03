@@ -34,13 +34,14 @@ sv_voiceenable 1
 sv_alltalk 0
 sv_region 5
 
-// L4D2 caps at 30000 rate, and runs at 30 tick. Just clamp low to avoid lag.
+// L4D2 caps at 30000 rate, so don't use all 30 tick
+// TODO: https://forums.alliedmods.net/showthread.php?t=299669 which removes limits
 sv_minrate 30000
 sv_maxrate 30000
-sv_maxcmdrate 30
-sv_mincmdrate 30
-sv_maxupdaterate 30
-sv_minupdaterate 30
+sv_maxcmdrate 15
+sv_mincmdrate 15
+sv_maxupdaterate 15
+sv_minupdaterate 15
 
 // appease rebuild string dictionary spam
 stringtable_alwaysrebuilddictionaries 1

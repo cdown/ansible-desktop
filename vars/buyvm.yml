@@ -1,0 +1,5 @@
+---
+
+boot_mode: legacy
+filesystem: btrfs
+root_on_ssd: false

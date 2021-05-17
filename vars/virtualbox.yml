@@ -4,7 +4,7 @@
 
 boot_mode: uefi
 filesystem: ext4
-compile_server: true
+compile_server: false
 desktop: true
 xorg: true
 xorg_profile: virtualbox

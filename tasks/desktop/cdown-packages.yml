@@ -13,7 +13,6 @@
       - python-virtualenvwrapper
       - asp
       - clipmenu
-      - todobg
 
       # Duply
       - python-boto
@@ -68,6 +67,7 @@
     - acestream-engine-stable
     - whatmp3
     - shellcheck-bin
+    - todobg
   become: yes
   become_user: makepkg
 

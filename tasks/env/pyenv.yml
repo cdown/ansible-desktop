@@ -12,6 +12,7 @@
   changed_when: false
 
 - copy: src=files/bin/pyenv-check-rebuild-needed dest=/usr/local/bin/pyenv-check-rebuild-needed mode=755
+- copy: src=files/bin/pyenv-init-full dest=/usr/local/bin/pyenv-init-full mode=755
 
 - name: Check if Python needs a rebuild for dynamic lib update
   command: pyenv-check-rebuild-needed
@@ -22,13 +23,13 @@
   changed_when: false
 
 - name: Install Python 3 using pyenv
-  shell: "eval \"$(pyenv init --path)\" && pyenv install {{ '-f' if python_needs_force_rebuild.rc != 0 }} {{ python_3_version }}"
+  shell: "eval \"$(pyenv-init-full)\" && pyenv install {{ '-f' if python_needs_force_rebuild.rc != 0 }} {{ python_3_version }}"
   become: yes
   become_user: "{{ user }}"
   when: 'python_needs_force_rebuild.rc != 0 or python_3_version not in pyenv_version.stdout_lines'
 
 - name: Purge all other Python versions
-  shell: "eval \"$(pyenv init --path)\" && pyenv versions | grep -v {{ pyenv_version }} | sed 's/^..//' | awk '/^[23]/ { print $1 }' | tee >(xargs -L1 -r pyenv uninstall -f)"
+  shell: "eval \"$(pyenv-init-full)\" && pyenv versions | grep -v {{ pyenv_version }} | sed 's/^..//' | awk '/^[23]/ { print $1 }' | tee >(xargs -L1 -r pyenv uninstall -f)"
   args:
     executable: /bin/bash
   register: py_others
@@ -37,14 +38,14 @@
   changed_when: py_others.stdout_lines
 
 - name: Get list of Python 3 utils installed
-  shell: "eval \"$(pyenv init --path)\" && pyenv shell {{ python_3_version }} && pip freeze --all | awk -F= '{ print $1 }'"
+  shell: "eval \"$(pyenv-init-full)\" && pyenv shell {{ python_3_version }} && pip freeze --all | awk -F= '{ print $1 }'"
   register: py3_utils
   become: yes
   become_user: "{{ user }}"
   changed_when: false
 
 - name: Install Python 3 utilities
-  shell: 'eval "$(pyenv init --path)" && pyenv shell {{ python_3_version }} && pip install -U {{ item }}'
+  shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && pip install -U {{ item }}'
   with_items:
     - pip
     - yturl

@@ -68,6 +68,7 @@
     - whatmp3
     - shellcheck-bin
     - todobg
+    - dspdfviewer  # while pdfpc is being weird...
   become: yes
   become_user: makepkg
 

@@ -12,3 +12,5 @@ cdown: false
 virtualbox_host: true
 users:
   - lin
+features:
+  - bluetooth-audio

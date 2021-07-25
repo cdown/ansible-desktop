@@ -10,6 +10,9 @@
 - name: Enable required bluetooth modules on boot
   copy: src=files/bluetooth.conf dest=/etc/modules-load.d/bluetooth.conf
 
+- copy: src=files/bluetooth/default.pa dest=/etc/pulse/default.pa
+- copy: src=files/bluetooth/audio.conf dest=/etc/bluetooth/audio.conf
+
 - name: Add local users to lp group for DBus policy
   user: name={{ item }} groups=lp append=yes
   with_items: '{{ users }}'

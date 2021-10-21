@@ -12,6 +12,7 @@
 
 - copy: src=files/bluetooth/default.pa dest=/etc/pulse/default.pa
 - copy: src=files/bluetooth/audio.conf dest=/etc/bluetooth/audio.conf
+- copy: src=files/bluetooth/override.conf dest=/etc/systemd/system/bluetooth.service.d/alwaysrestart.conf
 
 - name: Add local users to lp group for DBus policy
   user: name={{ item }} groups=lp append=yes

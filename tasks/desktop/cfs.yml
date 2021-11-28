@@ -3,4 +3,4 @@
   become: yes
   become_user: makepkg
 
-- systemd: name=set-cfs-tweaks state=started enabled=yes daemon_reload=yes
+- systemd: name=set-cfs-tweaks enabled=yes daemon_reload=yes

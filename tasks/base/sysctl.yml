@@ -1,7 +1,7 @@
 ---
 - file: path=/etc/sysctl.conf state=absent
 
-- copy: src=files/sysctl.conf dest=/etc/sysctl.d/99-generic.conf
+- template: src=files/sysctl.conf dest=/etc/sysctl.d/99-generic.conf
   register: sysctls
 
 - systemd: name=systemd-modules-load state=started

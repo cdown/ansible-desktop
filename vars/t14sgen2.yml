@@ -1,0 +1,11 @@
+---
+boot_mode: uefi
+filesystem: btrfs
+compile_server: true
+desktop: true
+server: false
+xorg: true
+xorg_profile: t14sgen2
+features:
+  - tex
+  - bluetooth-audio

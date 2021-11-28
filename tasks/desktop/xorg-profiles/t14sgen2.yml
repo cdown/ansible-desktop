@@ -1,0 +1,6 @@
+---
+
+- pacman: name=xf86-video-intel
+- pacman: name=xf86-input-synaptics
+- pacman: name=libva-intel-driver
+- copy: src=files/sna.conf dest=/etc/X11/xorg.conf.d/20-intel.conf mode=644

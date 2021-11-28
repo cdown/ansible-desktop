@@ -40,7 +40,7 @@
 - name: Install desktop minimal base (AUR)
   aur: name={{ item }} skip_installed=yes skip_pgp_check=yes
   with_items:
-    - dwm-cdown-git
+    - dwm-layoutconfigrules-git
     - pngquant
     - google-chrome
     - downgrade

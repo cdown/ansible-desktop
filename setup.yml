@@ -119,6 +119,7 @@
         - packages
         - sound
         - fonts
+        - cfs
       when: desktop
 
     - include_tasks: tasks/desktop/virtualbox-host.yml

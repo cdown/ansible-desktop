@@ -1,0 +1,6 @@
+---
+- aur: name=cfs-zen-tweaks skip_installed=yes skip_pgp_check=yes
+  become: yes
+  become_user: makepkg
+
+- systemd: name=set-cfs-tweaks state=started enabled=yes daemon_reload=yes

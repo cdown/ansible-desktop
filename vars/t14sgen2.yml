@@ -6,6 +6,8 @@ desktop: true
 server: false
 xorg: true
 xorg_profile: t14sgen2
+quirks:
+  - thinkpad-cpu-throttling
 features:
   - tex
   - bluetooth-audio

@@ -11,3 +11,4 @@ quirks:
 features:
   - tex
   - bluetooth-audio
+  - tlp

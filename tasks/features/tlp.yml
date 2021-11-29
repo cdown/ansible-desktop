@@ -1,0 +1,3 @@
+---
+- pacman: name=tlp state=present
+- systemd: name=tlp enabled=yes

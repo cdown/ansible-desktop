@@ -7,3 +7,4 @@
 - pacman: name=fd
 - pacman: name=ripgrep
 - pacman: name=hyperfine
+- pacman: name=hexyl

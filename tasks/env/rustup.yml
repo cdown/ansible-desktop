@@ -66,6 +66,7 @@
     - ripgrep
     - cargo-update
     - fd-find
+    - hexyl
     - mack
     - git-trim
     - git-delta

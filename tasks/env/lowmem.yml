@@ -1,0 +1,9 @@
+---
+
+# Low memory machines can't afford to compile some of the things we usually get
+# through lang_env, so here's a minimal subset with precompiled binaries for
+# things we use a lot.
+
+- pacman: name=fd
+- pacman: name=ripgrep
+- pacman: name=hyperfine

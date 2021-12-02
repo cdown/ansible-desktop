@@ -19,6 +19,7 @@
     xorg_profile: ""
     server: true
     virtualbox_host: false
+    lowmem: false
 
     # WSL doesn't run with systemd. Genie may be possible for later, but for
     # now just omit it.
@@ -164,6 +165,9 @@
       loop_control:
         loop_var: user
       when: lang_env
+
+    - include_tasks: tasks/env/lowmem.yml
+      when: not lang_env and lowmem
 
     # Game server only
 

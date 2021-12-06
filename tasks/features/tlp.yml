@@ -1,3 +1,4 @@
 ---
+- pacman: name=acpi_call-dkms state=present  # battery recalibration
 - pacman: name=tlp state=present
 - systemd: name=tlp enabled=yes

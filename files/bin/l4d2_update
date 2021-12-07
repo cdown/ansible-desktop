@@ -1,5 +1,5 @@
 #!/bin/bash -e
 
 sudo systemctl stop l4d2
-sudo -i -u steam ~steam/steamcmd.sh +login anonymous +force_install_dir ~steam/l4d2 +app_update 222860 validate +quit
+sudo -i -u steam ~steam/steamcmd.sh +force_install_dir ~steam/l4d2 +login anonymous +app_update 222860 validate +quit
 sudo systemctl start l4d2

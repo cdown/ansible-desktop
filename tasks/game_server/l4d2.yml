@@ -25,7 +25,7 @@
   when: downloaded_steamcmd.changed
 
 - name: Install L4D2
-  command: ~steam/steamcmd.sh +login anonymous +force_install_dir ~steam/l4d2 +app_update 222860 validate +quit
+  command: ~steam/steamcmd.sh +force_install_dir ~steam/l4d2 +login anonymous +app_update 222860 validate +quit
   when: not l4d2_stat.stat.exists
 
 - name: Configure L4D2 server.cfg

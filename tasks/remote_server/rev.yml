@@ -1,3 +1,0 @@
----
-- user: name=rev state=absent
-- file: path=/srv/rev state=absent

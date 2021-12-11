@@ -90,7 +90,6 @@
 
     - include_tasks: tasks/remote_server/{{ item }}.yml
       with_items:
-        - rev
         - nginx
         - munin
         - atop
@@ -100,7 +99,6 @@
 
     - include_tasks: tasks/local_server/{{ item }}.yml
       with_items:
-        - rev
         - scratch
       when: not remote_server and server
 

@@ -13,8 +13,16 @@
   copy: src=files/mime.types dest=/etc/nginx/mime.types mode=644
   notify: restart nginx
 
-- name: Make nginx default site
+# If this is a remote server, the default site is the share. Otherwise, it's
+# munin by default since there's no other site available.
+- name: Make nginx default site if remote
   copy: src=files/nginx_default_site.conf dest=/etc/nginx/conf.d/default.conf mode=644
+  when: remote_server
+  notify: restart nginx
+
+- name: Remove nginx default site if not remote
+  file: path=/etc/nginx/conf.d/default.conf state=absent
+  when: not remote_server
   notify: restart nginx
 
 - name: Install nginx

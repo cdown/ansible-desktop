@@ -42,7 +42,7 @@
 - systemd: name=munin-node state=started enabled=yes daemon_reload=yes
 
 - name: Make nginx munin site
-  copy: src=files/nginx_munin.conf dest=/etc/nginx/conf.d/munin.conf mode=644
+  template: src=files/nginx_munin.conf dest=/etc/nginx/conf.d/munin.conf mode=644
   notify: restart nginx
 
 - include_tasks: tasks/base/timers.yml

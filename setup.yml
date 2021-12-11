@@ -88,12 +88,12 @@
 
     # Remote only
 
-    - include_tasks: tasks/remote_server/{{ item }}.yml
+    - include_tasks: tasks/server/{{ item }}.yml
       with_items:
         - nginx
         - munin
         - atop
-      when: remote_server
+      when: server
 
     # Local only
 

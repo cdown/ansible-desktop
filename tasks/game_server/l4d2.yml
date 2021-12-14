@@ -30,18 +30,15 @@
 
 - name: Configure L4D2 server.cfg
   copy: src=files/l4d2_config dest=~steam/l4d2/left4dead2/cfg/server.cfg mode=644 owner=steam
-  notify: restart l4d2
 
 - name: Install run_l4d2
   copy: src=files/run_l4d2 dest=/usr/local/bin/run_l4d2 mode=755
-  notify: restart l4d2
 
 - name: Install l4d2_update
   copy: src=files/bin/l4d2_update dest=/usr/local/bin/l4d2_update mode=755
 
 - name: Install L4D2 systemd service
   copy: src=files/l4d2.service dest=/etc/systemd/system/l4d2.service
-  notify: restart l4d2
 
 - name: Make .steam dir
   file: path=~steam/.steam state=directory mode=0755 owner=steam group=steam
@@ -51,7 +48,6 @@
 
 - name: Link steamclient.so
   file: src=~steam/linux32/steamclient.so dest=~steam/.steam/sdk32/steamclient.so state=link
-  notify: restart l4d2
 
 - stat: path=~steam/l4d2/left4dead2/addons/metamod/
   register: mm_stat
@@ -71,7 +67,6 @@
   become: yes
   become_user: steam
   when: downloaded_mm.changed
-  notify: restart l4d2
 
 - stat: path=~steam/l4d2/left4dead2/addons/sourcemod/
   register: sm_stat
@@ -88,39 +83,37 @@
   become: yes
   become_user: steam
   when: downloaded_sm.changed
-  notify: restart l4d2
 
 - name: Set up SM admins
   copy: src=files/sm_admins dest=~steam/l4d2/left4dead2/addons/sourcemod/configs/admins_simple.ini owner=steam
-  notify: restart l4d2
 
 # https://forums.alliedmods.net/showthread.php?p=2409064
 - name: l4d_survivor_bot_select.smx
   copy: src=files/l4d2/l4d_survivor_bot_select.smx dest=~steam/l4d2/left4dead2/addons/sourcemod/plugins/l4d_survivor_bot_select.smx owner=steam
-  notify: restart l4d2
 
 - name: l4d_survivor_bot_select.txt
   copy: src=files/l4d2/l4d_survivor_bot_select.txt dest=~steam/l4d2/left4dead2/addons/sourcemod/gamedata/l4d_survivor_bot_select.txt owner=steam
-  notify: restart l4d2
 
 # https://forums.alliedmods.net/showthread.php?p=893326
 - name: l4d_survivorai_pouncedfix.smx
   copy: src=files/l4d2/l4d_survivorai_pouncedfix.smx dest=~steam/l4d2/left4dead2/addons/sourcemod/plugins/l4d_survivorai_pouncedfix.smx owner=steam
-  notify: restart l4d2
 
 # https://forums.alliedmods.net/showthread.php?t=306477
 - name: 200IQBots_FlyYouFools.smx
   copy: src=files/l4d2/200IQBots_FlyYouFools.smx dest=~steam/l4d2/left4dead2/addons/sourcemod/plugins/200IQBots_FlyYouFools.smx owner=steam
-  notify: restart l4d2
 
 - name: Start and enable L4D2
-  systemd: name=l4d2 state=started enabled=yes daemon_reload=yes
+  systemd: name=l4d2 enabled=no daemon_reload=yes
 
-- name: Copy timer to restart L4D2 nightly
-  copy: src=files/l4d2-restart.timer dest=/etc/systemd/system/l4d2-restart.timer
+- name: Copy timer to stop L4D2 nightly
+  copy: src=files/l4d2-stop.timer dest=/etc/systemd/system/l4d2-stop.timer
 
-- name: Copy service to restart L4D2 nightly
-  copy: src=files/l4d2-restart.service dest=/etc/systemd/system/l4d2-restart.service
+- name: Copy service to stop L4D2 nightly
+  copy: src=files/l4d2-stop.service dest=/etc/systemd/system/l4d2-stop.service
 
-- name: Start and enable L4D2 restart service
-  systemd: name=l4d2-restart.timer state=started enabled=yes daemon_reload=yes
+- name: Start and enable L4D2 stop service
+  systemd: name=l4d2-stop.timer state=started enabled=yes daemon_reload=yes
+
+# Replaced with -stop
+- file: path=/etc/systemd/system/l4d2-restart.service state=absent
+- file: path=/etc/systemd/system/l4d2-restart.timer state=absent

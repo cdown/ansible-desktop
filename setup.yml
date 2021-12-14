@@ -186,5 +186,3 @@
       service: name=sshd state=restarted
     - name: restart nginx
       service: name=nginx state=restarted
-    - name: restart l4d2
-      service: name=l4d2 state=restarted

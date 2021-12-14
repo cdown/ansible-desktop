@@ -1,0 +1,5 @@
+[Unit]
+Description=Left 4 Dead 2 nightly stop
+
+[Service]
+ExecStart=/usr/bin/systemctl stop l4d2

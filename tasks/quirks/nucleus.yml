@@ -1,0 +1,13 @@
+---
+
+# Build server, unused between 0200-1200. Can still be manually suspended or
+# woken up in those hours physically.
+
+- name: Copy timer to sleep nightly
+  copy: src=files/night-sleep.timer dest=/etc/systemd/system/night-sleep.timer
+
+- name: Copy service to sleep nightly
+  copy: src=files/night-sleep.service dest=/etc/systemd/system/night-sleep.service
+
+- name: Start and enable sleep nightly timer
+  systemd: name=night-sleep.timer state=started enabled=yes daemon_reload=yes

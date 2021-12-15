@@ -1,0 +1,5 @@
+[Unit]
+Description=Sleep for 10 hours
+
+[Service]
+ExecStart=/usr/bin/rtcwake -s 36000 -m mem

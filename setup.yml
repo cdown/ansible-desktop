@@ -118,8 +118,10 @@
         - packages
         - sound
         - fonts
-        - cfs
       when: desktop
+
+    - include_tasks: tasks/desktop/cfs.yml
+      when: desktop and systemd_init  # otherwise it's wsl or similar, so no need
 
     - include_tasks: tasks/desktop/virtualbox-host.yml
       when: virtualbox_host

@@ -48,9 +48,6 @@
       # Subtitles
       - enca
 
-      # speak-time
-      - espeak
-
       # Backup drive
       - veracrypt
 

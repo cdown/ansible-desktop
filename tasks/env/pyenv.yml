@@ -77,7 +77,6 @@
     - codemod
     - whensthebus
     - csvprint
-    - acestream-launcher
     - stapler
     - gsutil
     - s3cmd

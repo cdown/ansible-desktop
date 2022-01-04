@@ -13,7 +13,6 @@
       - python-virtualenvwrapper
       - asp
       - clipmenu
-      - gphoto2
 
       # Duply
       - python-boto

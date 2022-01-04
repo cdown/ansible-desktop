@@ -65,7 +65,6 @@
     - sxiv-photoorg-git
     - whatmp3
     - shellcheck-bin
-    - todobg
     - dspdfviewer  # while pdfpc is being weird...
     - adb-sync-git
   become: yes

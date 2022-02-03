@@ -33,3 +33,11 @@
   with_items:
     - fstrim-root
   when: root_on_ssd
+
+# HDD
+
+- file: path=/etc/systemd/system/fstrim-root.{{ item }} state=absent
+  with_items:
+    - timer
+    - service
+  when: not root_on_ssd

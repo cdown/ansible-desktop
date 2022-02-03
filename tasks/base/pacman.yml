@@ -10,3 +10,11 @@
 - name: Manual pacman file list update for new dbs
   command: pacman -Fy
   when: pacman_conf.changed
+
+- name: Make sure we have latest pacman keys
+  command: pacman -Sy --noconfirm --needed archlinux-keyring
+  changed_when: false
+
+- name: Make sure we have latest pacman key trust
+  command: pacman-key --populate archlinux
+  changed_when: false

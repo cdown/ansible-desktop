@@ -1,0 +1,11 @@
+---
+boot_mode: uefi
+filesystem: btrfs
+compile_server: true
+desktop: true
+server: false
+xorg: true
+xorg_profile: y500
+features:  # no tlp, since battery is shot anyway
+  - tex
+  - bluetooth-audio

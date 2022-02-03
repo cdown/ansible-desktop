@@ -1,0 +1,4 @@
+---
+
+- pacman: name=nvidia-dkms
+- pacman: name=nvidia-utils

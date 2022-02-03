@@ -6,3 +6,5 @@
   with_items:
     - nvidia-470xx-dkms
     - nvidia-470xx-utils
+
+- pacman: name=xf86-input-synaptics

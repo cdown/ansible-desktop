@@ -1,4 +1,8 @@
 ---
 
-- pacman: name=nvidia-dkms
-- pacman: name=nvidia-utils
+- aur: name={{ item }} skip_installed=yes
+  become: yes
+  become_user: makepkg
+  with_items:
+    - nvidia-470xx-dkms
+    - nvidia-470xx-utils

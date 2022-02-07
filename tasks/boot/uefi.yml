@@ -20,10 +20,6 @@
 - name: Copy systemd-boot config
   copy: 'content="{{ gsc.stdout }}\n" dest=/boot/loader/entries/arch.conf'
 
-- name: Copy Windows VeraCrypt config
-  copy: 'content="title VC W10\nefi /EFI/VeraCrypt/DcsBoot.efi\n" dest=/boot/loader/entries/vcw10.conf'
-  when: windows
-
 - name: Copy loader config
   copy: 'content="default arch\ntimeout 3\n" dest=/boot/loader/loader.conf'
 
@@ -31,3 +27,6 @@
   aur: name=systemd-boot-pacman-hook skip_installed=yes
   become: yes
   become_user: makepkg
+
+# No longer used
+- file: path=/boot/loader/entries/vcw10.conf state=absent

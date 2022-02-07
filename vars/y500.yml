@@ -6,7 +6,6 @@ desktop: true
 server: false
 xorg: true
 xorg_profile: y500
-windows: true
 features:  # no tlp, since battery is shot anyway
   - tex
   - bluetooth-audio

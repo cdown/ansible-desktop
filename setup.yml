@@ -20,7 +20,6 @@
     server: true
     virtualbox_host: false
     lowmem: false
-    windows: false
 
     # WSL doesn't run with systemd. Genie may be possible for later, but for
     # now just omit it.

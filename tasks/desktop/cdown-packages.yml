@@ -67,6 +67,7 @@
     - shellcheck-bin
     - dspdfviewer  # while pdfpc is being weird...
     - adb-sync-git
+    - matterhorn-bin
   become: yes
   become_user: makepkg
 

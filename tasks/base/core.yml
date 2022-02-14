@@ -19,7 +19,7 @@
   template: src=files/io-schedulers.rules dest=/etc/udev/rules.d/99-io-schedulers.rules
 
 - name: Install nsswitch.conf
-  copy: src=files/nsswitch.conf dest=/etc/nsswitch.conf
+  template: src=files/nsswitch.conf dest=/etc/nsswitch.conf
 
 - name: Install /etc/hosts for localhost
   template: src=files/hosts dest=/etc/hosts

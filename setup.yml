@@ -120,6 +120,7 @@
         - packages
         - sound
         - fonts
+        - printscan
       when: desktop
 
     - include_tasks: tasks/desktop/cfs.yml

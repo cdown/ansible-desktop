@@ -5,6 +5,7 @@
 
 - pacman: name=avahi
 - pacman: name=cups
+- pacman: name=sane
 - pacman: name=nss-mdns       # for .local resolution
 - pacman: name=hplip          # for hp drivers
 - pacman: name=python-pillow  # for scanning support with hp-scan

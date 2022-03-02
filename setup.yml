@@ -120,10 +120,12 @@
         - packages
         - sound
         - fonts
-        - printscan
       when: desktop
 
-    - include_tasks: tasks/desktop/cfs.yml
+    - include_tasks: tasks/desktop/{{ item }}.yml
+      with_items:
+        - cfs
+        - printscan
       when: desktop and systemd_init  # otherwise it's wsl or similar, so no need
 
     - include_tasks: tasks/desktop/virtualbox-host.yml

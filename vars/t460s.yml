@@ -6,6 +6,7 @@ desktop: true
 server: false
 xorg: true
 xorg_profile: t4xxs
+thinkpad: true
 quirks:
   - thinkpad-cpu-throttling
 cdown: false

@@ -2,7 +2,7 @@
 - pacman: name=acpi_call-dkms state=present  # battery recalibration
 
 - file: path=/etc/tlp.d state=directory
-- copy: src=files/tlp-battery.conf dest=/etc/tlp.d/99-battery.conf
+- template: src=files/tlp-battery.conf dest=/etc/tlp.d/99-battery.conf
 
 - pacman: name=tlp state=present
 - systemd: name=tlp enabled=yes

@@ -1,3 +1,0 @@
-[Service]
-Type=oneshot
-ExecStart=/bin/sh -c "/usr/bin/paccache -rk2; /usr/bin/paccache -ruk0"

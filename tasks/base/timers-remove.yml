@@ -1,0 +1,11 @@
+---
+- name: Remove {{ item }} service
+  file: path=/etc/systemd/system/{{ item }}.service state=absent
+  register: service
+
+- name: Remove {{ item }} timer
+  file: path=/etc/systemd/system/{{ item }}.timer state=absent
+  register: timer
+
+- systemd: daemon_reload=yes
+  when: service.changed or timer.changed

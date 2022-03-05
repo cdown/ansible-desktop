@@ -76,10 +76,13 @@
       when: systemd_init
     - include_tasks: tasks/base/timers.yml
       with_items:
-        - clean-cache
         - cache-updates
         - pacman-fy
         - vacuum-journals
+      when: systemd_init
+    - include_tasks: tasks/base/timers-remove.yml
+      with_items:
+        - clean-cache
       when: systemd_init
 
     # Boot

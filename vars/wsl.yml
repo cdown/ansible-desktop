@@ -8,3 +8,5 @@ desktop: true  # While we don't use X/dwm, we do use other "desktop" utils
 xorg: true
 systemd_init: false
 server: false
+features:
+  - wsl

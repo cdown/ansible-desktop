@@ -47,6 +47,7 @@
     - include_tasks: tasks/base/locale.yml
     - include_tasks: tasks/base/systemd.yml
     - include_tasks: tasks/base/pacman.yml
+    - include_tasks: tasks/base/packages.yml
 
     # Quirks (machine-specific workarounds)
 
@@ -63,7 +64,6 @@
     - include_tasks: tasks/base/filesystem.yml
     - include_tasks: tasks/base/kernel.yml
       when: boot_mode  # if boot_mode is null, it's WSL or similar
-    - include_tasks: tasks/base/packages.yml
     - include_tasks: tasks/base/core.yml
     - include_tasks: tasks/base/users.yml
     - include_tasks: tasks/base/dotfiles.yml

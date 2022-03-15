@@ -21,6 +21,8 @@
     virtualbox_host: false
     lowmem: false
     thinkpad: false
+    steam: false
+    vulkan_drivers: []
 
     # WSL doesn't run with systemd. Genie may be possible for later, but for
     # now just omit it.
@@ -147,6 +149,11 @@
       with_items:
         - cdown-packages
       when: desktop and cdown
+
+    - include_tasks: tasks/desktop/{{ item }}.yml
+      with_items:
+        - steam
+      when: desktop and steam
 
     # Langenv only
     - include_tasks: tasks/env/rustup.yml

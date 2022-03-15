@@ -1,0 +1,7 @@
+---
+- name: Install vulkan drivers
+  pacman: name={{ item }}
+  with_items: "{{ vulkan_drivers }}"
+
+- name: Install Steam
+  pacman: name=steam

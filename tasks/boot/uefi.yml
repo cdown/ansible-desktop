@@ -20,6 +20,14 @@
 - name: Copy systemd-boot config
   copy: 'content="{{ gsc.stdout }}\n" dest=/boot/loader/entries/arch.conf'
 
+- name: Generate systemd-boot config without mitigations
+  command: "generate-systemd-boot-config {{ kernel }} '{{ default_kernel_params }} {{ extra_kernel_params }} mitigations=off' 'mitigations=off'"
+  register: gscm
+  changed_when: false
+
+- name: Copy systemd-boot config without mitigations
+  copy: 'content="{{ gscm.stdout }}\n" dest=/boot/loader/entries/arch-no-mitigations.conf'
+
 - name: Copy loader config
   copy: 'content="default arch\ntimeout 3\n" dest=/boot/loader/loader.conf'
 

@@ -7,6 +7,7 @@ fi
 
 kernel=${1?}
 extra_kernel_params=$2
+extra_title=$3
 root_partition=$(df --output=source / | tail -n1)
 if [[ $root_partition == /dev/mapper/* || $root_partition == /dev/dm* ]]; then
     root_partition=/dev/$(dmsetup deps -o devname | awk '$1 == "cryptroot:"' | awk -F'[()]' '{ print $(NF - 1) }')
@@ -42,7 +43,7 @@ for file in "$kernel_file" "$initrd_file" "$ucode_file"; do
 done
 
 cat << EOF
-title Arch
+title Arch${extra_title:+ ($extra_title)}
 linux /$kernel_file
 initrd /$ucode_file
 initrd /$initrd_file

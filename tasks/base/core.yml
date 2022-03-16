@@ -6,10 +6,6 @@
   service: name=systemd-timesyncd state=started enabled=yes
   when: systemd_init
 
-- name: Enable systemd-homed
-  service: name=systemd-homed state=started enabled=yes
-  when: systemd_init
-
 - name: Enable dhcpcd
   service: name=dhcpcd state=started enabled=yes
   # On desktops, network config is up to the booting user

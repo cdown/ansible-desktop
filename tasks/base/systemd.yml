@@ -21,3 +21,9 @@
 
 - name: Install DisableControllers for root slice
   copy: src=files/root_override.conf dest=/etc/systemd/system/-.slice.d/override.conf
+
+- name: Disable unused services
+  systemd: name={{ item }} state=stopped masked=yes daemon_reload=yes
+  with_items:
+    - systemd-homed
+    - systemd-userdbd

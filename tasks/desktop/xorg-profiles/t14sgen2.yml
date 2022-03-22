@@ -1,7 +1,10 @@
 ---
 
 - pacman: name=xf86-video-intel
-- pacman: name=xf86-input-synaptics
 - pacman: name=libva-intel-driver
 - pacman: name=sof-firmware
 - copy: src=files/sna.conf dest=/etc/X11/xorg.conf.d/20-intel.conf mode=644
+- copy: src=files/libinput-touchpad.conf dest=/etc/X11/xorg.conf.d/30-touchpad.conf mode=644
+
+# Now using libinput
+- pacman: name=xf86-input-synaptics state=absent

@@ -4,6 +4,7 @@ filesystem: btrfs
 compile_server: true
 desktop: true
 server: false
+extra_kernel_params: 'mem_sleep_default=shallow'  # touchpad/i2c go crazy on S3 :(
 steam: true
 vulkan_drivers:
   - vulkan-intel

@@ -38,7 +38,6 @@
       # Debugging
       - gdb
       - strace
-      - bpftrace
       - python-bcc  # bcc-tools optdepends
       - bcc-tools
       - perf
@@ -54,6 +53,13 @@
       # Access
       - openssh
       - lftp
+
+
+- name: Install minimal base (x86)
+  pacman:
+    name:
+      - bpftrace
+  when: arch == "x86"
 
 - name: Install CPU microcode
   pacman: name={{ cpu_microcode }}

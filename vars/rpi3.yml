@@ -8,5 +8,10 @@ lowmem: true
 arch: arm
 pacman_arch: armv7h
 cpu_microcode: null
+kernel: linux-rpi
 quirks:
   - archlinuxarm
+
+# Hack: mentioned to avoid them being removed, but they come from base distro
+# - raspberrypi-bootloader
+# - raspberrypi-firmware

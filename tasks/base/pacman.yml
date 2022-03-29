@@ -18,3 +18,9 @@
 - name: Make sure we have latest pacman key trust
   command: pacman-key --populate archlinux
   changed_when: false
+  when: arch == "x86"
+
+- name: Make sure we have latest pacman key trust
+  command: pacman-key --populate archlinuxarm
+  changed_when: false
+  when: arch == "arm"

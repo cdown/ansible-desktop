@@ -1,0 +1,8 @@
+---
+
+filesystem: ext4
+root_on_ssd: false
+boot_mode: null  # handled by archlinux arm itself
+lang_env: false
+lowmem: true
+arch: arm

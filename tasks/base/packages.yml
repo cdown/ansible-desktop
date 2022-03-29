@@ -65,9 +65,9 @@
   pacman: name={{ cpu_microcode }}
   when: cpu_microcode
 
-# - name: Install minimal base (AUR)
-#   aur: name={{ item }} skip_installed=yes skip_pgp_check=yes use=makepkg
-#   with_items:
-#     - pacman-static
-#   become: yes
-#   become_user: makepkg
+- name: Install minimal base (AUR)
+  aur: name={{ item }} skip_installed=yes skip_pgp_check=yes use=makepkg
+  with_items:
+    - pacman-static
+  become: yes
+  become_user: makepkg

@@ -3,6 +3,9 @@
   template: src=files/pacman.conf dest=/etc/pacman.conf
   register: pacman_conf
 
+- name: Copy makepkg configuration
+  template: src=files/makepkg.conf dest=/etc/makepkg.conf
+
 - name: Manual pacman repo update to sync new dbs
   command: pacman -Syy
   when: pacman_conf.changed

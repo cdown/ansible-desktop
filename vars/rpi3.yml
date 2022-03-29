@@ -7,3 +7,4 @@ lang_env: false
 lowmem: true
 arch: arm
 pacman_arch: armv7h
+cpu_microcode: null

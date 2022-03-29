@@ -25,6 +25,7 @@
     vulkan_drivers: []
     arch: x86
     pacman_arch: auto
+    cpu_microcode: intel-ucode
 
     # WSL doesn't run with systemd. Genie may be possible for later, but for
     # now just omit it.

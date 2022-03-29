@@ -9,9 +9,6 @@
       - util-linux
       - p7zip
 
-      # CPU microcode
-      - intel-ucode
-
       # Encryption
       - cryptsetup
       - device-mapper
@@ -57,6 +54,10 @@
       # Access
       - openssh
       - lftp
+
+- name: Install CPU microcode
+  pacman: name={{ cpu_microcode }}
+  when: cpu_microcode
 
 - name: Install minimal base (AUR)
   aur: name={{ item }} skip_installed=yes skip_pgp_check=yes

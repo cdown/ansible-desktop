@@ -6,6 +6,9 @@
   user: name={{ item }} shell=/bin/zsh
   with_items: '{{ users }}'
 
+- name: Create local user for makepkg
+  user: name=makepkg shell=/bin/sh
+
 - name: Set up SSH dir for users
   file: path=~{{ item }}/.ssh state=directory mode=0700 owner={{ item }} group={{ item }}
   with_items: '{{ users }}'

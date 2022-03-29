@@ -1,7 +1,4 @@
 ---
-- name: Create local user for makepkg
-  user: name=makepkg shell=/bin/sh
-
 - name: Install yay
   aur: name=yay-bin skip_installed=yes use=makepkg
   become: yes

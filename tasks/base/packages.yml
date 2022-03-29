@@ -71,3 +71,4 @@
     - pacman-static
   become: yes
   become_user: makepkg
+  when: arch == "x86"

@@ -8,7 +8,7 @@
 - name: Clone dotfiles for {{ user }}
   become: yes
   become_user: "{{ user }}"
-  git: repo=git://github.com/cdown/dotfiles.git dest=~{{ user }}/git/dotfiles accept_hostkey=yes update=no
+  git: repo=https://github.com/cdown/dotfiles.git dest=~{{ user }}/git/dotfiles accept_hostkey=yes update=no
   register: df_clone
   when: not dotfiles_dir.stat.exists
 

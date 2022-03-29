@@ -8,3 +8,5 @@ lowmem: true
 arch: arm
 pacman_arch: armv7h
 cpu_microcode: null
+quirks:
+  - archlinuxarm

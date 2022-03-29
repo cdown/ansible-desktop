@@ -1,0 +1,5 @@
+---
+
+# Installed by default by Arch Linux ARM
+- user: name=alarm state=absent force=yes
+- service: name=systemd-networkd enabled=no

@@ -6,3 +6,4 @@ boot_mode: null  # handled by archlinux arm itself
 lang_env: false
 lowmem: true
 arch: arm
+pacman_arch: armv7h

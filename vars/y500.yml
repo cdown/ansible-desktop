@@ -1,13 +1,10 @@
 ---
 boot_mode: uefi
 filesystem: btrfs
-compile_server: true
-desktop: true
-server: false
-xorg: true
-xorg_profile: y500
+compile_server: false
+desktop: false
+lang_env: false
+lowmem: true
+xorg: false
 features:
-  - tex
   - tlp
-  - bluetooth-audio
-  - t2u-nano

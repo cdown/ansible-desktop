@@ -6,6 +6,7 @@ desktop: false
 lang_env: false
 lowmem: true
 xorg: false
+game_server: true
 features:
   - tlp
 users:

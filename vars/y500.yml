@@ -8,3 +8,6 @@ lowmem: true
 xorg: false
 features:
   - tlp
+users:
+  - cdown
+  - lin

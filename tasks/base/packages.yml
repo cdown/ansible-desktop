@@ -23,6 +23,7 @@
       - zsh
       - parallel
       - zsh-syntax-highlighting
+      - pv
 
       # upgrade
       - ansible

@@ -23,6 +23,7 @@ cat << 'EOF' | sudo tee /etc/wireguard/$HOSTNAME.conf > /dev/null
 Address = 10.200.200.$i/32
 SaveConfig = false
 PrivateKey = $(cat "$file")
+DNS = 10.200.200.1
 
 [Peer]
 PublicKey = $(cat /srv/wireguard/keys/"${HOSTNAME}"_public_key)

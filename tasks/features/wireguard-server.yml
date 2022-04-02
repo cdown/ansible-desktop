@@ -1,4 +1,6 @@
 ---
+# TODO: Add IPv6 support: https://stanislas.blog/2019/01/how-to-setup-vpn-server-wireguard-nat-ipv6/
+
 - pacman: name=wireguard-tools
 
 ### Users
@@ -37,3 +39,23 @@
 
 - name: Copy generate WireGuard server config script
   copy: src=files/wireguard/generate-wireguard-client-config dest=/usr/local/bin/generate-wireguard-client-config mode=755
+
+### DNS
+
+- pacman: name=unbound
+
+- include_tasks: tasks/base/timers.yml
+  with_items:
+    - unbound-root-hints-update
+
+# Run once if the root hints are missing
+- stat: path=/etc/unbound/root.hints
+  register: root_hints
+
+- systemd: name=unbound-root-hints-update.service state=started
+  when: not root_hints.stat.exists
+
+- copy: src=files/unbound.conf dest=/etc/unbound/unbound.conf
+  notify: restart unbound
+
+- systemd: name=unbound state=started enabled=yes daemon_reload=yes

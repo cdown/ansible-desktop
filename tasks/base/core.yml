@@ -11,6 +11,8 @@
   # On desktops, network config is up to the booting user
   when: systemd_init and not desktop
 
+- copy: src=files/bin/get-wired-interface dest=/usr/local/bin/get-wired-interface mode=755
+
 - name: Set I/O schedulers
   template: src=files/io-schedulers.rules dest=/etc/udev/rules.d/99-io-schedulers.rules
 

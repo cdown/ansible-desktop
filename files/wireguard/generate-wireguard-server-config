@@ -1,0 +1,31 @@
+#!/bin/bash -e
+
+wired_iface=$(get-wired-interface)
+
+cat << EOF
+[Interface]
+Address = 10.200.200.1/24
+SaveConfig = false
+PrivateKey = $(< /srv/wireguard/keys/"${HOSTNAME}"_private_key)
+ListenPort = 24719
+PostUp   = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o $wired_iface -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o $wired_iface -j MASQUERADE
+
+EOF
+
+i=2
+for file in /srv/wireguard/keys/*_public_key; do
+    user=${file##*/}
+    user=${user%%_*}
+    [[ $user == "$HOSTNAME" ]] && continue
+
+    cat << EOF
+[Peer]
+# $user
+PublicKey = $(< "$file")
+AllowedIPs = 10.200.200.$i/32
+
+EOF
+
+    (( i++ ))
+done

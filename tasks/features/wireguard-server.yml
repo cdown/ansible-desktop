@@ -1,0 +1,39 @@
+---
+- pacman: name=wireguard-tools
+
+### Users
+
+# To regenerate, remove /srv/wireguard/keys
+
+- stat: path=/srv/wireguard/keys
+  register: wireguard_keys
+
+- file: path=/srv/wireguard/keys state=directory owner=root mode=700
+
+- shell: "umask 077 && wg genkey | tee /srv/wireguard/keys/{{ ansible_hostname }}_private_key | wg pubkey > /srv/wireguard/keys/{{ ansible_hostname }}_public_key"
+  when: not wireguard_keys.stat.exists
+
+- shell: "umask 077 && wg genkey | tee /srv/wireguard/keys/{{ item }}_private_key | wg pubkey > /srv/wireguard/keys/{{ item }}_public_key"
+  with_items: "{{ users }}"
+  when: not wireguard_keys.stat.exists
+
+### Server config
+
+- name: Copy generate WireGuard server config script
+  copy: src=files/wireguard/generate-wireguard-server-config dest=/usr/local/bin/generate-wireguard-server-config mode=755
+
+- name: Generate WireGuard server config
+  command: generate-wireguard-server-config
+  register: gwsc
+  changed_when: false
+
+- name: Copy WireGuard server config
+  copy: content="{{ gwsc.stdout }}\n" dest=/etc/wireguard/wg0.conf owner=root mode=600
+
+- name: Start WireGuard server
+  systemd: name=wg-quick@wg0.service state=started enabled=yes daemon_reload=yes
+
+### Client config generator
+
+- name: Copy generate WireGuard server config script
+  copy: src=files/wireguard/generate-wireguard-client-config dest=/usr/local/bin/generate-wireguard-client-config mode=755

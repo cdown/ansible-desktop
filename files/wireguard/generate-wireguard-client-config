@@ -1,0 +1,30 @@
+#!/bin/bash -e
+
+wanted=${1?}
+
+i=1
+for file in /srv/wireguard/keys/*_private_key; do
+    user=${file##*/}
+    user=${user%%_*}
+    [[ $user == "$HOSTNAME" ]] && continue
+    (( i++ ))
+
+    [[ $user == "$wanted" ]] || continue
+
+    cat << _EOF
+cat << 'EOF' | sudo tee /etc/wireguard/$HOSTNAME.conf > /dev/null
+[Interface]
+Address = 10.200.200.$i/32
+SaveConfig = false
+PrivateKey = $(cat "$file")
+
+[Peer]
+PublicKey = $(cat /srv/wireguard/keys/"${HOSTNAME}"_public_key)
+Endpoint = cdown.duckdns.org:24719
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 21
+EOF
+_EOF
+
+    break
+done

@@ -9,6 +9,7 @@ xorg: false
 game_server: true
 features:
   - tlp
+  - wireguard-server
 users:
   - cdown
   - lin

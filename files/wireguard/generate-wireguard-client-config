@@ -27,7 +27,7 @@ PrivateKey = $(cat "$file")
 [Peer]
 PublicKey = $(cat /srv/wireguard/keys/"${HOSTNAME}"_public_key)
 Endpoint = $endpoint
-AllowedIPs = 0.0.0.0/0
+AllowedIPs = 0.0.0.0/0, ::0/0
 PersistentKeepalive = 21
 EOF
 _EOF

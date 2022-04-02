@@ -2,6 +2,12 @@
 
 wanted=${1?}
 
+case $(uname -n) in
+    choudoufu) endpoint=cdown.duckdns.org:24719 ;;
+    youyuan) endpoint=vpn.chrisdown.name:24719 ;;
+    *) exit 1 ;;
+esac
+
 i=1
 for file in /srv/wireguard/keys/*_private_key; do
     user=${file##*/}
@@ -20,7 +26,7 @@ PrivateKey = $(cat "$file")
 
 [Peer]
 PublicKey = $(cat /srv/wireguard/keys/"${HOSTNAME}"_public_key)
-Endpoint = cdown.duckdns.org:24719
+Endpoint = $endpoint
 AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 21
 EOF

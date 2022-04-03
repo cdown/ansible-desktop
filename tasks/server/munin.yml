@@ -23,6 +23,12 @@
     - memory
     - swap
     - uptime
+  notify: restart munin-node
+
+- copy: src=files/munin-plugins/{{ item }} dest=/etc/munin/plugins/{{ item }} mode=755
+  with_items:
+    - psi
+  notify: restart munin-node
 
 - systemd: name=munin-node state=started enabled=yes daemon_reload=yes
 

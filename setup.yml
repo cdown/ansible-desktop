@@ -215,3 +215,5 @@
       service: name=nginx state=restarted
     - name: restart unbound
       service: name=unbound state=restarted
+    - name: restart munin-node
+      service: name=munin-node state=restarted

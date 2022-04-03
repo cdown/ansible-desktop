@@ -16,7 +16,7 @@
   when: not wireguard_keys.stat.exists
 
 - shell: "umask 077 && wg genkey | tee /srv/wireguard/keys/{{ item }}_private_key | wg pubkey > /srv/wireguard/keys/{{ item }}_public_key"
-  with_items: "{{ users }}"
+  with_items: "{{ wireguard_users }}"
   when: not wireguard_keys.stat.exists
 
 ### Server config

@@ -29,6 +29,9 @@
     carch: x86_64
     chost: x86_64-pc-linux-gnu
     extra_cflags: ""
+    wireguard_users:
+      - cdown
+      - cdown-phone
 
     # WSL doesn't run with systemd. Genie may be possible for later, but for
     # now just omit it.

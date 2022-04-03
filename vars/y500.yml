@@ -13,3 +13,5 @@ features:
 users:
   - cdown
   - lin
+quirks:
+  - choudoufu

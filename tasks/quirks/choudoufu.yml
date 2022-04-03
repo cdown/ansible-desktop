@@ -1,0 +1,8 @@
+---
+
+# choudoufu also serves a page at http://home.chrisdown.name:23463 for uptime
+# checks
+
+- name: Make home.chrisdown.name check site
+  copy: src=files/nginx_home.conf dest=/etc/nginx/conf.d/home.conf mode=644
+  notify: restart nginx

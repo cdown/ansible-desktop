@@ -17,20 +17,32 @@ for file in /srv/wireguard/keys/*_private_key; do
 
     [[ $user == "$wanted" ]] || continue
 
-    cat << _EOF
-cat << 'EOF' | sudo tee /etc/wireguard/$HOSTNAME.conf > /dev/null
+    # The WireGuard android app doesn't like SaveConfig
+    starter="cat << 'EOF' | sudo tee /etc/wireguard/$HOSTNAME.conf > /dev/null"
+    ender=EOF
+    phone_unknown_lines='SaveConfig = false'
+    cmd=(cat)
+    if [[ $user == *-phone ]]; then
+        phone_unknown_lines=''
+        starter=''
+        ender=''
+        cmd=(qrencode -t ansiutf8)
+    fi
+
+    cat << _EOF | "${cmd[@]}"
+$starter
 [Interface]
 Address = 10.200.200.$i/32
-SaveConfig = false
 PrivateKey = $(cat "$file")
 DNS = 10.200.200.1
+$phone_unknown_lines
 
 [Peer]
 PublicKey = $(cat /srv/wireguard/keys/"${HOSTNAME}"_public_key)
 Endpoint = $endpoint
 AllowedIPs = 0.0.0.0/0, ::0/0
 PersistentKeepalive = 21
-EOF
+$ender
 _EOF
 
     break

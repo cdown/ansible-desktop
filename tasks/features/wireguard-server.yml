@@ -2,6 +2,7 @@
 # TODO: Add IPv6 support: https://stanislas.blog/2019/01/how-to-setup-vpn-server-wireguard-nat-ipv6/
 
 - pacman: name=wireguard-tools
+- pacman: name=qrencode  # to show phone configs
 
 ### Users
 

@@ -4,12 +4,12 @@ wired_iface=$(get-wired-interface)
 
 cat << EOF
 [Interface]
-Address = 10.200.200.1/24
+Address = 10.200.200.1/24, fd42:42:42::1/64
 SaveConfig = false
 PrivateKey = $(< /srv/wireguard/keys/"${HOSTNAME}"_private_key)
 ListenPort = 123
-PostUp   = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o $wired_iface -j MASQUERADE
-PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o $wired_iface -j MASQUERADE
+PostUp   = iptables -t nat -A POSTROUTING -o $wired_iface -j MASQUERADE; ip6tables -t nat -A POSTROUTING -o $wired_iface -j MASQUERADE
+PostDown = iptables -t nat -D POSTROUTING -o $wired_iface -j MASQUERADE; ip6tables -t nat -D POSTROUTING -o $wired_iface -j MASQUERADE
 
 EOF
 
@@ -23,7 +23,7 @@ for file in /srv/wireguard/keys/*_public_key; do
 [Peer]
 # $user
 PublicKey = $(< "$file")
-AllowedIPs = 10.200.200.$i/32
+AllowedIPs = 10.200.200.$i/32, fd42:42:42::$i/128
 
 EOF
 

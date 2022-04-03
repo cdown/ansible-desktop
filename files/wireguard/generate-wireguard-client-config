@@ -32,7 +32,7 @@ for file in /srv/wireguard/keys/*_private_key; do
     cat << _EOF | "${cmd[@]}"
 $starter
 [Interface]
-Address = 10.200.200.$i/32
+Address = 10.200.200.$i/32, fd42:42:42::$i/64
 PrivateKey = $(cat "$file")
 DNS = 10.200.200.1
 $phone_unknown_lines

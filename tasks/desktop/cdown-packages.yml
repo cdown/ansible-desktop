@@ -20,7 +20,6 @@
       # Mail
       - mutt
       - w3m
-      - procmail
       - msmtp
 
       # Android, can be moved if Lin eventually uses it
@@ -68,6 +67,7 @@
     - dspdfviewer  # while pdfpc is being weird...
     - adb-sync-git
     - matterhorn-bin
+    - procmail
   become: yes
   become_user: makepkg
 

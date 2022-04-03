@@ -1,6 +1,16 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 iface=$(get-wired-interface)
+
+retries=30
+
+# Wait for dhcpcd...
+while (( retries )) && ! ip addr show dev "$iface" | grep -q inet; do
+    (( retries-- ))
+    sleep 1
+done
+
+(( retries )) || exit
 
 ip -6 addr add 2605:6400:10:769:: dev "$iface"
 ip -6 route add 2605:6400:10::1 dev "$iface"

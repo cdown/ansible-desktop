@@ -1,0 +1,7 @@
+---
+
+# This is pretty hacky, we should migrate to networkd.
+
+- copy: src=files/bin/add-buyvm-routes dest=/usr/local/bin/add-buyvm-routes mode=755
+- copy: src=files/add-buyvm-routes.service dest=/etc/systemd/system/add-buyvm-routes.service
+- systemd: name=add-buyvm-routes.service enabled=yes daemon_reload=yes

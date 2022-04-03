@@ -9,3 +9,5 @@ lang_env: false  # good luck compiling anything on this thing...
 lowmem: true
 features:
   - wireguard-server
+quirks:
+  - buyvm

@@ -1,0 +1,10 @@
+[Unit]
+Description=Add BuyVM IPv6 routes
+Requires=dhcpcd.service
+After=dhcpcd.service
+
+[Service]
+ExecStart=/usr/local/bin/add-buyvm-routes
+
+[Install]
+WantedBy=multi-user.target

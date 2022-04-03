@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+iface=$(get-wired-interface)
+
+ip -6 addr add 2605:6400:10:769:: dev "$iface"
+ip -6 route add 2605:6400:10::1 dev "$iface"
+ip -6 route add default via 2605:6400:10::1

@@ -7,7 +7,7 @@ cat << EOF
 Address = 10.200.200.1/24
 SaveConfig = false
 PrivateKey = $(< /srv/wireguard/keys/"${HOSTNAME}"_private_key)
-ListenPort = 24719
+ListenPort = 123
 PostUp   = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o $wired_iface -j MASQUERADE
 PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o $wired_iface -j MASQUERADE
 

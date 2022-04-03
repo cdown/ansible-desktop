@@ -3,8 +3,8 @@
 wanted=${1?}
 
 case $(uname -n) in
-    choudoufu) endpoint=home.chrisdown.name:24719 ;;
-    youyuan) endpoint=vpn.chrisdown.name:24719 ;;
+    choudoufu) endpoint=home.chrisdown.name:123 ;;
+    youyuan) endpoint=vpn.chrisdown.name:123 ;;
     *) exit 1 ;;
 esac
 

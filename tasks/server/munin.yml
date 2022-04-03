@@ -18,26 +18,11 @@
     - df
     - df_inode
     - diskstats
-    - forks
     - fw_packets
-    - interrupts
-    - irqstats
     - load
     - memory
-    - munin_stats
-    - open_files
-    - open_inodes
-    - proc_pri
-    - processes
     - swap
-    - threads
     - uptime
-    - vmstat
-
-- file: src=/usr/lib/munin/plugins/{{ item }} dest=/etc/munin/plugins/{{ item }}eno0 state=link
-  with_items:
-    - if_
-    - if_err_
 
 - systemd: name=munin-node state=started enabled=yes daemon_reload=yes
 

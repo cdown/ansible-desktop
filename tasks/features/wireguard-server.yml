@@ -58,4 +58,7 @@
 - copy: src=files/unbound.conf dest=/etc/unbound/unbound.conf
   notify: restart unbound
 
+- file: path=/etc/systemd/system/unbound.service.d state=directory
+- copy: src=files/force-unbound-after-wg.conf dest=/etc/systemd/system/unbound.service.d/override.conf
+
 - systemd: name=unbound state=started enabled=yes daemon_reload=yes

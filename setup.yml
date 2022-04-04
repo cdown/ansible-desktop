@@ -61,6 +61,7 @@
 
     - include_tasks: tasks/base/locale.yml
     - include_tasks: tasks/base/systemd.yml
+      when: systemd_init
     - include_tasks: tasks/base/pacman.yml
     - include_tasks: tasks/base/users.yml
     - include_tasks: tasks/base/sudo.yml

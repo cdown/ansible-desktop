@@ -8,12 +8,15 @@ case $(uname -n) in
     *) exit 1 ;;
 esac
 
-i=1
 for file in /srv/wireguard/keys/*_private_key; do
+    octet=${file##*/}
+    octet=${octet%%_*}
+
     user=${file##*/}
+    user=${user#*_}
     user=${user%%_*}
+
     [[ $user == "$HOSTNAME" ]] && continue
-    (( i++ ))
 
     [[ $user == "$wanted" ]] || continue
 
@@ -32,13 +35,13 @@ for file in /srv/wireguard/keys/*_private_key; do
     cat << _EOF | "${cmd[@]}"
 $starter
 [Interface]
-Address = 10.200.200.$i/32, fd42:42:42::$i/64
+Address = 10.200.200.$octet/32, fd42:42:42::$octet/64
 PrivateKey = $(cat "$file")
 DNS = 10.200.200.1
 $phone_unknown_lines
 
 [Peer]
-PublicKey = $(cat /srv/wireguard/keys/"${HOSTNAME}"_public_key)
+PublicKey = $(cat /srv/wireguard/keys/1_"${HOSTNAME}"_public_key)
 Endpoint = $endpoint
 AllowedIPs = 0.0.0.0/0, ::0/0
 PersistentKeepalive = 21

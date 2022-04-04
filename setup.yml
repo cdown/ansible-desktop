@@ -30,8 +30,12 @@
     chost: x86_64-pc-linux-gnu
     extra_cflags: ""
     wireguard_users:
-      - cdown
-      - cdown-phone
+      # final_octet explicitly specified to avoid changing IPs if the list
+      # changes. 1 is reserved for the server.
+      - name: cdown
+        final_octet: 2
+      - name: cdown-phone
+        final_octet: 3
 
     # WSL doesn't run with systemd. Genie may be possible for later, but for
     # now just omit it.

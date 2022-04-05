@@ -1,6 +1,6 @@
 ---
 
-# choudoufu also serves a page at http://home.chrisdown.name:23463 for uptime
+# doufu also serves a page at http://home.chrisdown.name:23463 for uptime
 # checks
 
 - name: Make home.chrisdown.name check site

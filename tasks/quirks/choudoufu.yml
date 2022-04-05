@@ -6,3 +6,13 @@
 - name: Make home.chrisdown.name check site
   copy: src=files/nginx_home.conf dest=/etc/nginx/conf.d/home.conf mode=644
   notify: restart nginx
+
+
+# The external drive attached that serves the Samba share turns off minutes
+# after the last write, as dictated by firmware. No hdparm/sdparm magic will
+# help here, the firmware does what it wants. As such, manually keep the drive
+# spinning.
+
+- include_tasks: tasks/base/timers.yml
+  with_items:
+    - keep-disk-on

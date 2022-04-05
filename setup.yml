@@ -36,6 +36,7 @@
         final_octet: 2
       - name: cdown-phone
         final_octet: 3
+    force_ssh: false
 
     # WSL doesn't run with systemd. Genie may be possible for later, but for
     # now just omit it.

@@ -7,4 +7,4 @@ root_on_ssd: false
 boot_mode: null  # handled by qemu
 lang_env: false
 lowmem: true
-server: false
+server: true

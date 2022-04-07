@@ -4,7 +4,7 @@
 #ip=$(curl 'https://api.ipify.org')
 
 # LAN
-ip=$(ip addr show dev "$(get_wired_interface)" | awk '$1 == "inet" { print $2 }' | sed 's/\/.*//')
+ip=$(ip addr show dev "$(get-wired-interface)" | awk '$1 == "inet" { print $2 }' | sed 's/\/.*//')
 
 if ! [[ $ip ]]; then
     echo "Failed to get IP!" >&2

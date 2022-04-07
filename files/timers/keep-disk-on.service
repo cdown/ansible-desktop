@@ -1,6 +1,6 @@
 [Unit]
-ConditionPathExists=/dev/disk/by-id/usb-TOSHIBA_EXTERNAL_USB_20210705004904F-0:0
+ConditionPathExists=/dev/disk/by-id/usb-TOSHIBA_EXTERNAL_USB_20210705004904F-0:0-part1
 
 [Service]
 Type=oneshot
-ExecStart=/bin/touch /dev/disk/by-id/usb-TOSHIBA_EXTERNAL_USB_20210705004904F-0:0
+ExecStart=/bin/touch /dev/disk/by-id/usb-TOSHIBA_EXTERNAL_USB_20210705004904F-0:0-part1

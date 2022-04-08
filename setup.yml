@@ -6,8 +6,6 @@
     kernel: linux-lts
     default_kernel_params: 'cgroup_no_v1=all audit=0 swiotlb=4096'
     extra_kernel_params: ''
-    hdd_scheduler: mq-deadline
-    ssd_scheduler: mq-deadline
     boot_mode: uefi
     root_on_ssd: true
     uses_hdd: false
@@ -58,6 +56,15 @@
     - "vars/{{ lookup('env', 'AS_CONFIG') }}.yml"
 
   tasks:
+    # Conditional facts (not overrideable in vars)
+    - set_fact:
+        hdd_scheduler: bfq
+        ssd_scheduler: none
+      when: not server
+    - set_fact:
+        hdd_scheduler: mq-deadline
+        ssd_scheduler: none
+      when: server
 
     # Base (crit): things that cannot be altered by quirks
 

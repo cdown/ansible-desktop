@@ -8,6 +8,7 @@
 - aur: name=zcfan skip_installed=yes
   become: yes
   become_user: makepkg
+- systemd: name=zcfan state=started enabled=yes masked=no
 
 - set_fact:
     extra_kernel_params: "{{ extra_kernel_params }} msr.allow_writes=on thinkpad_acpi.fan_control=1"

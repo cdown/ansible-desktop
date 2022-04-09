@@ -1,5 +1,32 @@
+# This Toshiba drive has extremely aggressive head parking. After 3 minutes, it
+# turns the drive off completely. After some number of seconds, it parks the
+# heads. No APM, standby, or idle setting helps. :-(
+#
+# If you set this to 2 minutes or something sensible, you will only be rewarded
+# with a depressing increase in load cycle count:
+#
+# % while true; do sudo smartctl -a /dev/sdb | grep Cycle_Count; sleep 10m; done
+#  12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       55
+# 193 Load_Cycle_Count        0x0032   100   100   000    Old_age   Always       -       785
+#  12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       55
+# 193 Load_Cycle_Count        0x0032   100   100   000    Old_age   Always       -       790
+#  12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       55
+# 193 Load_Cycle_Count        0x0032   100   100   000    Old_age   Always       -       795
+#
+# 30 seconds or even a little bit less often is still enough to keep it stable:
+#
+# % while true; do sudo smartctl -a /dev/sdb | grep Cycle_Count; sleep 10m; done
+#  12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       55
+# 193 Load_Cycle_Count        0x0032   100   100   000    Old_age   Always       -       799
+#  12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       55
+# 193 Load_Cycle_Count        0x0032   100   100   000    Old_age   Always       -       799
+#  12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       55
+# 193 Load_Cycle_Count        0x0032   100   100   000    Old_age   Always       -       799
+#  12 Power_Cycle_Count       0x0032   100   100   000    Old_age   Always       -       55
+# 193 Load_Cycle_Count        0x0032   100   100   000    Old_age   Always       -       799
+
 [Timer]
-OnCalendar=*:0/2
+OnCalendar=*:*:0/30
 Persistent=true
 AccuracySec=1s
 

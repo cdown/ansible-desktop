@@ -1,6 +1,10 @@
 ---
 # TODO: Add IPv6 support: https://stanislas.blog/2019/01/how-to-setup-vpn-server-wireguard-nat-ipv6/
 
+# Part of the old config which is gone now
+- file: path=/etc/systemd/system/wg-quick@.service.d state=absent
+- systemd: name=wg-quick@wg0.service state=stopped enabled=no daemon_reload=yes
+
 - pacman: name=wireguard-tools
 - pacman: name=qrencode  # to show phone configs
 
@@ -33,8 +37,11 @@
 - name: Copy WireGuard server config
   copy: content="{{ gwsc.stdout }}\n" dest=/etc/wireguard/wg0.conf owner=root mode=600
 
+- name: Copy vpn.service
+  copy: src=files/vpn.service dest=/etc/systemd/system/vpn.service
+
 - name: Start WireGuard server
-  systemd: name=wg-quick@wg0.service state=started enabled=yes daemon_reload=yes
+  systemd: name=vpn.service state=started enabled=yes daemon_reload=yes
 
 ### Client config generator
 

@@ -1,0 +1,31 @@
+# The default wg-quick@.service has:
+#
+# After=network-online.target nss-lookup.target
+# Wants=network-online.target nss-lookup.target
+#
+# This doesn't work for our configuration, because unbound has
+# Before=nss-lookup.target and it needs the WG interface to already be up to
+# serve connections.
+
+[Unit]
+Description=WireGuard via wg-quick(8) for wg0
+After=network-online.target
+Wants=network-online.target
+PartOf=wg-quick.target
+Documentation=man:wg-quick(8)
+Documentation=man:wg(8)
+Documentation=https://www.wireguard.com/
+Documentation=https://www.wireguard.com/quickstart/
+Documentation=https://git.zx2c4.com/wireguard-tools/about/src/man/wg-quick.8
+Documentation=https://git.zx2c4.com/wireguard-tools/about/src/man/wg.8
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/wg-quick up wg0
+ExecStop=/usr/bin/wg-quick down wg0
+ExecReload=/bin/bash -c 'exec /usr/bin/wg syncconf wg0 <(exec /usr/bin/wg-quick strip wg0)'
+Environment=WG_ENDPOINT_RESOLUTION_RETRIES=infinity
+
+[Install]
+WantedBy=multi-user.target

@@ -130,6 +130,7 @@
 
     - include_tasks: tasks/local_server/{{ item }}.yml
       with_items:
+        - packages
         - scratch
       when: not remote_server and server
 

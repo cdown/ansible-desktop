@@ -1,5 +1,5 @@
 [Unit]
-Description=Sleep for 10 hours
+Description=Put computer to sleep
 
 [Service]
-ExecStart=/usr/bin/rtcwake -s 36000 -m mem
+ExecStart=/bin/sh -c 'printf mem > /sys/power/state'

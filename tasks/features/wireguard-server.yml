@@ -20,9 +20,13 @@
 - shell: "umask 077 && wg genkey | tee /srv/wireguard/keys/1_{{ ansible_hostname }}_private_key | wg pubkey > /srv/wireguard/keys/1_{{ ansible_hostname }}_public_key"
   when: not wireguard_keys.stat.exists
 
-- shell: "umask 077 && wg genkey | tee /srv/wireguard/keys/{{ item.final_octet }}_{{ item.name }}_private_key | wg pubkey > /srv/wireguard/keys/{{ item.final_octet }}_{{ item.name }}_public_key"
+- stat: path=/srv/wireguard/keys/{{ item.final_octet }}_{{ item.name }}_private_key
   with_items: "{{ wireguard_users }}"
-  when: not wireguard_keys.stat.exists
+  register: wireguard_clients
+
+- shell: "umask 077 && wg genkey | tee /srv/wireguard/keys/{{ item.item.final_octet }}_{{ item.item.name }}_private_key | wg pubkey > /srv/wireguard/keys/{{ item.item.final_octet }}_{{ item.item.name }}_public_key"
+  with_items: "{{ wireguard_clients.results }}"
+  when: not item.stat.exists
 
 ### Server config
 

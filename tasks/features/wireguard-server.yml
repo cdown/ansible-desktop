@@ -24,6 +24,9 @@
   with_items: "{{ wireguard_users }}"
   register: wireguard_clients
 
+# syncconf is not done automatically to avoid problems. Afterwards:
+#
+# wg syncconf wg0 <(wg-quick strip wg0)
 - shell: "umask 077 && wg genkey | tee /srv/wireguard/keys/{{ item.item.final_octet }}_{{ item.item.name }}_private_key | wg pubkey > /srv/wireguard/keys/{{ item.item.final_octet }}_{{ item.item.name }}_public_key"
   with_items: "{{ wireguard_clients.results }}"
   when: not item.stat.exists

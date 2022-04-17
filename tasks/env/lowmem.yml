@@ -8,3 +8,5 @@
 - pacman: name=ripgrep
 - pacman: name=hyperfine
 - pacman: name=hexyl
+- pacman: name=yt-dlp
+- pacman: name=ffmpeg  # for yt-dlp

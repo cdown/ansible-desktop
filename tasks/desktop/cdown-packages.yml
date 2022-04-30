@@ -78,6 +78,7 @@
 
 - name: Good god, what a dumb installer
   systemd: name=nxserver state=stopped enabled=no masked=yes daemon_reload=yes
+  when: systemd_init
 
 - name: Install ImageMagick policy
   copy: src=files/policy.xml dest=/etc/ImageMagick-7/policy.xml

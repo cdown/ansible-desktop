@@ -102,11 +102,6 @@
 - name: 200IQBots_FlyYouFools.smx
   copy: src=files/l4d2/200IQBots_FlyYouFools.smx dest=~steam/l4d2/left4dead2/addons/sourcemod/plugins/200IQBots_FlyYouFools.smx owner=steam
 
-# https://github.com/Satanic-Spirit/Tickrate-Enabler
-- copy: src=files/l4d2/tickrate_enabler.vdf dest=~steam/l4d2/left4dead2/addons/tickrate_enabler.vdf owner=steam
-- file: path=~steam/l4d2/left4dead2/addons/tickrate_enabler state=directory mode=0755 owner=steam group=steam
-- copy: src=files/l4d2/tickrate_enabler.so dest=~steam/l4d2/left4dead2/addons/tickrate_enabler/tickrate_enabler.so owner=steam
-
 - name: Start and enable L4D2
   systemd: name=l4d2 enabled=no daemon_reload=yes
 

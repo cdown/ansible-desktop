@@ -34,19 +34,11 @@ sv_voiceenable 1
 sv_alltalk 0
 sv_region 5
 
-// L4D2 caps at 30000 rate
-// From https://forums.alliedmods.net/showthread.php?t=314771
-// TODO: https://forums.alliedmods.net/showthread.php?t=299669 which removes limits
-sm_cvar sv_minrate 30000
-sm_cvar sv_maxrate 30000
-sm_cvar sv_mincmdrate 30
-sm_cvar sv_maxcmdrate 30
-sm_cvar sv_minupdaterate 30
-sm_cvar sv_maxupdaterate 30
-sm_cvar nb_update_frequency 0.033
-sm_cvar net_splitpacket_maxrate 15000
-sm_cvar sv_client_min_interp_ratio 0
-sm_cvar sv_client_max_interp_ratio 2
+sm_cvar sv_maxupdaterate 100
+sm_cvar sv_maxcmdrate 100
+sm_cvar fps_max 150
+sm_cvar sv_minrate 500000
+sm_cvar sv_maxrate 500000
 
 // appease rebuild string dictionary spam
 stringtable_alwaysrebuilddictionaries 1

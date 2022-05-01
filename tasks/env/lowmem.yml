@@ -10,3 +10,4 @@
 - pacman: name=hexyl
 - pacman: name=yt-dlp
 - pacman: name=ffmpeg  # for yt-dlp
+- pacman: name=git-delta

@@ -44,6 +44,8 @@
   become_user: "{{ user }}"
   changed_when: false
 
+- pacman: name=ffmpeg  # for yt-dlp
+
 - name: Install Python 3 utilities
   shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && pip install -U {{ item }}'
   with_items:

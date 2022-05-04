@@ -1,15 +1,33 @@
 #!/bin/bash -e
 
 wired_iface=$(get-wired-interface)
+wg_port=123
+high_port=51820
+
+rules=(
+    "POSTROUTING -o $wired_iface -j MASQUERADE"
+    "PREROUTING -i $wired_iface -p udp -m multiport --dports $high_port -j REDIRECT --to-ports $wg_port"
+)
+
+post_up=''
+post_down=''
+
+for rule in "${rules[@]}"; do
+    for cmd in iptables ip6tables; do
+        post_up+=" $cmd -t nat -A $rule; "
+        post_down+=" $cmd -t nat -D $rule; "
+    done
+done
+
 
 cat << EOF
 [Interface]
 Address = 10.200.200.1/24, fd42:42:42::1/64
 SaveConfig = false
 PrivateKey = $(< /srv/wireguard/keys/1_"${HOSTNAME}"_private_key)
-ListenPort = 123
-PostUp   = iptables -t nat -A POSTROUTING -o $wired_iface -j MASQUERADE; ip6tables -t nat -A POSTROUTING -o $wired_iface -j MASQUERADE
-PostDown = iptables -t nat -D POSTROUTING -o $wired_iface -j MASQUERADE; ip6tables -t nat -D POSTROUTING -o $wired_iface -j MASQUERADE
+ListenPort = $wg_port
+PostUp   = $post_up
+PostDown = $post_down
 
 EOF
 

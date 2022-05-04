@@ -11,6 +11,16 @@
   # On desktops, network config is up to the booting user
   when: systemd_init and not desktop
 
+- name: Install systemd-resolvconf stub for openresolv
+  pacman: name=systemd-resolvconf
+
+- name: Symlink stub resolver
+  file: dest=/etc/resolv.conf src=/run/systemd/resolve/stub-resolv.conf state=link force=yes
+
+- name: Enable systemd-resolved
+  service: name=systemd-resolved state=started enabled=yes
+  when: systemd_init
+
 - copy: src=files/bin/get-wired-interface dest=/usr/local/bin/get-wired-interface mode=755
 
 - name: Set I/O schedulers

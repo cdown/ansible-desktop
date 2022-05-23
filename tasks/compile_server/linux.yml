@@ -5,7 +5,7 @@
       - bc
 
 # On server, no point in having GTK frontend.
-- pacman: name=qemu
+- pacman: name=qemu-desktop
   when: desktop
-- pacman: name=qemu-headless
+- pacman: name=qemu-base
   when: not desktop

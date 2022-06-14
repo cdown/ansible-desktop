@@ -15,3 +15,6 @@ users:
   - lin
 features:
   - bluetooth-audio
+
+# Possible fix for https://www.virtualbox.org/ticket/20180?cversion=0&cnum_hist=4
+extra_kernel_params: 'split_lock_detect=off'

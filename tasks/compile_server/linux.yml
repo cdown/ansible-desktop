@@ -4,8 +4,7 @@
     name:
       - bc
 
-# On server, no point in having GTK frontend.
-- pacman: name=qemu-desktop
-  when: desktop
+# On server, no point in having GTK frontend. qemu-desktop comes from
+# desktop/packages if on a desktop.
 - pacman: name=qemu-base
   when: not desktop

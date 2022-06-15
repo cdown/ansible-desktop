@@ -1,0 +1,3 @@
+---
+- name: Remove unused Virtualbox host module load
+  file: path=/etc/modules-load.d/virtualbox-host.conf state=absent

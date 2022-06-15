@@ -17,7 +17,6 @@
     xorg: false
     xorg_profile: ""
     server: true
-    virtualbox_host: false
     lowmem: false
     thinkpad: false
     steam: false
@@ -111,6 +110,7 @@
       with_items:
         - clean-cache
       when: systemd_init
+    - include_tasks: tasks/base/remove.yml
 
     # Boot
 
@@ -159,9 +159,6 @@
         - cfs
         - printscan
       when: desktop and systemd_init  # otherwise it's wsl or similar, so no need
-
-    - include_tasks: tasks/desktop/virtualbox-host.yml
-      when: virtualbox_host
 
     - include_tasks: tasks/desktop/{{ item }}.yml
       with_items:

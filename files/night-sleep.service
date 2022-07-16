@@ -2,4 +2,4 @@
 Description=Put computer to sleep
 
 [Service]
-ExecStart=/bin/sh -c 'printf mem > /sys/power/state'
+ExecStart=/bin/sh -c 'printf mem > /sys/power/state && sleep 20'

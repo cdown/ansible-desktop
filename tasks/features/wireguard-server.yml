@@ -3,7 +3,6 @@
 
 # Part of the old config which is gone now
 - file: path=/etc/systemd/system/wg-quick@.service.d state=absent
-- systemd: name=wg-quick@wg0.service state=stopped enabled=no daemon_reload=yes
 
 - pacman: name=wireguard-tools
 - pacman: name=qrencode  # to show phone configs

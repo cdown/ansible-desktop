@@ -72,3 +72,4 @@
     - pacman-static
   become: yes
   become_user: makepkg
+  when: not lowmem

@@ -4,6 +4,10 @@ filesystem: ext4
 root_on_ssd: false
 boot_mode: null  # handled by archlinux arm itself
 lang_env: false
+compile_server: false
+desktop: false
+xorg: false
+uses_hdd: true
 lowmem: true
 arch: arm
 pacman_arch: armv7h
@@ -14,6 +18,12 @@ chost: armv7l-unknown-linux-gnueabihf
 extra_cflags: -mfloat-abi=hard -mfpu=neon
 quirks:
   - archlinuxarm
+  - doufu
+features:
+  - wireguard-server
+users:
+  - cdown
+  - lin
 
 # Hack: mentioned to avoid them being removed, but they come from base distro
 # - raspberrypi-bootloader

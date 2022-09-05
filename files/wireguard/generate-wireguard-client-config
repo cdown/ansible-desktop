@@ -3,7 +3,7 @@
 wanted=${1?}
 
 case $(uname -n) in
-    doufu) endpoint=home.chrisdown.name:123 ;;
+    doufu|wotou) endpoint=home.chrisdown.name:123 ;;
     mantou) endpoint=mantou.chrisdown.name:123 ;;
     *) exit 1 ;;
 esac

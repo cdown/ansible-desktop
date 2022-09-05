@@ -53,7 +53,6 @@
 
       # Access
       - openssh
-      - lftp
 
 
 - name: Install minimal base (x86)

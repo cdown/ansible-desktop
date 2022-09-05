@@ -7,7 +7,6 @@ boot_mode: legacy
 extra_kernel_params: 'mitigations=off'  # nothing sensitive here, no threat model
 lang_env: false  # good luck compiling anything on this thing...
 lowmem: true
-game_server: true
 features:
   - wireguard-server
 quirks:

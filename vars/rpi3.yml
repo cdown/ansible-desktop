@@ -1,7 +1,7 @@
 ---
 
 filesystem: ext4
-root_on_ssd: false
+root_on_ssd: true
 boot_mode: rpi
 lang_env: false
 compile_server: false

@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+# /boot/cmdline.txt generation for Arch Linux ARM on rpi3
+# Most things are decided by bootloader, this is just additional
+
+# rootwait: no idea if needed, but in default shipped config
+# smsc95xx.turbo_mode=N: default shipped config, https://forums.raspberrypi.com/viewtopic.php?t=14394
+# dwc_otg.lpm_enable=0: default
+echo "root=/dev/mmcblk0p2 rw rootwait smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 ${1?}"

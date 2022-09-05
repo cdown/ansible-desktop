@@ -2,7 +2,7 @@
 
 filesystem: ext4
 root_on_ssd: false
-boot_mode: null  # handled by archlinux arm itself
+boot_mode: rpi
 lang_env: false
 compile_server: false
 desktop: false

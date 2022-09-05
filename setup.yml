@@ -114,10 +114,8 @@
 
     # Boot
 
-    - include_tasks: tasks/boot/uefi.yml
-      when: boot_mode == "uefi"
-    - include_tasks: tasks/boot/legacy.yml
-      when: boot_mode == "legacy"
+    - include_tasks: tasks/boot/{{ boot_mode }}.yml
+      when: boot_mode != None
 
     # Remote only
 

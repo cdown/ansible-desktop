@@ -1,0 +1,11 @@
+---
+- name: Copy generate cmdlinetxt script
+  copy: src=files/bin/generate-cmdlinetxt dest=/usr/local/bin/generate-cmdlinetxt mode=755
+
+- name: Generate cmdlinetxt config
+  command: "generate-cmdlinetxt '{{ default_kernel_params }} {{ extra_kernel_params }}'"
+  register: gct
+  changed_when: false
+
+- name: Copy cmdlinetxt config
+  copy: 'content="{{ gct.stdout }}\n" dest=/boot/cmdline.txt'

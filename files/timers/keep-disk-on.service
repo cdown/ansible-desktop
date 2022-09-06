@@ -4,4 +4,4 @@ ConditionPathExists=/srv/samba/.keepalive
 [Service]
 Type=oneshot
 # `touch' might miss the deadline due to writeback
-ExecStart=/bin/dd if=/proc/uptime of=/srv/samba/.keepalive oflag=direct status=none
+ExecStart=/bin/dd if=/proc/uptime of=/srv/samba/.keepalive oflag=direct,sync status=none

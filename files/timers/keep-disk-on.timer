@@ -26,7 +26,7 @@
 # 193 Load_Cycle_Count        0x0032   100   100   000    Old_age   Always       -       799
 
 [Timer]
-OnCalendar=*:*:0/30
+OnCalendar=*:*:0/15
 Persistent=true
 AccuracySec=1s
 

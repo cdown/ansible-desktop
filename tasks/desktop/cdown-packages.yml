@@ -16,6 +16,7 @@
 
       # Duply
       - python-boto
+      - python-boto3
 
       # Mail
       - mutt

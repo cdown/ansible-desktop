@@ -8,7 +8,8 @@ is_phone() {
 
 portext=(
     [123]=''
-    [51820]='-high'
+    [3389]='-rdp'
+    [51820]='-wg'
 )
 
 case $(uname -n) in

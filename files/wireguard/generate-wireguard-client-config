@@ -2,9 +2,18 @@
 
 wanted=${1?}
 
+is_phone() {
+    [[ ${1?} == *-phone ]]
+}
+
+portext=(
+    [123]=''
+    [51820]='-high'
+)
+
 case $(uname -n) in
-    doufu|wotou) endpoint=home.chrisdown.name:123 ;;
-    mantou) endpoint=mantou.chrisdown.name:123 ;;
+    wotou) endpoint=home.chrisdown.name ;;
+    mantou) endpoint=mantou.chrisdown.name ;;
     *) exit 1 ;;
 esac
 
@@ -20,33 +29,43 @@ for file in /srv/wireguard/keys/*_private_key; do
 
     [[ $user == "$wanted" ]] || continue
 
-    # The WireGuard android app doesn't like SaveConfig
-    starter="cat << 'EOF' | sudo tee /etc/wireguard/$HOSTNAME.conf > /dev/null"
-    ender=EOF
-    phone_unknown_lines='SaveConfig = false'
-    cmd=(cat)
-    if [[ $user == *-phone ]]; then
-        phone_unknown_lines=''
-        starter=''
-        ender=''
-        cmd=(qrencode -t ansiutf8)
-    fi
+    for port in "${!portext[@]}"; do
+        output_lines=()
+        ext=${portext["$port"]}
 
-    cat << _EOF | "${cmd[@]}"
-$starter
-[Interface]
-Address = 10.200.200.$octet/32, fd42:42:42::$octet/64
-PrivateKey = $(cat "$file")
-DNS = 10.200.200.1
-$phone_unknown_lines
+        if ! is_phone "$user"; then
+            output_lines+=("cat << 'EOF' | sudo tee /etc/wireguard/$HOSTNAME$ext.conf > /dev/null")
+        fi
 
-[Peer]
-PublicKey = $(cat /srv/wireguard/keys/1_"${HOSTNAME}"_public_key)
-Endpoint = $endpoint
-AllowedIPs = 0.0.0.0/0, ::0/0
-PersistentKeepalive = 21
-$ender
-_EOF
+        output_lines+=(
+            "[Interface]"
+            "Address = 10.200.200.$octet/32, fd42:42:42::$octet/64"
+            "PrivateKey = $(cat "$file")"
+            "DNS = 10.200.200.1"
+        )
+
+        # WireGuard Android doesn't like SaveConfig
+        if ! is_phone "$user"; then
+            output_lines+=("SaveConfig = false")
+        fi
+
+        output_lines+=(
+            "[Peer]"
+            "PublicKey = $(cat /srv/wireguard/keys/1_"${HOSTNAME}"_public_key)"
+            "Endpoint = $endpoint:$port"
+            "AllowedIPs = 0.0.0.0/0, ::0/0"
+            "PersistentKeepalive = 21"
+        )
+
+        if ! is_phone "$user"; then
+            output_lines+=(EOF)
+            printf '%s\n' "${output_lines[@]}"
+        else
+            printf '%s:\n\n' "$HOSTNAME$ext"
+            printf '%s\n' "${output_lines[@]}" | qrencode -t ansiutf8
+            printf '\n'
+        fi
+    done
 
     break
 done

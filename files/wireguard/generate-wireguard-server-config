@@ -4,6 +4,9 @@ wired_iface=$(get-wired-interface)
 ntp_port=123
 
 additional_ports=(
+    # DNS -- we run unbound, but only for local
+    53
+
     # RDP
     3389
 

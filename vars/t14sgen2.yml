@@ -12,6 +12,7 @@ vulkan_drivers:
 xorg: true
 xorg_profile: t14sgen2
 thinkpad: true
+compressed_swap: true
 quirks:
   - thinkpad-cpu-throttling
 features:

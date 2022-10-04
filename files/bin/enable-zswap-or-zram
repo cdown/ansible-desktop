@@ -1,0 +1,27 @@
+#!/bin/bash -ex
+
+(( UID )) && exit 1
+
+num_swaps=$(swapon --noheadings --show | wc -l)
+
+# If we're going to read from memory, no need to do swap readahead
+sysctl vm.page-cluster=0
+
+if (( num_swaps )); then
+    echo lz4 > /sys/module/zswap/parameters/compressor
+    echo 20 > /sys/module/zswap/parameters/max_pool_percent
+
+    # zsmalloc is a lot better at increasing compression ratio by keeping
+    # similar objects together, unlike z3fold/zbud which have fixed size
+    # objects
+    echo zsmalloc > /sys/module/zswap/parameters/zpool
+    echo Y > /sys/module/zswap/parameters/enabled
+else
+    # No backing swap device, set up zram at 20% of total.
+    [[ -d /sys/block/zram0 ]] && exit 1
+    modprobe zram
+    echo lz4 > /sys/block/zram0/comp_algorithm
+    awk '/MemTotal/ { print int($2 / 5) "K" }' /proc/meminfo > /sys/block/zram0/disksize
+    mkswap --label zram-swap /dev/zram0
+    swapon --priority 100 /dev/zram0
+fi

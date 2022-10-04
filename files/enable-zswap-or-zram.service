@@ -1,0 +1,6 @@
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/enable-zswap-or-zram
+
+[Install]
+WantedBy=multi-user.target

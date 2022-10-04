@@ -1,0 +1,5 @@
+---
+- copy: src=files/bin/enable-zswap-or-zram dest=/usr/local/bin/enable-zswap-or-zram mode=755
+- copy: src=files/enable-zswap-or-zram.service dest=/etc/systemd/system/enable-zswap-or-zram.service
+
+- systemd: name=enable-zswap-or-zram enabled=yes daemon_reload=yes

@@ -2,7 +2,7 @@
 
 # To avoid spurious thermal throttling
 - pacman: name=throttled
-- systemd: name=lenovo_fix state=started enabled=yes masked=no
+- systemd: name=throttled state=started enabled=yes masked=no
 
 # Fan control
 - aur: name=zcfan skip_installed=yes

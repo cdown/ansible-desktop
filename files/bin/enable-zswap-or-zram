@@ -13,7 +13,7 @@ if (( num_swaps )); then
 
     # zsmalloc is a lot better at increasing compression ratio by keeping
     # similar objects together, unlike z3fold/zbud which have fixed size
-    # objects
+    # objects. also wbt interacts really poorly with it, often stalling
     echo zsmalloc > /sys/module/zswap/parameters/zpool
     echo Y > /sys/module/zswap/parameters/enabled
 else

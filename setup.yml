@@ -41,7 +41,6 @@
     # WSL doesn't run with systemd. Genie may be possible for later, but for
     # now just omit it.
     systemd_init: true
-    compressed_swap: false  # eventually turn to true after testing
 
     lang_env: true
     python_3_version: 3.8.2
@@ -100,7 +99,7 @@
     - include_tasks: tasks/base/ssh.yml
       when: systemd_init
     - include_tasks: tasks/base/zswap.yml
-      when: systemd_init and compressed_swap
+      when: systemd_init
     - include_tasks: tasks/base/timers-pre.yml
       when: systemd_init
     - include_tasks: tasks/base/timers.yml

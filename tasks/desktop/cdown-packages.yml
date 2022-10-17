@@ -13,6 +13,7 @@
       - python-virtualenvwrapper
       - asp
       - clipmenu
+      - rclone
 
       # Mail
       - mutt

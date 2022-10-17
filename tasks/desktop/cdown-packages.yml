@@ -14,10 +14,6 @@
       - asp
       - clipmenu
 
-      # Duply
-      - python-boto
-      - python-boto3
-
       # Mail
       - mutt
       - w3m
@@ -47,9 +43,6 @@
       # Subtitles
       - enca
 
-      # Backup drive
-      - veracrypt
-
       # chrisdown.name
       - tidy
 
@@ -57,8 +50,6 @@
   aur: name={{ item }} skip_installed=yes skip_pgp_check=yes
   with_items:
     - cconv
-    - duply
-    - drive-bin
     - sshrc
     - xinput-toggle
     - nota

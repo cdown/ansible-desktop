@@ -5,5 +5,4 @@ desktops:
 - Regenerate dotfiles after importing GPG key with `u`
 - Clone .password-store
 - Clone nota
-- `duply google-drive restore`
 - Bluetooth headphone setup (see `nota bluetooth')

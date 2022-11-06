@@ -8,6 +8,7 @@
       - systemd-sysvcompat
       - util-linux
       - p7zip
+      - rebuild-detector
 
       # Encryption
       - cryptsetup
@@ -72,10 +73,3 @@
   become: yes
   become_user: makepkg
   when: not lowmem
-
-- name: Install minimal base (AUR)
-  aur: name={{ item }} skip_installed=yes skip_pgp_check=yes use=makepkg
-  with_items:
-    - rebuild-detector
-  become: yes
-  become_user: makepkg

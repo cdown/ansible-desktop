@@ -60,7 +60,6 @@
     - sxiv-photoorg-git
     - whatmp3
     - shellcheck-bin
-    - dspdfviewer  # while pdfpc is being weird...
     - adb-sync-git
     - matterhorn-bin
     - procmail

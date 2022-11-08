@@ -5,7 +5,7 @@
   become_user: makepkg
 
 - name: Get active Python installed in pyenv
-  shell: "cat ~/.python-version"
+  shell: "cat ~/.pyenv/version"
   register: pyenv_version
   become: yes
   become_user: "{{ user }}"

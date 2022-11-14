@@ -47,6 +47,9 @@
       # chrisdown.name
       - tidy
 
+      # vipe for playlist-edit
+      - moreutils
+
 - name: Install desktop minimal base (cdown specific, AUR)
   aur: name={{ item }} skip_installed=yes skip_pgp_check=yes
   with_items:

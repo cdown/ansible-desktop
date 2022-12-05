@@ -2,6 +2,7 @@
 - name: Install desktop minimal base
   pacman:
     name:
+      - pass
       - mupdf
       - graphviz
       - mpv

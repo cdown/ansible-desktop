@@ -6,7 +6,6 @@
       - openconnect
 
       # Directly unused by Lin
-      - pass
       - irssi
       - pdfpc
       - mktorrent

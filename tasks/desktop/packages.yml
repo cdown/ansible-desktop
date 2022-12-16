@@ -52,6 +52,7 @@
     - psi-notify
     - xob
     - bats
+    - sxiv-photoorg-git
   become: yes
   become_user: makepkg
 

@@ -33,6 +33,7 @@
       - mpd
       - mpc
       - easytag
+      - playerctl
 
       # USB creation
       - udftools
@@ -64,6 +65,7 @@
     - adb-sync-git
     - matterhorn-bin
     - procmail
+    - mpd-mpris
   become: yes
   become_user: makepkg
 

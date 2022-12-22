@@ -66,6 +66,7 @@
     - matterhorn-bin
     - procmail
     - mpd-mpris
+    - bindfs
   become: yes
   become_user: makepkg
 

@@ -55,6 +55,8 @@
       # Access
       - openssh
 
+      # EFI partition maintenance
+      - dosfstools
 
 - name: Install minimal base (x86)
   pacman:

@@ -13,6 +13,7 @@
       - asp
       - clipmenu
       - rclone
+      - cifs-utils
 
       # Mail
       - mutt

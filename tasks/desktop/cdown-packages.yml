@@ -7,7 +7,6 @@
 
       # Directly unused by Lin
       - irssi
-      - pdfpc
       - mktorrent
       - python-virtualenvwrapper
       - asp
@@ -68,6 +67,7 @@
     - procmail
     - mpd-mpris
     - bindfs
+    - dspdfviewer
   become: yes
   become_user: makepkg
 

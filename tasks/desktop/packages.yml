@@ -19,7 +19,7 @@
       - dialog  # optdepends for wifi-menu
 
       # Screenshots
-      - maim
+      - scrot
       - slop
 
       # X

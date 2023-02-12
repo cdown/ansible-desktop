@@ -33,3 +33,6 @@
   command: pacman-key --populate archlinuxarm
   changed_when: false
   when: arch == "arm"
+
+- pacman: name=reflector
+- systemd: name=reflector.timer state=started enabled=yes daemon_reload=yes

@@ -1,6 +1,6 @@
 ---
 boot_mode: uefi
-filesystem: ext4
+filesystem: btrfs
 extra_kernel_params: 'nomodeset mitigations=off'  # no external access anyway
 compile_server: true
 game_server: true

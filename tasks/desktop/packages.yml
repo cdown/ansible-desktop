@@ -7,6 +7,7 @@
       - graphviz
       - mpv
       - qemu-desktop
+      - wireguard-tools
 
       # Technically could also be used on the server, but in reality we only
       # use this on desktop for note/e-mail writing.

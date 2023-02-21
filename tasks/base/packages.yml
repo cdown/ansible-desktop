@@ -17,7 +17,6 @@
       # Core tools
       - mosh
       - tmux
-      - vim
       - ncdu
       - diffutils
       - less
@@ -68,10 +67,19 @@
   pacman: name={{ cpu_microcode }}
   when: cpu_microcode
 
+- name: Install minimal base (lowmem)
+  pacman:
+    name:
+      # temporarily generally using vim-git until
+      # https://bugs.archlinux.org/task/77475 is done
+      - vim
+  when: lowmem
+
 - name: Install minimal base (AUR, non-lowmem)
   aur: name={{ item }} skip_installed=yes skip_pgp_check=yes use=makepkg
   with_items:
     - pacman-static
+    - vim-git
   become: yes
   become_user: makepkg
   when: not lowmem

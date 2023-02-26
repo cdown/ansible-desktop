@@ -9,8 +9,6 @@
 
 [Unit]
 Description=WireGuard via wg-quick(8) for wg0
-After=network-online.target
-Wants=network-online.target
 PartOf=wg-quick.target
 Documentation=man:wg-quick(8)
 Documentation=man:wg(8)

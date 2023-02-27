@@ -65,6 +65,7 @@
     - hyperfine
     - ripgrep
     - cargo-update
+    - cargo-edit
     - fd-find
     - hexyl
     - mack

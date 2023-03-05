@@ -19,10 +19,6 @@
       - w3m
       - msmtp
 
-      # Android, can be moved if Lin eventually uses it
-      - android-tools
-      - android-udev
-
       # Photos
       - hugin
       - gimp

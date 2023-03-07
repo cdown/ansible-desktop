@@ -50,6 +50,7 @@
   with_items:
     - rustfmt
     - clippy
+    - rust-analyzer
   become: yes
   become_user: "{{ user }}"
   when: 'item not in rustup_stable_components.stdout_lines'

@@ -18,6 +18,7 @@
       - mosh
       - tmux
       - vim
+      - neovim
       - ncdu
       - diffutils
       - less

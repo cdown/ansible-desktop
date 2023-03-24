@@ -10,7 +10,7 @@
 - pacman: name=hplip          # for hp drivers
 - pacman: name=python-pillow  # for scanning support with hp-scan
 
-- systemd: name=avahi-daemon state=started enabled=yes daemon_reload=yes
-- systemd: name=cups state=started enabled=yes daemon_reload=yes
+- systemd: name=avahi-daemon state=stopped enabled=no daemon_reload=yes
+- systemd: name=cups state=stopped enabled=no daemon_reload=yes
 
 # New printers can be added at localhost:631/admin -> find new printers

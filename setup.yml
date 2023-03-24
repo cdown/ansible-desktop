@@ -158,6 +158,7 @@
       with_items:
         - cfs
         - printscan
+        - ufw
       when: desktop and systemd_init  # otherwise it's wsl or similar, so no need
 
     - include_tasks: tasks/desktop/{{ item }}.yml

@@ -37,4 +37,4 @@
 - pacman: name=reflector
   when: arch == "x86"
 - systemd: name=reflector.timer state=started enabled=yes daemon_reload=yes
-  when: arch == "x86"
+  when: systemd_init and arch == "x86"

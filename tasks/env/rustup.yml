@@ -67,6 +67,7 @@
     - mack
     - git-trim
     - git-delta
+    - cargo-msrv
   become: yes
   become_user: "{{ user }}"
   when: 'item not in cargo_pkgs.stdout_lines'

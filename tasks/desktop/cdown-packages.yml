@@ -26,10 +26,7 @@
       - ghostscript  # imagemagick optdepends
 
       # Music
-      - mpd
-      - mpc
       - easytag
-      - playerctl
 
       # USB creation
       - udftools
@@ -54,14 +51,12 @@
     - xinput-toggle
     - nota
     - mpdscribble
-    - mpdmenu
     - geteltorito
     - whatmp3
     - shellcheck-bin
     - adb-sync-git
     - matterhorn-bin
     - procmail
-    - mpd-mpris
     - bindfs
     - dspdfviewer
   become: yes

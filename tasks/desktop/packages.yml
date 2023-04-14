@@ -47,6 +47,11 @@
       - android-tools
       - android-udev
 
+      # Music
+      - mpd
+      - mpc
+      - playerctl
+
 
 - name: Install desktop minimal base (AUR)
   aur: name={{ item }} skip_installed=yes skip_pgp_check=yes
@@ -59,6 +64,8 @@
     - xob
     - bats
     - sxiv-photoorg-git
+    - mpdmenu
+    - mpd-mpris
   become: yes
   become_user: makepkg
 

@@ -69,6 +69,7 @@
     - git-delta
     - cargo-msrv
     - cargo-release
+    - battery-notify
   become: yes
   become_user: "{{ user }}"
   when: 'item not in cargo_pkgs.stdout_lines'

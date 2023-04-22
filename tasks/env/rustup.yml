@@ -70,6 +70,7 @@
     - cargo-msrv
     - cargo-release
     - battery-notify
+    - cargo-expand
   become: yes
   become_user: "{{ user }}"
   when: 'item not in cargo_pkgs.stdout_lines'

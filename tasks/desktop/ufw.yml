@@ -1,6 +1,15 @@
 ---
 - pacman: name=ufw
+
+# These can't be done when running under nspawn without real root
+- command: systemd-detect-virt
+  register: virt
+  changed_when: false
 - ufw: state=enabled logging=off
+  when: virt.stdout != "systemd-nspawn"
 - ufw: direction=incoming policy=deny
+  when: virt.stdout != "systemd-nspawn"
 - ufw: direction=outgoing policy=allow
+  when: virt.stdout != "systemd-nspawn"
 - systemd: name=ufw state=started enabled=yes
+  when: virt.stdout != "systemd-nspawn"

@@ -6,6 +6,6 @@ desktop: true
 server: false
 xorg: true
 xorg_profile: vmware
-thinkpad: true
+force_dhcpcd: true
 features:
   - tex

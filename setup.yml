@@ -27,6 +27,7 @@
     carch: x86_64
     chost: x86_64-pc-linux-gnu
     extra_cflags: ""
+    force_dhcpcd: false
     wireguard_users:
       # final_octet explicitly specified to avoid changing IPs if the list
       # changes. 1 is reserved for the server.

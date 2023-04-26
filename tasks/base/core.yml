@@ -9,7 +9,7 @@
 - name: Enable dhcpcd
   service: name=dhcpcd state=started enabled=yes
   # On desktops, network config is up to the booting user
-  when: systemd_init and not desktop
+  when: systemd_init and (force_dhcpcd or not desktop)
 
 - name: Install systemd-resolvconf stub for openresolv
   pacman: name=systemd-resolvconf

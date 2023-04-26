@@ -60,7 +60,7 @@
     - matterhorn-bin
     - procmail
     - bindfs
-    - dspdfviewer-git
+    # - dspdfviewer-git
   become: yes
   become_user: makepkg
 

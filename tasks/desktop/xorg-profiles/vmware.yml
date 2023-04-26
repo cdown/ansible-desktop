@@ -1,0 +1,4 @@
+---
+
+- pacman: name=xf86-video-vmware
+- pacman: name=xf86-input-vmmouse

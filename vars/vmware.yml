@@ -1,0 +1,11 @@
+---
+boot_mode: uefi
+filesystem: ext4
+compile_server: true
+desktop: true
+server: false
+xorg: true
+xorg_profile: vmware
+thinkpad: true
+features:
+  - tex

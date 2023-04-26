@@ -5,6 +5,7 @@
 - command: systemd-detect-virt
   register: virt
   changed_when: false
+  failed_when: false
 - ufw: state=enabled logging=off
   when: virt.stdout != "systemd-nspawn"
 - ufw: direction=incoming policy=deny

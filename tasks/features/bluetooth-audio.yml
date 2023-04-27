@@ -15,6 +15,7 @@
 
 - file: path=/etc/systemd/system/bluetooth.service.d state=directory mode=0755
 - copy: src=files/bluetooth/override.conf dest=/etc/systemd/system/bluetooth.service.d/alwaysrestart.conf
+- copy: src=files/bluetooth/experimental.conf dest=/etc/systemd/system/bluetooth.service.d/experimental.conf
 
 - name: Add local users to lp group for DBus policy
   user: name={{ item }} groups=lp append=yes

@@ -16,6 +16,23 @@
   become_user: "{{ user }}"
   when: 'item not in rust_versions.stdout_lines'
 
+- name: Install cargo-which-nightly
+  command: "cargo +stable install cargo-which-nightly"
+  changed_when: false
+  become: yes
+  become_user: "{{ user }}"
+
+- name: Find an appropriate nightly rust with the features we want
+  command: cargo which-nightly rustfmt clippy rust-analyzer
+  register: nightly_ver
+  become: yes
+  become_user: "{{ user }}"
+
+- name: Use nightly rust by default
+  command: "rustup default nightly-{{ nightly_ver.stdout }}"
+  become: yes
+  become_user: "{{ user }}"
+
 - shell: "cargo install --list | awk '$0 ~ /^[a-zA-Z]/ { print $1 }'"
   become: yes
   become_user: "{{ user }}"
@@ -34,17 +51,6 @@
   register: rustup_stable_components
   changed_when: false
 
-# These are now all on stable, and if they linger can block nightly updates if
-# it failed to build
-- name: Remove nightly rustup components
-  command: "rustup component remove {{ item }} --toolchain nightly"
-  with_items:
-    - clippy
-    - rustfmt
-  become: yes
-  become_user: "{{ user }}"
-  when: 'item in rustup_nightly_components.stdout_lines'
-
 - name: Install stable rustup components
   command: "rustup component add {{ item }} --toolchain stable"
   with_items:
@@ -54,6 +60,16 @@
   become: yes
   become_user: "{{ user }}"
   when: 'item not in rustup_stable_components.stdout_lines'
+
+- name: Install nightly rustup components
+  command: "rustup component add {{ item }} --toolchain nightly"
+  with_items:
+    - rustfmt
+    - clippy
+    - rust-analyzer
+  become: yes
+  become_user: "{{ user }}"
+  when: 'item not in rustup_nightly_components.stdout_lines'
 
 - name: Install rust utilities
   command: "cargo install {{ item }}"

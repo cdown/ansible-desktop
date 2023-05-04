@@ -1,5 +1,6 @@
 ---
 - pacman: name=rustup
+- pacman: name=mold
 
 - shell: "rustup show | awk -F- '$1 ~ /^[a-z]+$/ { print $1 }'"
   become: yes

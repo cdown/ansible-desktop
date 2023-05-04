@@ -23,7 +23,7 @@
   become_user: "{{ user }}"
 
 - name: Find an appropriate nightly rust with the features we want
-  command: cargo which-nightly rustfmt clippy rust-analyzer
+  command: cargo +stable which-nightly rustfmt clippy rust-analyzer
   register: nightly_ver
   become: yes
   become_user: "{{ user }}"

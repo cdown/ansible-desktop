@@ -90,3 +90,12 @@
   become: yes
   become_user: "{{ user }}"
   when: 'item not in cargo_pkgs.stdout_lines'
+
+- name: Install rust utilities (stable)
+  command: "cargo +stable install {{ item }}"
+  with_items:
+    # Due to https://github.com/rust-lang/rust/issues/110682
+    - samply
+  become: yes
+  become_user: "{{ user }}"
+  when: 'item not in cargo_pkgs.stdout_lines'

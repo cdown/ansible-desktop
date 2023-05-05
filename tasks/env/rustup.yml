@@ -12,7 +12,6 @@
   command: "rustup install {{ item }}"
   with_items:
     - stable
-    - nightly
   become: yes
   become_user: "{{ user }}"
   when: 'item not in rust_versions.stdout_lines'

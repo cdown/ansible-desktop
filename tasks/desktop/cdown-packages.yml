@@ -13,6 +13,7 @@
       - clipmenu
       - rclone
       - cifs-utils
+      - github-cli
 
       # Mail
       - mutt

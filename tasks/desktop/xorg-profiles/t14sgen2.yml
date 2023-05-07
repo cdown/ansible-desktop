@@ -5,6 +5,9 @@
 # Now using libinput
 - pacman: name=xf86-input-synaptics state=absent
 
+# Video accel
+- pacman: name=intel-media-driver
+
 # Using KMS
 - pacman: name=xf86-video-intel state=absent
 - pacman: name=libva-intel-driver state=absent  # was never needed anyway...

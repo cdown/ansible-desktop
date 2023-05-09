@@ -152,6 +152,7 @@
       with_items:
         - packages
         - sound
+        - webcam
         - fonts
       when: desktop
 

@@ -1,0 +1,2 @@
+---
+- kernel_blacklist: name=uvcvideo state=present

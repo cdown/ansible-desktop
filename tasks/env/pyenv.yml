@@ -51,7 +51,6 @@
   with_items:
     - pip
     - yturl
-    - tzupdate
     - virtualenv
     - virtualenvwrapper
     - astroid
@@ -90,3 +89,11 @@
   become: yes
   become_user: "{{ user }}"
   when: 'not item.startswith("git+https://") and (item|basename) not in py3_utils.stdout_lines'
+
+- name: Uninstall Python 3 utilities
+  shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && pip uninstall -y {{ item }}'
+  with_items:
+    - tzupdate
+  become: yes
+  become_user: "{{ user }}"
+  when: '(item|basename) in py3_utils.stdout_lines'

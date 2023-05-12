@@ -84,6 +84,7 @@
     - cargo-expand
     - exifrename
     - cargo-unused-features
+    - tzupdate
   become: yes
   become_user: "{{ user }}"
   when: 'item not in cargo_pkgs.stdout_lines'

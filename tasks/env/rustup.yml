@@ -24,9 +24,14 @@
 
 - name: Find an appropriate nightly rust with the features we want
   command: cargo +stable which-nightly --set-default rustfmt clippy rust-analyzer
-  register: nightly_ver
   become: yes
   become_user: "{{ user }}"
+
+- name: Get nightly version
+  shell: "rustup default | awk '{ print $1 }'"
+  become: yes
+  become_user: "{{ user }}"
+  register: nightly_ver
 
 - shell: "cargo install --list | awk '$0 ~ /^[a-zA-Z]/ { print $1 }'"
   become: yes
@@ -34,7 +39,7 @@
   register: cargo_pkgs
   changed_when: false
 
-- shell: "rustup component list --installed --toolchain nightly | awk -F- '{ print $1 }'"
+- shell: "rustup component list --installed --toolchain {{ nightly_ver.stdout }} | awk -F- '{ print $1 }'"
   become: yes
   become_user: "{{ user }}"
   register: rustup_nightly_components
@@ -57,7 +62,7 @@
   when: 'item not in rustup_stable_components.stdout_lines'
 
 - name: Install nightly rustup components
-  command: "rustup component add {{ item }} --toolchain nightly"
+  command: "rustup component add {{ item }} --toolchain {{ nightly_ver.stdout }}"
   with_items:
     - rustfmt
     - clippy

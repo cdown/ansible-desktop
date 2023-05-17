@@ -16,6 +16,7 @@
 
 - name: Symlink stub resolver
   file: dest=/etc/resolv.conf src=/run/systemd/resolve/stub-resolv.conf state=link force=yes
+  when: systemd_init
 
 - name: Enable systemd-resolved
   service: name=systemd-resolved state=started enabled=yes

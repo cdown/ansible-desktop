@@ -3,7 +3,6 @@
   pacman:
     name:
       - base
-      - base-devel
       - linux-firmware
       - systemd-sysvcompat
       - util-linux
@@ -58,6 +57,10 @@
 
       # EFI partition maintenance
       - dosfstools
+
+- name: Install base-devel, weirdly there is still stuff in the group, so can't use normal pacman rule since it will check the group
+  command: pacman -S --noconfirm --needed base-devel
+  changed_when: false
 
 - name: Install minimal base (x86)
   pacman:

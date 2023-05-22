@@ -9,7 +9,7 @@
       - irssi
       - mktorrent
       - python-virtualenvwrapper
-      - asp
+      - devtools
       - clipmenu
       - rclone
       - cifs-utils

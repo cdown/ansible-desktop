@@ -1,0 +1,9 @@
+---
+
+filesystem: ext4
+root_on_ssd: false
+remote_server: true
+boot_mode: legacy
+features:
+  - wireguard-server
+  - geoip-server

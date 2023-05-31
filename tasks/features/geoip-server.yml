@@ -14,17 +14,17 @@
   get_url:
     url: https://github.com/cdown/geoip-http/releases/download/0.2.0/geoip-http
     dest: /opt/geoip-http/geoip-http
-    checksum: sha256:b5bb9d8014a0f9b1d61e21e796d78dccdf1352f23cd32812f4850b878ae4944c
+    checksum: sha256:f9ac406ee1fe5d962448b48ea1f5b698903aa7652f93aea467059111d88b2bc9
 
 - name: Download jank GeoLite2 (lol)
   get_url:
     url: https://cdn.jsdelivr.net/npm/geolite2-city@1.0.0/GeoLite2-City.mmdb.gz
     dest: /opt/geoip-http/GeoLite2-City.mmdb.gz
-    checksum: sha256:616b1d9af14edaf06a12e47c7a0b9a3369a728e95f4ce35c917dd4760a9c0ba8
+    checksum: sha256:8cc39a7fbf87c75cc1d7181858dc0875a909cfd165a5da67ddcb3af8a4e09a98
   register: dl
 
 - name: Extract GeoLite2
-  unarchive: src=/opt/geoip-http/GeoLite2-City.mmdb.gz dest=/opt/geoip-http/GeoLite2-City.mmdb
+  unarchive: src=/opt/geoip-http/GeoLite2-City.mmdb.gz dest=/opt/geoip-http/
   when: dl.changed
 
 - copy: src=files/geoip-http.service dest=/etc/systemd/system/geoip-http.service

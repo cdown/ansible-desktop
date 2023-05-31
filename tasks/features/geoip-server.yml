@@ -15,6 +15,7 @@
     url: https://github.com/cdown/geoip-http/releases/download/0.2.0/geoip-http
     dest: /opt/geoip-http/geoip-http
     checksum: sha256:f9ac406ee1fe5d962448b48ea1f5b698903aa7652f93aea467059111d88b2bc9
+    mode: '0755'
 
 - name: Download jank GeoLite2 (lol)
   get_url:

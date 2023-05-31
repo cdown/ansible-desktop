@@ -6,6 +6,7 @@ After=network-online.target
 DynamicUser=yes
 Restart=always
 RestartSec=1
+WorkingDirectory=/opt/geoip-http
 ExecStart=/opt/geoip-http/geoip-http
 TimeoutStopSec=10
 

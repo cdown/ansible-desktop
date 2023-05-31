@@ -13,10 +13,11 @@ portext=(
     [51820]='-wg'
 )
 
-case $(uname -n) in
+hostname=$(uname -n)
+
+case $hostname in
     wotou) endpoint=home.chrisdown.name ;;
-    mantou) endpoint=mantou.chrisdown.name ;;
-    *) exit 1 ;;
+    *) endpoint=$hostname.chrisdown.name ;;
 esac
 
 for file in /srv/wireguard/keys/*_private_key; do

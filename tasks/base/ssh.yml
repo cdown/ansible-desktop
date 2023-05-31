@@ -10,6 +10,11 @@
 # stopping/disabling it here.
 - meta: flush_handlers
 
+# Make sure that we don't have ufw running for servers, or else if there's a
+# failure half way, SSH may not be available.
+- systemd: name=ufw state=stopped enabled=no masked=yes daemon_reload=yes
+  when: server
+
 - name: Enable SSH daemon
   systemd: name=sshd state=started enabled=yes daemon_reload=yes
   when: server or force_ssh

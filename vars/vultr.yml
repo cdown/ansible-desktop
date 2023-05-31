@@ -4,6 +4,9 @@ filesystem: ext4
 root_on_ssd: false
 remote_server: true
 boot_mode: legacy
+extra_kernel_params: 'mitigations=off'  # nothing sensitive here, no threat model
+lang_env: false  # good luck compiling anything on this thing...
+lowmem: true
 features:
   - wireguard-server
   - geoip-server

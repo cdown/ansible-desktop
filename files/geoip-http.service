@@ -3,7 +3,7 @@ Requires=network-online.target
 After=network-online.target
 
 [Service]
-User=nobody
+DynamicUser=yes
 Restart=always
 RestartSec=1
 ExecStart=/opt/geoip-http/geoip-http

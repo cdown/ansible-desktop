@@ -58,6 +58,8 @@
     - "vars/{{ lookup('env', 'AS_CONFIG') }}.yml"
 
   tasks:
+    - include_vars: vars/vault.yml
+
     # Conditional facts (not overrideable in vars)
     - set_fact:
         hdd_scheduler: bfq

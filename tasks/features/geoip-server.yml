@@ -2,13 +2,17 @@
 
 # TODO:
 #
-# - Run as separate user and don't hardcode
-# - Populate GeoLite2.mmdb via a... supported method
 # - Use cargo binstall
 # - Hotswap
 
 - name: Make geoip-http dir
   file: path=/opt/geoip-http state=directory mode=0755
+
+- name: Fetch SHA256 checksum
+  uri:
+    url: "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key={{ maxmind_token }}&suffix=tar.gz.sha256"
+    return_content: yes
+  register: checksum_response
 
 - name: Download geoip-http
   get_url:
@@ -17,16 +21,21 @@
     checksum: sha256:f9ac406ee1fe5d962448b48ea1f5b698903aa7652f93aea467059111d88b2bc9
     mode: '0755'
 
-- name: Download jank GeoLite2 (lol)
+- name: Download GeoLite2 DBB
   get_url:
-    url: https://cdn.jsdelivr.net/npm/geolite2-city@1.0.0/GeoLite2-City.mmdb.gz
-    dest: /opt/geoip-http/GeoLite2-City.mmdb.gz
-    checksum: sha256:8cc39a7fbf87c75cc1d7181858dc0875a909cfd165a5da67ddcb3af8a4e09a98
+    url: "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key={{ maxmind_token }}&suffix=tar.gz"
+    dest: /opt/geoip-http/GeoLite2-City.mmdb.tar.gz
+    checksum: "sha256:{{ checksum_response.content | split(' ') | first }}"
   register: dl
 
 - name: Extract GeoLite2
-  unarchive: src=/opt/geoip-http/GeoLite2-City.mmdb.gz dest=/opt/geoip-http/
+  unarchive: src=/opt/geoip-http/GeoLite2-City.mmdb.tar.gz dest=/opt/geoip-http
   when: dl.changed
 
 - copy: src=files/geoip-http.service dest=/etc/systemd/system/geoip-http.service
 - systemd: name=geoip-http.service enabled=yes daemon_reload=yes
+
+- name: Reload GeoIP DB
+  uri:
+    url: "http://localhost:3000/reload/geoip"
+  when: dl.changed

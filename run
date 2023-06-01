@@ -5,12 +5,21 @@
 config_file=/.ansibleconfig
 type_file=/.ansibletype
 
+# Nothing very secure is in the Vault, just to be prudent with API keys and
+# such, so no need to protect it hard.
+pass_file=/.ansiblepass
+
 if ! [[ -e $config_file ]]; then
     read -r -p 'Config: ' AS_CONFIG
     echo "$AS_CONFIG" > "$config_file"
 fi
 
+if ! [[ -e $pass_file ]]; then
+    read -r -p 'Pass: ' AS_PASS
+    echo "$AS_PASS" > "$pass_file"
+fi
+
 AS_CONFIG=$(cat "$config_file")
 export AS_CONFIG
 
-ansible-playbook -c local -i localhost, "$@" "${0%/*}"/setup.yml
+ansible-playbook -c local -i localhost, --vault-password-file "$pass_file" "$@" "${0%/*}"/setup.yml

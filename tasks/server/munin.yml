@@ -25,9 +25,15 @@
     - uptime
   notify: restart munin-node
 
+- copy: src=files/munin-plugins/ping.conf dest=/etc/munin/plugin-conf.d/ping.conf
+
 - copy: src=files/munin-plugins/{{ item }} dest=/etc/munin/plugins/{{ item }} mode=755
   with_items:
     - psi
+    - ping
+  notify: restart munin-node
+
+- file: src=/etc/munin/plugins/ping dest=/etc/munin/plugins/ping_packetloss state=link
   notify: restart munin-node
 
 - systemd: name=munin-node state=started enabled=yes daemon_reload=yes

@@ -6,6 +6,9 @@
   service: name=systemd-timesyncd state=started enabled=yes
   when: systemd_init
 
+- file: path=/etc/systemd/system/dhcpcd.service.d state=directory
+- copy: src=files/dhcpcd-always-restart.conf dest=/etc/systemd/system/dhcpcd.service.d/always-restart.conf
+
 - name: Enable dhcpcd
   service: name=dhcpcd state=started enabled=yes
   # On desktops, network config is up to the booting user

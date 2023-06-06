@@ -16,10 +16,11 @@
 
 - name: Download geoip-http
   get_url:
-    url: https://github.com/cdown/geoip-http/releases/download/0.2.0/geoip-http
+    url: https://github.com/cdown/geoip-http/releases/download/0.3.0/geoip-http
     dest: /opt/geoip-http/geoip-http
-    checksum: sha256:f9ac406ee1fe5d962448b48ea1f5b698903aa7652f93aea467059111d88b2bc9
+    checksum: sha256:89fc6a2cb848389533c773ef431a3e25d73963f206606dd96b0340b29c2bace9
     mode: '0755'
+  notify: restart geoip-http
 
 - name: Download GeoLite2 DBB
   get_url:
@@ -37,5 +38,5 @@
 
 - name: Reload GeoIP DB
   uri:
-    url: "http://localhost:3000/reload/geoip"
+    url: "http://localhost:3000/db/reload"
   when: dl.changed

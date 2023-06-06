@@ -236,3 +236,5 @@
       service: name=unbound state=restarted
     - name: restart munin-node
       service: name=munin-node state=restarted
+    - name: restart geoip-http
+      service: name=geoip-http state=restarted

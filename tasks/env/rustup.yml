@@ -91,6 +91,7 @@
     - cargo-unused-features
     - tzupdate
     - cargo-watch
+    - multidate
   become: yes
   become_user: "{{ user }}"
   when: 'item not in cargo_pkgs.stdout_lines'

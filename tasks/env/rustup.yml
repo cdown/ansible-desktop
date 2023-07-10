@@ -16,33 +16,16 @@
   become_user: "{{ user }}"
   when: 'item not in rust_versions.stdout_lines'
 
-- name: Install cargo-which-nightly
-  command: "cargo +stable install cargo-which-nightly"
+- name: Set default rust toolchain to stable
+  command: "rustup default stable"
+  become: yes
+  become_user: "{{ user }}"
   changed_when: false
-  become: yes
-  become_user: "{{ user }}"
-
-- name: Find an appropriate nightly rust with the features we want
-  command: cargo +stable which-nightly --set-default rustfmt clippy rust-analyzer
-  become: yes
-  become_user: "{{ user }}"
-
-- name: Get nightly version
-  shell: "rustup default | awk '{ print $1 }'"
-  become: yes
-  become_user: "{{ user }}"
-  register: nightly_ver
 
 - shell: "cargo install --list | awk '$0 ~ /^[a-zA-Z]/ { print $1 }'"
   become: yes
   become_user: "{{ user }}"
   register: cargo_pkgs
-  changed_when: false
-
-- shell: "rustup component list --installed --toolchain {{ nightly_ver.stdout }} | awk -F- '{ print $1 }'"
-  become: yes
-  become_user: "{{ user }}"
-  register: rustup_nightly_components
   changed_when: false
 
 - shell: "rustup component list --installed --toolchain stable | awk -F- '{ print $1 }'"
@@ -60,16 +43,6 @@
   become: yes
   become_user: "{{ user }}"
   when: 'item not in rustup_stable_components.stdout_lines'
-
-- name: Install nightly rustup components
-  command: "rustup component add {{ item }} --toolchain {{ nightly_ver.stdout }}"
-  with_items:
-    - rustfmt
-    - clippy
-    - rust-analyzer
-  become: yes
-  become_user: "{{ user }}"
-  when: 'item not in rustup_nightly_components.stdout_lines'
 
 - name: Install rust utilities
   command: "cargo install {{ item }}"
@@ -92,14 +65,6 @@
     - tzupdate
     - cargo-watch
     - multidate
-  become: yes
-  become_user: "{{ user }}"
-  when: 'item not in cargo_pkgs.stdout_lines'
-
-- name: Install rust utilities (stable)
-  command: "cargo +stable install {{ item }}"
-  with_items:
-    # Due to https://github.com/rust-lang/rust/issues/110682
     - samply
   become: yes
   become_user: "{{ user }}"

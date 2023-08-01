@@ -65,7 +65,7 @@
     - bats
     - sxiv-photoorg-git
     - mpdmenu
-    - mpd-mpris
+    - mpd-mpris-bin
   become: yes
   become_user: makepkg
 

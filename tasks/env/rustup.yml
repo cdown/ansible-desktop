@@ -61,7 +61,8 @@
     - battery-notify
     - cargo-expand
     - exifrename
-    - cargo-unused-features
+    # Compile failure
+    # - cargo-unused-features
     - tzupdate
     - cargo-watch
     - multidate

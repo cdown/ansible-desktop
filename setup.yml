@@ -70,6 +70,9 @@
         ssd_scheduler: none
       when: server
 
+    # Populate facts
+    - service_facts:
+
     # Base (crit): things that cannot be altered by quirks
 
     - include_tasks: tasks/base/locale.yml

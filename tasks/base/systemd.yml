@@ -22,6 +22,18 @@
 - name: Install DisableControllers for root slice
   copy: src=files/root_override.conf dest=/etc/systemd/system/-.slice.d/override.conf
 
+- name: Enable systemd-timesyncd
+  service: name=systemd-timesyncd state=started enabled=yes
+
+- name: Install systemd-resolvconf stub for openresolv
+  pacman: name=systemd-resolvconf
+
+- name: Symlink stub resolver
+  file: dest=/etc/resolv.conf src=/run/systemd/resolve/stub-resolv.conf state=link force=yes
+
+- name: Enable systemd-resolved
+  service: name=systemd-resolved state=started enabled=yes
+
 - name: "Disable unused services (TODO: remask once worked out what's going on with PAM)"
   systemd: name={{ item }} state=started enabled=yes masked=no daemon_reload=yes
   with_items:

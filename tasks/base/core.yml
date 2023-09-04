@@ -2,10 +2,6 @@
 - name: Nuke motd
   copy: content="" dest=/etc/motd
 
-- name: Enable systemd-timesyncd
-  service: name=systemd-timesyncd state=started enabled=yes
-  when: systemd_init
-
 - file: path=/etc/systemd/system/dhcpcd.service.d state=directory
 - copy: src=files/dhcpcd-always-restart.conf dest=/etc/systemd/system/dhcpcd.service.d/always-restart.conf
 
@@ -13,17 +9,6 @@
   service: name=dhcpcd state=started enabled=yes
   # On desktops, network config is up to the booting user
   when: systemd_init and (force_dhcpcd or not desktop)
-
-- name: Install systemd-resolvconf stub for openresolv
-  pacman: name=systemd-resolvconf
-
-- name: Symlink stub resolver
-  file: dest=/etc/resolv.conf src=/run/systemd/resolve/stub-resolv.conf state=link force=yes
-  when: systemd_init
-
-- name: Enable systemd-resolved
-  service: name=systemd-resolved state=started enabled=yes
-  when: systemd_init
 
 - copy: src=files/bin/get-wired-interface dest=/usr/local/bin/get-wired-interface mode=755
 

@@ -31,6 +31,12 @@
 - name: Symlink stub resolver
   file: dest=/etc/resolv.conf src=/run/systemd/resolve/stub-resolv.conf state=link force=yes
 
+- name: Create resolved.conf.d dir
+  file: path=/etc/systemd/resolved.conf.d state=directory
+
+- name: Install resolved config
+  copy: src=files/resolved.conf dest=/etc/systemd/resolved.conf.d/local.conf
+
 - name: Enable systemd-resolved
   service: name=systemd-resolved state=started enabled=yes
 

@@ -50,7 +50,6 @@
   shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && pip install -U {{ item }}'
   with_items:
     - pip
-    - yturl
     - virtualenv
     - virtualenvwrapper
     - astroid

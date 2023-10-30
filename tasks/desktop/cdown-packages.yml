@@ -59,7 +59,6 @@
     - whatmp3
     - shellcheck-bin
     - adb-sync-git
-    - matterhorn-bin
     - procmail
     - bindfs
     # - dspdfviewer-git

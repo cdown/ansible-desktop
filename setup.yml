@@ -37,6 +37,10 @@
         final_octet: 3
       - name: lin-phone
         final_octet: 5
+      - name: yj
+        final_octet: 200
+      - name: yj2
+        final_octet: 201
     force_ssh: false
 
     # WSL doesn't run with systemd. Genie may be possible for later, but for

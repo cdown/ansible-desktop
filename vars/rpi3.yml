@@ -26,5 +26,4 @@ users:
   - lin
 
 # Hack: mentioned to avoid them being removed, but they come from base distro
-# - raspberrypi-bootloader
-# - raspberrypi-firmware
+# - raspberrypi

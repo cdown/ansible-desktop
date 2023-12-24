@@ -62,7 +62,7 @@
     - downgrade
     - psi-notify
     - xob
-    - bats
+    - bats-battery
     - sxiv-photoorg-git
     - mpdmenu
     - mpd-mpris-bin

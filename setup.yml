@@ -115,6 +115,7 @@
     - include_tasks: tasks/base/timers.yml
       with_items:
         - cache-updates
+        - hwclock-systohc
         - pacman-fy
         - vacuum-journals
       when: systemd_init

@@ -1,0 +1,6 @@
+[Unit]
+ConditionPathIsMountPoint=/srv/samba
+
+[Service]
+Type=oneshot
+ExecStart=/bin/fstrim -v /srv/samba

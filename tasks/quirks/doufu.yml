@@ -18,4 +18,4 @@
 
 - include_tasks: tasks/base/timers.yml
   with_items:
-    - keep-disk-on
+    - fstrim-ext

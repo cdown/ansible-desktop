@@ -122,6 +122,7 @@
     - include_tasks: tasks/base/timers-remove.yml
       with_items:
         - clean-cache
+        - keep-disk-on
       when: systemd_init
     - include_tasks: tasks/base/remove.yml
 

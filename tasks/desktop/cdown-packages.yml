@@ -62,6 +62,7 @@
     - procmail
     - bindfs
     # - dspdfviewer-git
+    - pandoc-bin
   become: yes
   become_user: makepkg
 

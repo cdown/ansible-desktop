@@ -8,9 +8,11 @@
       - syslinux
 
 - name: Generate syslinux config
-  command: "generate-syslinux-config {{ kernel }} '{{ default_kernel_params }} {{ extra_kernel_params }}'"
+  command: "generate-syslinux-config {{ kernels | join(' ') }}"
   register: gsc
   changed_when: false
+  environment:
+    EXTRA_KERNEL_PARAMS: '{{ default_kernel_params }} {{ extra_kernel_params }}'
 
 - name: Copy syslinux config
   copy: 'content="{{ gsc.stdout }}\n" dest=/boot/syslinux/syslinux.cfg'

@@ -1,0 +1,10 @@
+---
+- name: Generate systemd-boot config
+  command: "generate-systemd-boot-config {{ item }}"
+  register: gsc
+  changed_when: false
+  environment:
+    EXTRA_KERNEL_PARAMS: '{{ default_kernel_params }} {{ extra_kernel_params }}'
+
+- name: Copy systemd-boot config
+  copy: 'content="{{ gsc.stdout }}\n" dest=/boot/loader/entries/{{ item }}.conf'

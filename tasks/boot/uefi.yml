@@ -12,24 +12,11 @@
   command: bootctl-remount --path=/boot install
   changed_when: false
 
-- name: Generate systemd-boot config
-  command: "generate-systemd-boot-config {{ kernel }} '{{ default_kernel_params }} {{ extra_kernel_params }}'"
-  register: gsc
-  changed_when: false
-
-- name: Copy systemd-boot config
-  copy: 'content="{{ gsc.stdout }}\n" dest=/boot/loader/entries/arch.conf'
-
-- name: Generate systemd-boot config without mitigations
-  command: "generate-systemd-boot-config {{ kernel }} '{{ default_kernel_params }} {{ extra_kernel_params }} mitigations=off' 'mitigations=off'"
-  register: gscm
-  changed_when: false
-
-- name: Copy systemd-boot config without mitigations
-  copy: 'content="{{ gscm.stdout }}\n" dest=/boot/loader/entries/arch-no-mitigations.conf'
+- include_tasks: tasks/boot/uefi-inner.yml
+  with_items: '{{ kernels }}'
 
 - name: Copy loader config
-  copy: 'content="default arch\ntimeout 3\n" dest=/boot/loader/loader.conf'
+  copy: 'content="default {{ kernels[0] }}.conf\ntimeout 3\n" dest=/boot/loader/loader.conf'
 
 - name: Install pacman hook to regenerate systemd-boot install
   aur: name=systemd-boot-pacman-hook skip_installed=yes
@@ -38,3 +25,5 @@
 
 # No longer used
 - file: path=/boot/loader/entries/vcw10.conf state=absent
+- file: path=/boot/loader/entries/arch.conf state=absent
+- file: path=/boot/loader/entries/arch-no-mitigations.conf state=absent

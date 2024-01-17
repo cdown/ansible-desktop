@@ -3,7 +3,7 @@
   connection: local
 
   vars:
-    kernel: linux-lts
+    kernels: [linux-lts, linux]  # first is default
     default_kernel_params: 'cgroup_no_v1=all audit=0 swiotlb=4096'
     extra_kernel_params: ''
     boot_mode: uefi

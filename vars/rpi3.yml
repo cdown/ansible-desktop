@@ -12,7 +12,7 @@ lowmem: true
 arch: arm
 pacman_arch: armv7h
 cpu_microcode: null
-kernel: linux-rpi
+kernels: [linux-rpi]
 carch: armv7h
 chost: armv7l-unknown-linux-gnueabihf
 extra_cflags: -mfloat-abi=hard -mfpu=neon

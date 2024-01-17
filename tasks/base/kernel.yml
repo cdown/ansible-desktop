@@ -1,9 +1,10 @@
 ---
-- name: Install kernel + headers
+- name: Install kernels + headers
   pacman:
     name:
-      - "{{ kernel }}"
-      - "{{ kernel }}-headers"
+      - "{{ item }}"
+      - "{{ item }}-headers"
+  with_items: '{{ kernels }}'
 
 - name: Install mkinitcpio config
   copy: src=files/mkinitcpio.conf dest=/etc/mkinitcpio.conf

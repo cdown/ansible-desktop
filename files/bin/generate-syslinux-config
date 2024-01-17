@@ -5,7 +5,7 @@ if (( UID )); then
     exit 2
 fi
 
-kernel=${1?}
+default_kernel=${1?}
 extra_kernel_params=${EXTRA_KERNEL_PARAMS?}
 
 root_uuid=$(blkid "$(df --output=source / | tail -n1)" | grep -o '\bUUID="[^"]*"' | tr -d '"')
@@ -15,7 +15,7 @@ append="root=$root_uuid rw"
 cat << EOF
 PROMPT 1
 TIMEOUT 5
-DEFAULT arch
+DEFAULT $default_kernel
 EOF
 
 for kernel do

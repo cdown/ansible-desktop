@@ -22,7 +22,7 @@
   when: 'nodenv_version.rc != 0 or node_version not in nodenv_version.stdout'
 
 - name: Get list of installed packages
-  shell: "eval \"$(nodenv init -)\" && npm ls -g | awk '$NF ~ /@/ { print $NF }' | awk -F@ '{ print $1 }'"
+  shell: "eval \"$(nodenv init -)\" && npm ls -gp | sed -n '\\#node_modules#s#.*node_modules/##p'"
   register: nodenv_packages
   become: yes
   become_user: "{{ user }}"
@@ -33,6 +33,7 @@
   with_items:
     - arch-wiki-man
     - twly
+    - '@mermaid-js/mermaid-cli'
   become: yes
   become_user: "{{ user }}"
   when: '(item|basename) not in nodenv_packages.stdout_lines'

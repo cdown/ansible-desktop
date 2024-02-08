@@ -86,6 +86,7 @@
     - habitual
     - chardet
     - diffoscope
+    - get-cover-art
   become: yes
   become_user: "{{ user }}"
   when: 'not item.startswith("git+https://") and (item|basename) not in py3_utils.stdout_lines'

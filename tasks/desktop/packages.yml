@@ -57,6 +57,7 @@
   aur: name={{ item }} skip_installed=yes skip_pgp_check=yes
   with_items:
     - dwm-layoutconfigrules-git
+    - st-xres-git
     - pngquant
     - google-chrome
     - downgrade

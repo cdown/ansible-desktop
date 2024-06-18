@@ -7,12 +7,8 @@
 - systemd: name=systemd-modules-load state=started
   when: systemd_init and sysctls.changed
 
-- name: Check current value of /sys/kernel/mm/lru_gen/enabled
-  command: cat /sys/kernel/mm/lru_gen/enabled
-  register: lru_gen_enabled
+- copy: src=files/kernel-settings.conf dest=/etc/tmpfiles.d/kernel-settings.conf
+  register: copy_ks
 
-- name: Disable MGLRU
-  copy:
-    content: "n"
-    dest: /sys/kernel/mm/lru_gen/enabled
-  when: lru_gen_enabled.stdout != "0x0000"
+- command: systemd-tmpfiles --create /etc/tmpfiles.d/kernel-settings.conf
+  when: copy_ks.changed

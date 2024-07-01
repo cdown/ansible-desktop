@@ -3,7 +3,7 @@
   pacman: name=openssh
 
 - name: Install SSH config
-  copy: src=files/sshd_config dest=/etc/ssh/sshd_config mode=644
+  template: src=files/sshd_config dest=/etc/ssh/sshd_config mode=644
   notify: restart sshd
 
 # Run all pending handlers. Otherwise, we might restart ssh at the end despite

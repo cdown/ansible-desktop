@@ -13,3 +13,8 @@ KexAlgorithms diffie-hellman-group18-sha512,diffie-hellman-group16-sha512,diffie
 HostKeyAlgorithms rsa-sha2-512,rsa-sha2-256,ssh-ed25519
 Ciphers chacha20-poly1305@openssh.com,aes256-ctr,aes256-gcm@openssh.com
 MACs hmac-sha2-512-etm@openssh.com,umac-128-etm@openssh.com
+
+{% if arch == "arm" %}
+# For CVE-2024-6387 until Arch Linux ARM is updated
+LoginGraceTime 0
+{% endif %}

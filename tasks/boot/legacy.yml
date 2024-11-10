@@ -14,6 +14,7 @@
   environment:
     EXTRA_KERNEL_PARAMS: '{{ default_kernel_params }} {{ extra_kernel_params }}'
 
+- file: path=/boot/syslinux state=directory
 - name: Copy syslinux config
   copy: 'content="{{ gsc.stdout }}\n" dest=/boot/syslinux/syslinux.cfg'
 

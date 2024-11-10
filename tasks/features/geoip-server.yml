@@ -36,7 +36,9 @@
 - copy: src=files/geoip-http.service dest=/etc/systemd/system/geoip-http.service
 - systemd: name=geoip-http.service enabled=yes daemon_reload=yes
 
-- name: Reload GeoIP DB
-  uri:
-    url: "http://localhost:3000/db/reload"
+# wtf ansible
+- name: Reload GeoIP
+  assert: { that: true, quiet: true }
+  changed_when: true
   when: dl.changed
+  notify: reload geoip

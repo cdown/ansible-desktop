@@ -247,3 +247,6 @@
       service: name=munin-node state=restarted
     - name: restart geoip-http
       service: name=geoip-http state=restarted
+    - name: reload geoip
+      uri:
+        url: "http://localhost:3000/db/reload"

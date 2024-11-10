@@ -17,6 +17,11 @@
     - "'ufw' in ansible_facts.services"
     - server
 
+- ufw: state=disabled logging=off
+  when:
+    - "'ufw' in ansible_facts.services"
+    - server
+
 - name: Enable SSH daemon
   systemd: name=sshd state=started enabled=yes daemon_reload=yes
   when: server or force_ssh

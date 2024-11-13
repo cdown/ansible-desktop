@@ -10,3 +10,4 @@ systemd_init: false
 server: false
 features:
   - wsl
+  - tex

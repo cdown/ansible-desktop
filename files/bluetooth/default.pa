@@ -66,8 +66,6 @@ load-module module-bluetooth-policy
 load-module module-bluetooth-discover
 .endif
 
-load-module snd-usb-audio
-
 ### Load several protocols
 .ifexists module-esound-protocol-unix.so
 load-module module-esound-protocol-unix

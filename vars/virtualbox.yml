@@ -2,7 +2,7 @@
 
 # More or less the same as the T470s config, for testing large changes.
 
-boot_mode: uefi
+boot_mode: legacy
 filesystem: ext4
 compile_server: false
 desktop: true

@@ -8,3 +8,5 @@ compile_server: false
 desktop: true
 xorg: true
 xorg_profile: virtualbox
+lang_env: false
+lowmem: true

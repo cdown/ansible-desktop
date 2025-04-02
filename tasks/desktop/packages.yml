@@ -36,7 +36,6 @@
       # Desktop environment
       - dmenu
       - rxvt-unicode
-      - physlock
       - libnotify
       - dunst
       - urxvt-perls
@@ -68,6 +67,7 @@
     - sxiv-photoorg-git
     - mpdmenu
     - mpd-mpris-bin
+    - physlock
   become: yes
   become_user: makepkg
 

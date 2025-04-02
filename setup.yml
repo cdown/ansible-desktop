@@ -50,7 +50,7 @@
     lang_env: true
     python_3_version: 3.11.4
     node_version: 20.5.0
-    ruby_version: 3.2.2
+    ruby_version: 3.4.2
     perl_version: 5.38.0
 
     users:

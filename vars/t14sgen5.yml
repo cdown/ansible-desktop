@@ -1,1 +1,17 @@
-t14sgen2.yml
+---
+boot_mode: uefi
+filesystem: btrfs
+compile_server: true
+desktop: true
+server: false
+steam: true
+vulkan_drivers:
+  - vulkan-intel
+  - lib32-vulkan-intel
+xorg: true
+xorg_profile: t14sgen2
+thinkpad: true
+features:
+  - tex
+  - bluetooth-audio
+  - tlp

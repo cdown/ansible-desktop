@@ -15,3 +15,9 @@ features:
   - tex
   - bluetooth-audio
   - tlp
+  - intel-space-heater
+
+# This thing has an Intel space heater, give it some more juice since it
+# doesn't last that long
+batt_thresh_min: 70
+batt_thresh_max: 80

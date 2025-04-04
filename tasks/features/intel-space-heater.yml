@@ -1,0 +1,2 @@
+---
+- template: src=files/tlp-intel-space-heater.conf dest=/etc/tlp.d/99-intel-space-heater.conf

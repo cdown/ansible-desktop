@@ -17,6 +17,9 @@ features:
   - tlp
   - intel-space-heater
 
+# EC interrupts constantly drain the battery from S3, so ignore them.
+extra_kernel_params: "acpi.ec_no_wakeup=1"
+
 # This thing has an Intel space heater, give it some more juice since it
 # doesn't last that long
 batt_thresh_min: 70

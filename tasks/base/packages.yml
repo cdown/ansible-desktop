@@ -6,7 +6,7 @@
       - linux-firmware
       - systemd-sysvcompat
       - util-linux
-      - p7zip
+      - 7zip
       - rebuild-detector
 
       # Encryption

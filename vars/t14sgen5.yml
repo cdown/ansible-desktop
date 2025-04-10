@@ -16,6 +16,7 @@ features:
   - bluetooth-audio
   - tlp
   - intel-space-heater
+  - zcfan
 
 # EC interrupts constantly drain the battery from S3, so ignore them.
 extra_kernel_params: "acpi.ec_no_wakeup=1 intel_pmc_core.warn_on_s0ix_failures=1"

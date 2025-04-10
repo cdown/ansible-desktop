@@ -12,3 +12,4 @@ quirks:
 features:
   - tex
   - bluetooth-audio
+  - zcfan

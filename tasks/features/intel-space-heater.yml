@@ -1,2 +1,40 @@
 ---
-- template: src=files/tlp-intel-space-heater.conf dest=/etc/tlp.d/99-intel-space-heater.conf
+- name: Install TLP Intel space-heater config
+  template:
+    src: files/tlp-intel-space-heater.conf
+    dest: /etc/tlp.d/99-intel-space-heater.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install Bluetooth main.conf
+  template:
+    src: files/bluetooth/main.conf
+    dest: /etc/bluetooth/main.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install iwlwifi module options
+  template:
+    src: files/modprobe/iwlwifi.conf
+    dest: /etc/modprobe.d/iwlwifi.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install USB autosuspend udev rule
+  template:
+    src: files/udev/50-usb-powersave.rules
+    dest: /etc/udev/rules.d/50-usb-powersave.rules
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install Wi-Fi powersave udev rule
+  template:
+    src: files/udev/90-wifi-powersave.rules
+    dest: /etc/udev/rules.d/90-wifi-powersave.rules
+    owner: root
+    group: root
+    mode: '0644'

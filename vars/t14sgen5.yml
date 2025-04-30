@@ -19,7 +19,7 @@ features:
   - zcfan
 
 # EC interrupts constantly drain the battery from S3, so ignore them.
-extra_kernel_params: "acpi.ec_no_wakeup=1 intel_pmc_core.warn_on_s0ix_failures=1"
+extra_kernel_params: "acpi.ec_no_wakeup=1 intel_pmc_core.warn_on_s0ix_failures=1 thinkpad_acpi.fan_control=1"
 
 # This thing has an Intel space heater, give it some more juice since it
 # doesn't last that long

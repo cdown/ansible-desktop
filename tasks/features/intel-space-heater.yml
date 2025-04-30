@@ -38,3 +38,6 @@
     owner: root
     group: root
     mode: '0644'
+
+# Sometimes we fail to go into S0ix, maybe this helps?
+- kernel_blacklist: name=spd5118 state=present

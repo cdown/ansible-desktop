@@ -4,12 +4,5 @@
 - user: name=alarm state=absent force=yes
 - service: name=systemd-networkd enabled=no
 
-# Installed by default and won't be removed since we have them elsewhere
-- pacman: name={{ item }} state=absent
-  with_items:
-    - dialog
-    - netctl
-    - wpa_supplicant
-
 # texinfo is needed by guile->gdb, but it should be installed as dep
 - command: pacman -D --asdeps texinfo

@@ -7,8 +7,17 @@
 
 - name: Enable dhcpcd
   service: name=dhcpcd state=started enabled=yes
-  # On desktops, network config is up to the booting user
+  # On desktops, network config is done by iwd
   when: systemd_init and (force_dhcpcd or not desktop)
+
+- file: path=/etc/iwd state=directory mode=0755
+  when: (desktop and not force_dhcpcd)
+- copy: src=files/iwd.conf dest=/etc/iwd/main.conf
+  when: (desktop and not force_dhcpcd)
+
+- name: Enable iwd
+  service: name=iwd state=started enabled=yes
+  when: systemd_init and (desktop and not force_dhcpcd)
 
 - copy: src=files/bin/get-wired-interface dest=/usr/local/bin/get-wired-interface mode=755
 

@@ -15,9 +15,6 @@
       - aspell
       - aspell-en
 
-      # We just use dhcpcd directly on servers
-      - iwd
-
       # Screenshots
       - scrot
       - slop

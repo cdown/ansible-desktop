@@ -10,6 +10,8 @@
   # On desktops, network config is done by iwd
   when: systemd_init and (force_dhcpcd or not desktop)
 
+- pacman: name=iwd
+  when: (desktop and not force_dhcpcd)
 - file: path=/etc/iwd state=directory mode=0755
   when: (desktop and not force_dhcpcd)
 - copy: src=files/iwd.conf dest=/etc/iwd/main.conf

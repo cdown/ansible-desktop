@@ -7,8 +7,8 @@
 
 - name: Enable dhcpcd
   service: name=dhcpcd state=started enabled=yes
-  # On desktops, network config is done by iwd
-  when: systemd_init and (force_dhcpcd or not desktop)
+  # On desktops, network config is done by iwd, but DHCP is done by dhcpcd
+  when: systemd_init
 
 - pacman: name=iwd
   when: (desktop and not force_dhcpcd)

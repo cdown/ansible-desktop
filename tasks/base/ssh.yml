@@ -10,17 +10,7 @@
 # stopping/disabling it here.
 - meta: flush_handlers
 
-# Make sure that we don't have ufw running for servers, or else if there's a
-# failure half way, SSH may not be available.
-- systemd: name=ufw state=stopped enabled=no masked=yes daemon_reload=yes
-  when:
-    - "'ufw' in ansible_facts.services"
-    - server
-
-- ufw: state=disabled logging=off
-  when:
-    - "'ufw' in ansible_facts.services"
-    - server
+- pacman: name=ufw state=absent
 
 - name: Enable SSH daemon
   systemd: name=sshd state=started enabled=yes daemon_reload=yes

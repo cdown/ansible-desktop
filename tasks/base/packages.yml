@@ -71,7 +71,8 @@
 
 - name: Install CPU microcode
   pacman: name={{ cpu_microcode }}
-  when: cpu_microcode
+  when:
+    - cpu_microcode is not none
 
 - name: Install minimal base (AUR, non-lowmem)
   aur: name={{ item }} skip_installed=yes skip_pgp_check=yes use=makepkg

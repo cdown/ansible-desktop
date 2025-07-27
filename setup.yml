@@ -100,7 +100,7 @@
     # mkinitcpio -P to pass
     - include_tasks: tasks/base/filesystem.yml
     - include_tasks: tasks/base/kernel.yml
-      when: boot_mode  # if boot_mode is null, it's WSL or similar
+      when: boot_mode is not none  # if boot_mode is null, it's WSL or similar
     - include_tasks: tasks/base/core.yml
     - include_tasks: tasks/base/dotfiles.yml
       with_items: '{{ users }}'

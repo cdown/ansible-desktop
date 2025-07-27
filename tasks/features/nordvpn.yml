@@ -1,0 +1,12 @@
+---
+- name: Install NordVPN
+  aur: name=nordvpn-bin skip_installed=yes
+  become: yes
+  become_user: makepkg
+
+- name: Add local users to nordvpn group
+  user: name={{ item }} groups=nordvpn append=yes
+  with_items: '{{ users }}'
+
+- name: Enable and start NordVPN daemon
+  systemd: name=nordvpnd state=started enabled=yes daemon_reload=yes

@@ -29,7 +29,7 @@
   when: 'python_needs_force_rebuild.rc != 0 or python_3_version not in pyenv_version.stdout_lines'
 
 - name: Purge all other Python versions
-  shell: "eval \"$(pyenv-init-full)\" && pyenv versions | grep -v {{ pyenv_version }} | sed 's/^..//' | awk '/^[23]/ { print $1 }' | tee >(xargs -L1 -r pyenv uninstall -f)"
+  shell: "eval \"$(pyenv-init-full)\" && pyenv versions | grep -Fvx '{{ pyenv_version.stdout | trim}}' | sed 's/^..//' | awk '/^[23]/ { print $1 }' | tee >(xargs -L1 -r pyenv uninstall -f)"
   args:
     executable: /bin/bash
   register: py_others

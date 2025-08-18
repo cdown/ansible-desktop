@@ -35,7 +35,7 @@
   register: py_others
   become: yes
   become_user: "{{ user }}"
-  changed_when: py_others.stdout_lines
+  changed_when: py_others.stdout_lines | bool
 
 - name: Get list of Python 3 utils installed
   shell: "eval \"$(pyenv-init-full)\" && pyenv shell {{ python_3_version }} && pip freeze --all | awk -F= '{ print $1 }'"

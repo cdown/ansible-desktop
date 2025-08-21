@@ -1,0 +1,120 @@
+---
+- name: Install S0ix debugging and management tools
+  pacman:
+    name:
+      - ethtool
+      - git
+
+- name: Clone Intel S0ix selftest tool
+  git:
+    repo: https://github.com/intel/S0ixSelftestTool
+    dest: /opt/S0ixSelftestTool
+    update: yes
+
+- name: Make S0ix selftest tool executable
+  file:
+    path: /opt/S0ixSelftestTool/s0ix-selftest-tool.sh
+    mode: '0755'
+
+- name: Create S0ix selftest symlink
+  file:
+    src: /opt/S0ixSelftestTool/s0ix-selftest-tool.sh
+    dest: /usr/local/bin/s0ix-selftest
+    state: link
+
+- name: Disable Wake-on-LAN for ethernet
+  copy:
+    dest: /etc/udev/rules.d/81-disable-wol.rules
+    content: |
+      # Disable Wake-on-LAN for all ethernet interfaces
+      ACTION=="add", SUBSYSTEM=="net", NAME=="e*", RUN+="/usr/bin/ethtool -s $name wol d"
+    mode: '0644'
+
+- name: Create systemd service to disable problematic wake sources
+  copy:
+    dest: /etc/systemd/system/disable-wake-sources.service
+    content: |
+      [Unit]
+      Description=Disable problematic wake sources for S0ix
+      After=multi-user.target
+
+      [Service]
+      Type=oneshot
+      RemainAfterExit=yes
+      ExecStart=/bin/bash -c 'echo XHC > /proc/acpi/wakeup || true'
+      ExecStart=/bin/bash -c 'echo PTXH > /proc/acpi/wakeup || true'
+      ExecStart=/bin/bash -c 'echo GPP0 > /proc/acpi/wakeup || true'
+
+      [Install]
+      WantedBy=multi-user.target
+    mode: '0644'
+
+- name: Enable disable wake sources service
+  systemd:
+    name: disable-wake-sources
+    enabled: yes
+    daemon_reload: yes
+
+- name: Create S0ix monitoring script
+  copy:
+    dest: /usr/local/bin/s0ix-monitor
+    content: |
+      #!/bin/bash
+      echo "=== S0ix Residency Check ==="
+      if [[ -f /sys/kernel/debug/pmc_core/slp_s0_residency_usec ]]; then
+          echo "S0ix residency: $(cat /sys/kernel/debug/pmc_core/slp_s0_residency_usec) microseconds"
+      else
+          echo "S0ix residency file not found"
+      fi
+
+      echo -e "\n=== Power Gating Status ==="
+      if [[ -f /sys/kernel/debug/pmc_core/pch_ip_power_gating_status ]]; then
+          cat /sys/kernel/debug/pmc_core/pch_ip_power_gating_status
+      else
+          echo "Power gating status file not found"
+      fi
+
+      echo -e "\n=== Current Wake Sources ==="
+      cat /proc/acpi/wakeup | grep enabled
+    mode: '0755'
+
+- name: Create tmpfiles configuration for wake source management
+  copy:
+    dest: /etc/tmpfiles.d/disable-wake.conf
+    content: |
+      # Disable problematic wake sources for S0ix
+      w /proc/acpi/wakeup - - - - XHC
+      w /proc/acpi/wakeup - - - - PTXH
+      w /proc/acpi/wakeup - - - - GPP0
+    mode: '0644'
+
+- name: Create systemd sleep.conf.d directory
+  file:
+    path: /etc/systemd/sleep.conf.d
+    state: directory
+    mode: '0755'
+
+- name: Create suspend-then-hibernate configuration
+  copy:
+    dest: /etc/systemd/sleep.conf.d/s0ix-hybrid.conf
+    content: |
+      [Sleep]
+      HibernateDelaySec=60min
+      SuspendEstimationSec=15min
+      MemorySleepMode=s2idle
+    mode: '0644'
+  notify: reload systemd
+
+- name: Enable systemd debug messages for power management
+  copy:
+    dest: /etc/tmpfiles.d/pm-debug.conf
+    content: |
+      # Enable PM debug messages
+      w /sys/power/pm_debug_messages - - - - 1
+    mode: '0644'
+
+- name: Install S0ix test script
+  copy:
+    src: files/bin/s0ix-test-suspend
+    dest: /usr/local/bin/s0ix-test-suspend
+    mode: '0755'

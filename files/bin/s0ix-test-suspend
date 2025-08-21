@@ -1,0 +1,25 @@
+#!/bin/bash
+# S0ix suspend test script
+
+echo "Testing S0ix suspend for 30 seconds..."
+
+# Get initial residency
+initial_residency=$(cat /sys/kernel/debug/pmc_core/slp_s0_residency_usec 2>/dev/null || echo "0")
+
+# Suspend for 30 seconds
+rtcwake -m freeze -s 30
+
+# Get final residency
+final_residency=$(cat /sys/kernel/debug/pmc_core/slp_s0_residency_usec 2>/dev/null || echo "0")
+
+# Calculate difference
+residency_diff=$((final_residency - initial_residency))
+
+echo "S0ix residency increase: ${residency_diff} microseconds"
+
+if [[ $residency_diff -gt 25000000 ]]; then
+    echo "✓ S0ix working properly (>25 seconds of residency)"
+else
+    echo "✗ S0ix may have issues (low residency)"
+    echo "Run 's0ix-monitor' for detailed status"
+fi

@@ -103,7 +103,6 @@
       SuspendEstimationSec=15min
       MemorySleepMode=s2idle
     mode: '0644'
-  notify: reload systemd
 
 - name: Enable systemd debug messages for power management
   copy:

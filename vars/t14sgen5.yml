@@ -16,7 +16,6 @@ features:
   - bluetooth-audio
   - tlp
   - intel-space-heater
-  - zcfan
   - nordvpn
   - s0ix-fixes
 

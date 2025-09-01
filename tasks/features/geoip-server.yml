@@ -6,15 +6,23 @@
 # - Hotswap
 
 - name: Make geoip-http dir
-  file: path=/opt/geoip-http state=directory mode=0755
+  file:
+    path: /opt/geoip-http
+    state: directory
+    mode: 0755
 
-- name: Fetch SHA256 checksum
+- name: Fetch SHA256 checksum for GeoLite2-City DB
   uri:
     url: "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key={{ maxmind_token }}&suffix=tar.gz.sha256"
     return_content: yes
   register: checksum_response
 
-- name: Download geoip-http
+- name: Set the versioned directory name from checksum file
+  set_fact:
+    geoip_db_dir_name: "{{ (checksum_response.content.split() | last).replace('.tar.gz', '') }}"
+  when: checksum_response.content is defined
+
+- name: Download geoip-http binary
   get_url:
     url: https://github.com/cdown/geoip-http/releases/download/0.3.0/geoip-http
     dest: /opt/geoip-http/geoip-http
@@ -22,23 +30,42 @@
     mode: '0755'
   notify: restart geoip-http
 
-- name: Download GeoLite2 DBB
+- name: Download GeoLite2 DB
   get_url:
     url: "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key={{ maxmind_token }}&suffix=tar.gz"
-    dest: /opt/geoip-http/GeoLite2-City.mmdb.tar.gz
+    dest: /opt/geoip-http/GeoLite2-City.tar.gz
     checksum: "sha256:{{ checksum_response.content | split(' ') | first }}"
   register: dl
 
-- name: Extract GeoLite2
-  unarchive: src=/opt/geoip-http/GeoLite2-City.mmdb.tar.gz dest=/opt/geoip-http
-  when: dl.changed
+- name: Check if GeoLite2 DB symlink exists
+  stat:
+    path: /opt/geoip-http/GeoLite2-City.mmdb
+  register: geoip_db_symlink
 
-- copy: src=files/geoip-http.service dest=/etc/systemd/system/geoip-http.service
-- systemd: name=geoip-http.service enabled=yes daemon_reload=yes
+- name: Extract GeoLite2 DB into its versioned directory
+  unarchive:
+    src: /opt/geoip-http/GeoLite2-City.tar.gz
+    dest: /opt/geoip-http/
+    remote_src: yes
+  when: dl.changed or not geoip_db_symlink.stat.exists
+  register: extract_result
 
-# wtf ansible
-- name: Reload GeoIP
-  assert: { that: true, quiet: true }
-  changed_when: true
-  when: dl.changed
+- name: Create or update symbolic link to the latest GeoLite2 DB
+  file:
+    src: "/opt/geoip-http/{{ geoip_db_dir_name }}/GeoLite2-City.mmdb"
+    dest: "/opt/geoip-http/GeoLite2-City.mmdb"
+    state: link
+    force: yes
+  when: extract_result.changed
   notify: reload geoip
+
+- name: Copy systemd service file
+  copy:
+    src: files/geoip-http.service
+    dest: /etc/systemd/system/geoip-http.service
+
+- name: Enable and reload systemd
+  systemd:
+    name: geoip-http.service
+    enabled: yes
+    daemon_reload: yes

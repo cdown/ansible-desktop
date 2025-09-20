@@ -1,2 +1,17 @@
 ---
 - template: src=files/wsl.conf dest=/etc/wsl.conf
+
+- name: Create /usr/lib/binfmt.d for WSL interop
+  file:
+    path: /usr/lib/binfmt.d
+    state: directory
+    mode: '0755'
+  when: systemd_init
+
+- name: Create WSLInterop binfmt config
+  copy:
+    content: ':WSLInterop:M::MZ::/init:PF'
+    dest: /usr/lib/binfmt.d/WSLInterop.conf
+    mode: '0644'
+  notify: restart systemd-binfmt
+  when: systemd_init

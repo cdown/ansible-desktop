@@ -1,0 +1,13 @@
+---
+
+boot_mode: null
+filesystem: null
+root_on_ssd: false  # Don't try to TRIM from WSL
+compile_server: true
+desktop: true  # While we don't use X/dwm, we do use other "desktop" utils
+xorg: true
+systemd_init: true
+server: false
+features:
+  - wsl
+  - tex

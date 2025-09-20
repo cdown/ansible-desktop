@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+export LC_ALL=C.UTF-8
+
 (( UID )) && exec sudo "$0" "$@"
 
 config_file=/.ansibleconfig

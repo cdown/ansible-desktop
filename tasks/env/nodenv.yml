@@ -13,7 +13,7 @@
   become: yes
   become_user: "{{ user }}"
   changed_when: false
-  failed_when: 'nodenv_version.rc != 0 and nodenv_version.stdout_lines'
+  failed_when: 'nodenv_version.rc != 0 and nodenv_version.stdout != ""'
 
 - name: Install node {{ node_version }} using nodenv
   shell: "eval \"$(nodenv init -)\" && nodenv install {{ node_version }} && nodenv rehash && nodenv global {{ node_version }}"

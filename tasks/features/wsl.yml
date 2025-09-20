@@ -1,2 +1,2 @@
 ---
-- copy: src=files/wsl.conf dest=/etc/wsl.conf
+- template: src=files/wsl.conf dest=/etc/wsl.conf

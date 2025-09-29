@@ -44,6 +44,7 @@
 
       # Music
       - mpd
+      - mpd-mpris
       - mpc
       - playerctl
 
@@ -61,7 +62,6 @@
     - bats-battery
     - sxiv-photoorg-git
     - mpdmenu
-    - mpd-mpris-bin
     - physlock
   become: yes
   become_user: makepkg

@@ -253,3 +253,5 @@
         url: "http://localhost:3000/db/reload"
     - name: reload systemd
       command: systemctl daemon-reload
+    - name: reload sysctl
+      command: sysctl --system

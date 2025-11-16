@@ -6,6 +6,10 @@ RequiredForOnline=no
 
 [Network]
 DHCP=yes
+# Workaround for link flap during auto-negotiation (dmesg shows ~5s Half-Duplex
+# -> Down -> Full-Duplex). This value must be longer than the flap to prevent
+# networkd from deconfiguring the link mid-setup.
+IgnoreCarrierLoss=10s
 
 [DHCPv4]
 UseDomains=true

@@ -38,6 +38,11 @@
   service: name=iwd state=started enabled=yes
   when: systemd_init and wifi
 
+- name: Fix ARP flux for multi-homed systems on same subnet
+  copy: src=files/90-arp-filter.conf dest=/etc/sysctl.d/90-arp-filter.conf
+  when: systemd_init and wifi
+  notify: reload sysctl
+
 - copy: src=files/bin/get-wired-interface dest=/usr/local/bin/get-wired-interface mode=755
 
 - name: Set I/O schedulers

@@ -13,3 +13,14 @@
 
 - name: Remove dhcpcd service configuration directory
   file: path=/etc/systemd/system/dhcpcd.service.d state=absent
+
+- name: Remove PulseAudio packages (replaced by PipeWire)
+  pacman:
+    state: absent
+    name:
+      - pulseaudio
+      - pulseaudio-bluetooth
+  ignore_errors: yes
+
+- name: Remove PulseAudio configuration
+  file: path=/etc/pulse state=absent

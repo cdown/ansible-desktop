@@ -1,28 +1,33 @@
 ---
-- name: Install Bluetooth audio required packages
+- name: Install Bluetooth packages
   pacman:
-    state: present
     name:
-        - bluez
-        - bluez-utils
-        - pulseaudio-bluetooth
+      - bluez
+      - bluez-utils
+
+- name: Install Bluetooth menu (AUR)
+  aur: name=btmenu skip_installed=yes skip_pgp_check=yes
+  become: yes
+  become_user: makepkg
 
 - name: Enable required bluetooth modules on boot
   copy: src=files/bluetooth.conf dest=/etc/modules-load.d/bluetooth.conf
 
-- copy: src=files/bluetooth/default.pa dest=/etc/pulse/default.pa
-- copy: src=files/bluetooth/audio.conf dest=/etc/bluetooth/audio.conf
+- name: Copy BlueZ audio config
+  copy: src=files/bluetooth/audio.conf dest=/etc/bluetooth/audio.conf
 
-- file: path=/etc/systemd/system/bluetooth.service.d state=directory mode=0755
-- copy: src=files/bluetooth/override.conf dest=/etc/systemd/system/bluetooth.service.d/alwaysrestart.conf
-- copy: src=files/bluetooth/experimental.conf dest=/etc/systemd/system/bluetooth.service.d/experimental.conf
+- name: Create systemd override directory for bluetooth
+  file: path=/etc/systemd/system/bluetooth.service.d state=directory mode=0755
+
+- name: Configure bluetooth service to always restart
+  copy: src=files/bluetooth/override.conf dest=/etc/systemd/system/bluetooth.service.d/alwaysrestart.conf
+
+- name: Enable experimental bluetooth features
+  copy: src=files/bluetooth/experimental.conf dest=/etc/systemd/system/bluetooth.service.d/experimental.conf
 
 - name: Add local users to lp group for DBus policy
   user: name={{ item }} groups=lp append=yes
   with_items: '{{ users }}'
 
-- aur: name=btmenu skip_installed=yes skip_pgp_check=yes
-  become: yes
-  become_user: makepkg
-
-- systemd: name=bluetooth state=started enabled=yes
+- name: Enable and start bluetooth service
+  systemd: name=bluetooth state=started enabled=yes

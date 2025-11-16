@@ -8,9 +8,11 @@
       - pavucontrol
       - libldac
 
-- file: path=/etc/wireplumber/wireplumber.conf.d state=directory mode=0755
 - name: Configure WirePlumber for LDAC codec preference
   copy: src=files/wireplumber-bluetooth.conf dest=/etc/wireplumber/wireplumber.conf.d/10-bluetooth.conf
+
+- name: Configure WirePlumber ALSA priority for fallback
+  copy: src=files/wireplumber-alsa-priority.conf dest=/etc/wireplumber/wireplumber.conf.d/20-alsa-priority.conf
 
 - name: Blacklist pcspkr
   kernel_blacklist: name=pcspkr state=present

@@ -4,7 +4,7 @@ iface=$(get-wired-interface)
 
 retries=30
 
-# Wait for dhcpcd...
+# Wait for network configuration...
 while (( retries )) && ! ip addr show dev "$iface" | grep -q inet; do
     (( retries-- ))
     sleep 1

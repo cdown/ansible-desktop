@@ -50,9 +50,6 @@
       - htop
       - bind
 
-      # Network
-      - dhcpcd
-
       # Access
       - openssh
 

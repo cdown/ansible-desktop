@@ -1,7 +1,7 @@
 [Unit]
 Description=Add BuyVM IPv6 routes
-Requires=dhcpcd.service
-After=dhcpcd.service
+Requires=systemd-networkd.service
+After=systemd-networkd.service
 
 [Service]
 ExecStart=/usr/local/bin/add-buyvm-routes

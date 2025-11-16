@@ -2,24 +2,41 @@
 - name: Nuke motd
   copy: content="" dest=/etc/motd
 
-- file: path=/etc/systemd/system/dhcpcd.service.d state=directory
-- copy: src=files/dhcpcd-always-restart.conf dest=/etc/systemd/system/dhcpcd.service.d/always-restart.conf
+- name: Ensure systemd-networkd configuration directory exists
+  file: path=/etc/systemd/network state=directory mode=0755
+  when: systemd_init
 
-- name: Enable dhcpcd
-  service: name=dhcpcd state=started enabled=yes
-  # On desktops, network config is done by iwd, but DHCP is done by dhcpcd
+- name: Configure systemd-networkd for ethernet DHCP
+  copy: src=files/systemd-networkd-ethernet.network dest=/etc/systemd/network/10-ethernet.network
+  when: systemd_init
+
+- name: Configure systemd-networkd for wireless DHCP
+  copy: src=files/systemd-networkd-wireless.network dest=/etc/systemd/network/20-wireless.network
+  when: systemd_init and wifi
+
+- name: Remove old legacy networkd DHCP config
+  file: path=/etc/systemd/network/20-dhcp.network state=absent
+  when: systemd_init
+
+- name: Enable systemd-networkd
+  service: name=systemd-networkd state=started enabled=yes
+  # On desktops, network config is done by iwd, but DHCP is done by systemd-networkd
+  when: systemd_init
+
+- name: Enable systemd-resolved
+  service: name=systemd-resolved state=started enabled=yes
   when: systemd_init
 
 - pacman: name=iwd
-  when: (desktop and not force_dhcpcd)
+  when: systemd_init and wifi
 - file: path=/etc/iwd state=directory mode=0755
-  when: (desktop and not force_dhcpcd)
+  when: systemd_init and wifi
 - copy: src=files/iwd.conf dest=/etc/iwd/main.conf
-  when: (desktop and not force_dhcpcd)
+  when: systemd_init and wifi
 
 - name: Enable iwd
   service: name=iwd state=started enabled=yes
-  when: systemd_init and (desktop and not force_dhcpcd)
+  when: systemd_init and wifi
 
 - copy: src=files/bin/get-wired-interface dest=/usr/local/bin/get-wired-interface mode=755
 

@@ -1,3 +1,15 @@
 ---
 - name: Remove unused Virtualbox host module load
   file: path=/etc/modules-load.d/virtualbox-host.conf state=absent
+
+- name: Stop and disable dhcpcd service (replaced by systemd-networkd)
+  service: name=dhcpcd state=stopped enabled=no
+  when: systemd_init
+  ignore_errors: yes
+
+- name: Remove dhcpcd package (replaced by systemd-networkd)
+  pacman: name=dhcpcd state=absent
+  ignore_errors: yes
+
+- name: Remove dhcpcd service configuration directory
+  file: path=/etc/systemd/system/dhcpcd.service.d state=absent

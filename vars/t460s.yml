@@ -4,6 +4,7 @@ filesystem: btrfs
 compile_server: false
 desktop: true
 server: false
+wifi: true
 xorg: true
 xorg_profile: t4xxs
 thinkpad: true

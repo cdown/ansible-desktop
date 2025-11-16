@@ -4,6 +4,7 @@ filesystem: btrfs
 compile_server: true
 desktop: true
 server: false
+wifi: true
 steam: true
 vulkan_drivers:
   - vulkan-intel

@@ -7,6 +7,7 @@ compile_server: true
 desktop: true  # While we don't use X/dwm, we do use other "desktop" utils
 xorg: true
 systemd_init: false
+wifi: false
 server: false
 features:
   - wsl

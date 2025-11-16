@@ -6,6 +6,6 @@ desktop: true
 server: false
 xorg: true
 xorg_profile: vmware
-force_dhcpcd: true
+wifi: false
 features:
   - tex

@@ -6,6 +6,7 @@ boot_mode: legacy
 filesystem: ext4
 compile_server: false
 desktop: true
+wifi: true
 xorg: true
 xorg_profile: virtualbox
 lang_env: false

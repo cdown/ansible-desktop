@@ -27,7 +27,7 @@
     carch: x86_64
     chost: x86_64-pc-linux-gnu
     extra_cflags: ""
-    force_dhcpcd: false
+    wifi: false
     wireguard_users:
       # final_octet explicitly specified to avoid changing IPs if the list
       # changes. 1 is reserved for the server.
@@ -251,3 +251,5 @@
     - name: reload geoip
       uri:
         url: "http://localhost:3000/db/reload"
+    - name: reload systemd
+      command: systemctl daemon-reload

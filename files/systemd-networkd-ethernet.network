@@ -5,7 +5,7 @@ Type=ether
 RequiredForOnline=no
 
 [Network]
-DHCP=both
+DHCP=yes
 KeepConfiguration=dhcp
 
 [DHCPv4]

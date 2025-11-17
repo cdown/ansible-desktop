@@ -1,0 +1,8 @@
+// run0 configuration: Equivalent to sudo NOPASSWD:ALL for sudo group members
+
+polkit.addRule(function(action, subject) {
+    // Grant all privileges to users in the sudo group
+    if (subject.isInGroup("sudo")) {
+        return polkit.Result.YES;
+    }
+});

@@ -85,6 +85,8 @@
     - include_tasks: tasks/base/pacman.yml
     - include_tasks: tasks/base/users.yml
     - include_tasks: tasks/base/sudo.yml
+    - include_tasks: tasks/base/run0.yml
+      when: systemd_init
     - include_tasks: tasks/base/packages.yml
 
     # Quirks (machine-specific workarounds)
@@ -248,6 +250,8 @@
       service: name=geoip-http state=restarted
     - name: restart systemd-binfmt
       service: name=systemd-binfmt state=restarted
+    - name: restart polkit
+      service: name=polkit state=restarted
     - name: reload geoip
       uri:
         url: "http://localhost:3000/db/reload"

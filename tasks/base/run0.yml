@@ -1,0 +1,25 @@
+---
+- name: Install polkit (required for run0)
+  pacman:
+    name:
+      - polkit
+
+- name: Create polkit rules directory
+  file:
+    path: /etc/polkit-1/rules.d
+    state: directory
+    mode: '0755'
+
+- name: Install run0 polkit rules
+  copy:
+    src: files/polkit/10-run0-admin.rules
+    dest: /etc/polkit-1/rules.d/10-run0-admin.rules
+    mode: '0644'
+  notify: restart polkit
+
+- name: Ensure polkit service is enabled and running
+  systemd:
+    name: polkit
+    state: started
+    enabled: yes
+    daemon_reload: yes

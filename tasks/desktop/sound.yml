@@ -14,5 +14,8 @@
 - name: Configure WirePlumber ALSA priority for fallback
   copy: src=files/wireplumber-alsa-priority.conf dest=/etc/wireplumber/wireplumber.conf.d/20-alsa-priority.conf
 
+- name: Enable auto-switch on connect for PipeWire
+  copy: src=files/pipewire-pulse-switch-on-connect.conf dest=/etc/pipewire/pipewire-pulse.conf.d/switch-on-connect.conf
+
 - name: Blacklist pcspkr
   kernel_blacklist: name=pcspkr state=present

@@ -17,6 +17,12 @@
 - name: Remove old legacy networkd DHCP config
   file: path=/etc/systemd/network/20-dhcp.network state=absent
   when: systemd_init
+  notify: restart systemd-networkd
+
+- name: Remove old legacy networkd wired config
+  file: path=/etc/systemd/network/20-wired.network state=absent
+  when: systemd_init
+  notify: restart systemd-networkd
 
 - name: Enable systemd-networkd
   service: name=systemd-networkd state=started enabled=yes

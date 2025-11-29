@@ -259,3 +259,5 @@
       command: systemctl daemon-reload
     - name: reload sysctl
       command: sysctl --system
+    - name: restart systemd-networkd
+      service: name=systemd-networkd state=restarted

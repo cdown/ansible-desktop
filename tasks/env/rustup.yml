@@ -46,6 +46,8 @@
 
 - name: Install rust utilities
   command: "cargo install {{ item }}"
+  environment:
+    CARGO_TARGET_DIR: "/home/{{ user }}/.cargo/target"
   with_items:
     - hyperfine
     - ripgrep

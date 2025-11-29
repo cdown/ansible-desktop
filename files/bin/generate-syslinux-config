@@ -21,10 +21,9 @@ EOF
 for kernel do
     kernel_file=vmlinuz-$kernel
     initrd_file=initramfs-$kernel.img
-    initrd_fallback_file=initramfs-$kernel-fallback.img
     ucode_file=intel-ucode.img
 
-    for file in "$kernel_file" "$initrd_file" "$initrd_fallback_file" "$ucode_file"; do
+    for file in "$kernel_file" "$initrd_file" "$ucode_file"; do
         if ! [[ -f /boot/"$file" ]]; then
             printf 'FATAL: %s does not exist\n' "$file"
             exit 1
@@ -37,10 +36,5 @@ LABEL $kernel
     LINUX ../$kernel_file
     APPEND $extra_kernel_params $append
     INITRD ../$ucode_file,../$initrd_file
-
-LABEL $kernel-fallback
-    LINUX ../$kernel_file
-    APPEND $extra_kernel_params $append
-    INITRD ../$initrd_fallback_file
 EOF
 done

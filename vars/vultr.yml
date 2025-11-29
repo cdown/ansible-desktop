@@ -4,7 +4,7 @@ filesystem: ext4
 root_on_ssd: false
 remote_server: true
 boot_mode: legacy
-lang_env: false  # good luck compiling anything on this thing...
+lang_env: true
 lowmem: true
 features:
   - wireguard-server

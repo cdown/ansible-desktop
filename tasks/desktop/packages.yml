@@ -26,7 +26,6 @@
       # Pinyin input
       - fcitx
       - fcitx-sunpinyin
-      - fcitx-gtk3
 
       # Desktop environment
       - dmenu

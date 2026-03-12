@@ -51,30 +51,57 @@
 
 - pacman: name=ffmpeg  # for yt-dlp
 
-- name: Install Python 3 utilities
+- name: Install pipx
+  shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && python -m pip install -U pipx'
+  become: yes
+  become_user: "{{ user }}"
+  when: '"pipx" not in py3_utils.stdout_lines'
+
+- name: Reinstall pipx applications after pyenv Python rebuild
+  shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && pipx reinstall-all --python "$(pyenv which python)"'
+  become: yes
+  become_user: "{{ user }}"
+  when: 'python_needs_force_rebuild.rc != 0 or python_3_version not in pyenv_version.stdout_lines'
+
+- name: Get list of pipx packages installed
+  shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && pipx list --short --include-injected'
+  register: pipx_packages
+  become: yes
+  become_user: "{{ user }}"
+  failed_when: false
+  changed_when: false
+
+- name: Install Python 3 utilities with pip
   shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && pip install -U {{ item }}'
   with_items:
     - pip
     - virtualenv
     - virtualenvwrapper
     - astroid
-    - pylint
-    - twine
+    - psutil
     - jupyter
     - ipython
-    - flake8
     - line-profiler
     - memory-profiler
-    - psutil
+    - graphviz
+    - tabulate
+    - mutagen
+    - chardet
+  become: yes
+  become_user: "{{ user }}"
+  when: 'not item.startswith("git+https://") and (item|basename) not in py3_utils.stdout_lines'
+
+- name: Install Python 3 CLI applications with pipx
+  shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && pipx install --python "$(pyenv which python)" {{ item }}'
+  with_items:
+    - pylint
+    - twine
+    - flake8
     - awscli
     - tox
     - pipdeptree
     - srt
-    - hanzidentifier  # for srt lines-matching -m hanzidentifier -f hanzidentifier.has_chinese
     - yt-dlp
-    - graphviz
-    - tabulate
-    - mutagen
     - black
     - certbot
     - gprof2dot
@@ -89,12 +116,17 @@
     - gmute
     - icdiff
     - habitual
-    - chardet
     - diffoscope
     - get-cover-art
   become: yes
   become_user: "{{ user }}"
-  when: 'not item.startswith("git+https://") and (item|basename) not in py3_utils.stdout_lines'
+  when: 'item not in pipx_packages.stdout_lines'
+
+- name: Inject srt support packages into pipx environment
+  shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && pipx inject srt hanzidentifier'
+  become: yes
+  become_user: "{{ user }}"
+  when: '"hanzidentifier" not in pipx_packages.stdout_lines'
 
 - name: Uninstall Python 3 utilities
   shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && pip uninstall -y {{ item }}'

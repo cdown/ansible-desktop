@@ -71,6 +71,7 @@
     - multidate
     - samply
     - cargo-sweep
+    - git-side
   become: yes
   become_user: "{{ user }}"
   when: 'item not in cargo_pkgs.stdout_lines'

@@ -1,12 +1,10 @@
 ---
 - name: Install rbenv
-  aur: name={{ item }} skip_installed=yes
-  with_items:
-    - ruby  # host ruby is required to build
-    - rbenv
-    - ruby-build
-  become: yes
-  become_user: makepkg
+  pacman:
+    name:
+      - ruby  # host ruby is required to build
+      - rbenv
+      - ruby-build
 
 - name: Get list of Rubies installed in rbenv
   shell: "eval \"$(rbenv init -)\" && rbenv versions | sed 's/^..//' | awk '{ print $1 }'"

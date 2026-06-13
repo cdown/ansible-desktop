@@ -15,11 +15,9 @@
   when: cpio.changed
 
 - name: Install kernel-modules-hook
-  aur: name=kernel-modules-hook skip_installed=yes
-  become: yes
-  become_user: makepkg
-  with_items:
-    - kernel-modules-hook
+  pacman:
+    name:
+      - kernel-modules-hook
 
 - systemd: name=linux-modules-cleanup enabled=yes daemon_reload=yes
   when: systemd_init

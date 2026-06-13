@@ -14,6 +14,7 @@
       - rclone
       - cifs-utils
       - github-cli
+      - shellcheck
 
       # Mail
       - mutt
@@ -28,6 +29,7 @@
 
       # Music
       - easytag
+      - mpdscribble
 
       # USB creation
       - udftools
@@ -40,6 +42,7 @@
 
       # chrisdown.name
       - tidy
+      - pandoc-cli
 
       # vipe for playlist-edit
       - moreutils
@@ -54,15 +57,12 @@
     - sshrc
     - xinput-toggle
     - nota
-    - mpdscribble
     - geteltorito
     - whatmp3
-    - shellcheck-bin
     - adb-sync-git
     - procmail
     - bindfs
     # - dspdfviewer-git
-    - pandoc-bin
   become: yes
   become_user: makepkg
 

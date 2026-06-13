@@ -18,6 +18,7 @@
       # Screenshots
       - scrot
       - slop
+      - pngquant
 
       # X
       - xclip
@@ -53,8 +54,6 @@
   with_items:
     - dwm-layoutconfigrules-git
     - st-xres-git
-    - pngquant
-    - google-chrome
     - downgrade
     - psi-notify
     - xob

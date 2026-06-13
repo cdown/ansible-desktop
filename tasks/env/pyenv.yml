@@ -1,8 +1,8 @@
 ---
 - name: Install pyenv
-  aur: name=pyenv skip_installed=yes
-  become: yes
-  become_user: makepkg
+  pacman:
+    name:
+      - pyenv
 
 - name: Get active Python installed in pyenv
   shell: "cat ~/.pyenv/version"

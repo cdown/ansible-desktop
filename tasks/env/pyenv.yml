@@ -128,6 +128,12 @@
   become_user: "{{ user }}"
   when: '"hanzidentifier" not in pipx_packages.stdout_lines'
 
+- name: Inject yt-dlp support packages into pipx environment
+  shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && pipx inject yt-dlp curl-cffi'
+  become: yes
+  become_user: "{{ user }}"
+  when: '"curl-cffi" not in pipx_packages.stdout_lines'
+
 - name: Uninstall Python 3 utilities
   shell: 'eval "$(pyenv-init-full)" && pyenv shell {{ python_3_version }} && pip uninstall -y {{ item }}'
   with_items:
